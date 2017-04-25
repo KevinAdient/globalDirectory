@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F67a" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AddressEntity" representedClassName="AddressEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countryCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gpsAltitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="gpsLatitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="gpsLongitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="gpsRadius" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="postalCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stateOrProvince" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="streetName1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="streetName2" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompanyEntity" inverseName="address" inverseEntity="CompanyEntity" syncable="YES"/>
+        <relationship name="peoples" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PeopleEntity" inverseName="myAddress" inverseEntity="PeopleEntity" syncable="YES"/>
+        <relationship name="resource" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ResourceEntity" inverseName="location" inverseEntity="ResourceEntity" syncable="YES"/>
+    </entity>
+    <entity name="CompanyEntity" representedClassName="CompanyEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="companyDomain" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="companyHeadquartersId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="companyId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="companyImDomain" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="companyName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="address" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AddressEntity" inverseName="company" inverseEntity="AddressEntity" syncable="YES"/>
+        <relationship name="peoples" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PeopleEntity" inverseName="company" inverseEntity="PeopleEntity" syncable="YES"/>
+        <relationship name="resource" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ResourceEntity" inverseName="company" inverseEntity="ResourceEntity" syncable="YES"/>
+    </entity>
+    <entity name="DepartmentEntity" representedClassName="DepartmentEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="adminId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="departmentHeadId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="departmentId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="departmentName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="departmentUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reportsToId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="peoples" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PeopleEntity" inverseName="myDepartment" inverseEntity="PeopleEntity" syncable="YES"/>
+    </entity>
+    <entity name="PeopleEntity" representedClassName="PeopleEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="adminId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="birthday" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="deskphone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="employeeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="globalUserId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="middlename" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mobilephone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="picture" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="profileUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompanyEntity" inverseName="peoples" inverseEntity="CompanyEntity" syncable="YES"/>
+        <relationship name="myAddress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AddressEntity" inverseName="peoples" inverseEntity="AddressEntity" syncable="YES"/>
+        <relationship name="myDepartment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DepartmentEntity" inverseName="peoples" inverseEntity="DepartmentEntity" syncable="YES"/>
+        <relationship name="officeId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ResourceEntity" inverseName="peoples" inverseEntity="ResourceEntity" syncable="YES"/>
+    </entity>
+    <entity name="ResourceCategoryEntity" representedClassName="ResourceCategoryEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="categoryId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="categoryName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="categoryType" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="resources" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ResourceEntity" inverseName="category" inverseEntity="ResourceEntity" syncable="YES"/>
+    </entity>
+    <entity name="ResourceEntity" representedClassName="ResourceEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="projector" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="projectorType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="resourceId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="resourceName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalSeating" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ResourceCategoryEntity" inverseName="resources" inverseEntity="ResourceCategoryEntity" syncable="YES"/>
+        <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompanyEntity" inverseName="resource" inverseEntity="CompanyEntity" syncable="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AddressEntity" inverseName="resource" inverseEntity="AddressEntity" syncable="YES"/>
+        <relationship name="peoples" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PeopleEntity" inverseName="officeId" inverseEntity="PeopleEntity" syncable="YES"/>
+    </entity>
+    <entity name="UserDeviceDetails" representedClassName=".UserDeviceDetails" syncable="YES" codeGenerationType="class">
+        <attribute name="access_token" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="access_tokenDateExpires" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="authenticatedPhoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countryName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="deviceName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="digitsAuthToken" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="digitsAuthTokenSecret" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="emailID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="globalID" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="hashedUserID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iDigitsCounter" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="iDigitsInterval" optional="YES" attributeType="Integer 16" defaultValueString="25" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="iFingerprintCounter" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="iFingerprintInterval" optional="YES" attributeType="Integer 16" defaultValueString="3" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="offLineMode" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="otherFirewallCredential" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="otherFirewallCredentialExpires" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="phoneNumberOnFile" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="refresh_token" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="refreshHost" optional="YES" attributeType="String" defaultValueString="ag.adient.com" syncable="YES"/>
+        <attribute name="refreshPath" optional="YES" attributeType="String" defaultValueString="/mobile/ios/SQRA/manifest.plist" syncable="YES"/>
+        <attribute name="role" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="siteMinderDateExpires" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="siteMinderToken" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="systemName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="systemVersion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uidid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="PeopleEntity" positionX="-477" positionY="9" width="128" height="313"/>
+        <element name="ResourceEntity" positionX="-308" positionY="-270" width="128" height="193"/>
+        <element name="CompanyEntity" positionX="-254" positionY="-9" width="128" height="178"/>
+        <element name="DepartmentEntity" positionX="-207" positionY="315" width="128" height="148"/>
+        <element name="AddressEntity" positionX="-2" positionY="50" width="128" height="238"/>
+        <element name="ResourceCategoryEntity" positionX="-110" positionY="-184" width="173" height="103"/>
+        <element name="UserDeviceDetails" positionX="-225" positionY="-72" width="128" height="495"/>
+    </elements>
+</model>
