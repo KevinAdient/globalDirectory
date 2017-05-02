@@ -16,12 +16,14 @@
         <relationship name="resource" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ResourceEntity" inverseName="location" inverseEntity="ResourceEntity" syncable="YES"/>
     </entity>
     <entity name="CompanyEntity" representedClassName="CompanyEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="companyDomain" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="companyHeadquartersId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="companyId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="companyImDomain" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="companyName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="domain" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="headquartersId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="imDomain" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stockSymbol" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="address" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AddressEntity" inverseName="company" inverseEntity="AddressEntity" syncable="YES"/>
         <relationship name="peoples" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PeopleEntity" inverseName="company" inverseEntity="PeopleEntity" syncable="YES"/>
         <relationship name="resource" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ResourceEntity" inverseName="company" inverseEntity="ResourceEntity" syncable="YES"/>
@@ -40,7 +42,7 @@
         <attribute name="birthday" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="deskphone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="employeeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="employeeId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="firstname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="globalUserId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imName" optional="YES" attributeType="String" syncable="YES"/>
@@ -56,18 +58,20 @@
         <relationship name="officeId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ResourceEntity" inverseName="peoples" inverseEntity="ResourceEntity" syncable="YES"/>
     </entity>
     <entity name="ResourceCategoryEntity" representedClassName="ResourceCategoryEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="categoryId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="categoryName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="categoryType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="resources" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ResourceEntity" inverseName="category" inverseEntity="ResourceEntity" syncable="YES"/>
     </entity>
     <entity name="ResourceEntity" representedClassName="ResourceEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="emailAddress" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="projector" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="projectorType" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="resourceId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="resourceName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="totalSeating" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="seatingCapacity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ResourceCategoryEntity" inverseName="resources" inverseEntity="ResourceCategoryEntity" syncable="YES"/>
         <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompanyEntity" inverseName="resource" inverseEntity="CompanyEntity" syncable="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AddressEntity" inverseName="resource" inverseEntity="AddressEntity" syncable="YES"/>
@@ -106,12 +110,12 @@
         <attribute name="userID" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="PeopleEntity" positionX="-477" positionY="9" width="128" height="313"/>
-        <element name="ResourceEntity" positionX="-308" positionY="-270" width="128" height="193"/>
-        <element name="CompanyEntity" positionX="-254" positionY="-9" width="128" height="178"/>
-        <element name="DepartmentEntity" positionX="-207" positionY="315" width="128" height="148"/>
         <element name="AddressEntity" positionX="-2" positionY="50" width="128" height="238"/>
-        <element name="ResourceCategoryEntity" positionX="-110" positionY="-184" width="173" height="103"/>
+        <element name="CompanyEntity" positionX="-254" positionY="-9" width="128" height="210"/>
+        <element name="DepartmentEntity" positionX="-207" positionY="315" width="128" height="148"/>
+        <element name="PeopleEntity" positionX="-477" positionY="9" width="128" height="315"/>
+        <element name="ResourceCategoryEntity" positionX="-110" positionY="-184" width="173" height="105"/>
+        <element name="ResourceEntity" positionX="-308" positionY="-270" width="128" height="225"/>
         <element name="UserDeviceDetails" positionX="-225" positionY="-72" width="128" height="495"/>
     </elements>
 </model>

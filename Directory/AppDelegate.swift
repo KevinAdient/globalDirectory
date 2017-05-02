@@ -173,6 +173,120 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    public func createResources()->Void {
+        let managedContext = self.getManagedContext()
+        
+        let companyEntity:CompanyEntity = NSEntityDescription.insertNewObject(forEntityName: "CompanyEntity", into: managedContext) as! CompanyEntity
+        companyEntity.domain = "adient.com"
+        //companyEntity.headquartersId
+        companyEntity.name = "Adient"
+        companyEntity.id   = 1
+        companyEntity.imDomain = "adient.com"
+        companyEntity.phoneNumber = "630 209 7542"
+        companyEntity.url  = "adient.com"
+        companyEntity.stockSymbol = "ADNT"
+        
+        let addressEntity1:AddressEntity = NSEntityDescription.insertNewObject(forEntityName: "AddressEntity", into: managedContext) as! AddressEntity
+        addressEntity1.city = "Holland"
+        addressEntity1.countryCode  = "US"
+        addressEntity1.gpsAltitude  = 0.0
+        addressEntity1.gpsLatitude  = 42.7663572
+        addressEntity1.gpsLongitude = -86.0571885
+        addressEntity1.gpsRadius    = 600.0
+        addressEntity1.postalCode   = "49423"
+        addressEntity1.stateOrProvince = "Michigan"
+        addressEntity1.streetName1   = "727 South Waverly Road"
+        
+        let resourceCategory0:ResourceCategoryEntity = NSEntityDescription.insertNewObject(forEntityName: "ResourceCategoryEntity", into: managedContext) as! ResourceCategoryEntity
+        resourceCategory0.id = 1
+        resourceCategory0.name = "Holland HQ"
+        resourceCategory0.type = "building"
+        
+        let resourceCategory1:ResourceCategoryEntity = NSEntityDescription.insertNewObject(forEntityName: "ResourceCategoryEntity", into: managedContext) as! ResourceCategoryEntity
+        resourceCategory1.id = 2
+        resourceCategory1.name = "conference room"
+        resourceCategory1.type = "conference room"
+        
+        let resourceCategory2:ResourceCategoryEntity = NSEntityDescription.insertNewObject(forEntityName: "ResourceCategoryEntity", into: managedContext) as! ResourceCategoryEntity
+        resourceCategory2.id = 3
+        resourceCategory2.name = "office"
+        resourceCategory2.type = "office"
+        
+        let resourceCategory3:ResourceCategoryEntity = NSEntityDescription.insertNewObject(forEntityName: "ResourceCategoryEntity", into: managedContext) as! ResourceCategoryEntity
+        resourceCategory3.id = 4
+        resourceCategory3.name = "desk"
+        resourceCategory3.type = "desk"
+        
+        let resourceCategory4:ResourceCategoryEntity = NSEntityDescription.insertNewObject(forEntityName: "ResourceCategoryEntity", into: managedContext) as! ResourceCategoryEntity
+        resourceCategory4.id = 5
+        resourceCategory4.name = "cafeteria"
+        resourceCategory4.type = "cafeteria"
+        
+        let resourceCategory5:ResourceCategoryEntity = NSEntityDescription.insertNewObject(forEntityName: "ResourceCategoryEntity", into: managedContext) as! ResourceCategoryEntity
+        resourceCategory5.id = 6
+        resourceCategory5.name = "bathroom"
+        resourceCategory5.type = "bathroom"
+
+        
+        let resourceConferenceRoom1:ResourceEntity = NSEntityDescription.insertNewObject(forEntityName: "ResourceEntity", into: managedContext) as! ResourceEntity
+        resourceConferenceRoom1.phoneNumber = "+16302097542"
+        resourceConferenceRoom1.id = 1
+        resourceConferenceRoom1.name = "IT-4-ASG_NA_Holland_COE"
+        resourceConferenceRoom1.emailAddress = "IT41939@adient.com"
+        resourceConferenceRoom1.projector  = true
+        resourceConferenceRoom1.seatingCapacity = 12
+        resourceConferenceRoom1.category   = resourceCategory1
+        resourceConferenceRoom1.phoneNumber = "+16163946276"
+        resourceConferenceRoom1.url = "https://ag.adient.com/mobile"
+        let addressEntityRC1:AddressEntity = NSEntityDescription.insertNewObject(forEntityName: "AddressEntity", into: managedContext) as! AddressEntity
+        addressEntityRC1.city = "Holland"
+        addressEntityRC1.countryCode  = "US"
+        addressEntityRC1.gpsAltitude  = 0.0
+        addressEntityRC1.postalCode   = "49423"
+        addressEntityRC1.stateOrProvince = "Michigan"
+        addressEntityRC1.streetName1   = "727 South Waverly Road"
+        resourceConferenceRoom1.location = addressEntityRC1
+        resourceConferenceRoom1.location?.gpsLatitude = 42.771319
+        resourceConferenceRoom1.location?.gpsLongitude = -86.071303
+        resourceConferenceRoom1.location?.gpsRadius = 25 //meters
+        
+        let peopleEntity1:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
+        let mikesBossEntity:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
+        let departmentEntity1:DepartmentEntity = NSEntityDescription.insertNewObject(forEntityName: "DepartmentEntity", into: managedContext) as! DepartmentEntity
+        peopleEntity1.globalUserId = "achabotm"
+        peopleEntity1.employeeId   = 1
+        peopleEntity1.lastname     = "Chabot"
+        peopleEntity1.firstname    = "Mike"
+        peopleEntity1.middlename   = "M"
+        peopleEntity1.email        = "mike.chabot@adient.com"
+        peopleEntity1.picture      = NSData(contentsOfFile: Bundle.main.path(forResource: "mike.chabot", ofType: "jpg")!)
+        peopleEntity1.deskphone    = "+16163942516"
+        peopleEntity1.mobilephone  = "+16162183730"
+        peopleEntity1.imName       = "sip:mike.chabot@adient.com"
+        peopleEntity1.title         = "Dir Solutions Delivery Srvcs"
+        peopleEntity1.profileUrl    = "https://mysite.adient.com/person.aspx/?user=mike.chabot%40adient.com"
+        departmentEntity1.departmentName = "IT Digital Office"
+        departmentEntity1.departmentHeadId = 2 //"randall.j.urban"
+        mikesBossEntity.employeeId   = 2
+        mikesBossEntity.globalUserId = "aurbanr"
+        peopleEntity1.picture      = NSData(contentsOfFile: Bundle.main.path(forResource: "randy.urban", ofType: "jpg")!)
+        mikesBossEntity.email        = "randall.j.urban@adient.com"
+        mikesBossEntity.firstname    = "Randall"
+        mikesBossEntity.middlename   = "J"
+        mikesBossEntity.lastname     = "Urban"
+        mikesBossEntity.title        = "VP Digital Office"
+        mikesBossEntity.deskphone    = "+17342546613"
+        mikesBossEntity.mobilephone  = "+17344175548"
+        mikesBossEntity.imName       = "sip:randall.j.urban@adient.com"
+        
+        peopleEntity1.myDepartment = departmentEntity1
+        departmentEntity1.reportsToId  = 2
+        //let mikesOfficeEntity:ResourceEntity = NSEntityDescription.insertNewObject(forEntityName: "ResourceEntity", into: managedContext) as! ResourceEntity
+        //mikesOfficeEntity.
+
+        self.saveContext()
+        return
+    }
 
 }
 

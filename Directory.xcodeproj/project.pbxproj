@@ -17,6 +17,9 @@
 		471122E11EAFB52C00AF071D /* DirectoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471122E01EAFB52C00AF071D /* DirectoryUITests.swift */; };
 		471122F21EAFE2CE00AF071D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471122F11EAFE2CE00AF071D /* CoreDataManager.swift */; };
 		471122F41EAFE33300AF071D /* SwiftDebugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471122F31EAFE33300AF071D /* SwiftDebugLog.swift */; };
+		477145101EB92103001C32F5 /* mike.chabot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4771450D1EB92103001C32F5 /* mike.chabot.jpg */; };
+		477145111EB92103001C32F5 /* randy.urban.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4771450E1EB92103001C32F5 /* randy.urban.jpg */; };
+		477145121EB92103001C32F5 /* sheryl.haislet.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4771450F1EB92103001C32F5 /* sheryl.haislet.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,9 @@
 		471122E21EAFB52C00AF071D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		471122F11EAFE2CE00AF071D /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		471122F31EAFE33300AF071D /* SwiftDebugLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftDebugLog.swift; sourceTree = "<group>"; };
+		4771450D1EB92103001C32F5 /* mike.chabot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mike.chabot.jpg; sourceTree = "<group>"; };
+		4771450E1EB92103001C32F5 /* randy.urban.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = randy.urban.jpg; sourceTree = "<group>"; };
+		4771450F1EB92103001C32F5 /* sheryl.haislet.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sheryl.haislet.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +118,7 @@
 				471122C91EAFB52C00AF071D /* LaunchScreen.storyboard */,
 				471122CC1EAFB52C00AF071D /* Info.plist */,
 				471122C41EAFB52C00AF071D /* DirectoryStore.xcdatamodeld */,
+				477145131EB92122001C32F5 /* pictures */,
 			);
 			path = Directory;
 			sourceTree = "<group>";
@@ -132,6 +139,16 @@
 				471122E21EAFB52C00AF071D /* Info.plist */,
 			);
 			path = DirectoryUITests;
+			sourceTree = "<group>";
+		};
+		477145131EB92122001C32F5 /* pictures */ = {
+			isa = PBXGroup;
+			children = (
+				4771450D1EB92103001C32F5 /* mike.chabot.jpg */,
+				4771450E1EB92103001C32F5 /* randy.urban.jpg */,
+				4771450F1EB92103001C32F5 /* sheryl.haislet.jpg */,
+			);
+			name = pictures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,9 +261,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				477145121EB92103001C32F5 /* sheryl.haislet.jpg in Resources */,
 				471122CB1EAFB52C00AF071D /* LaunchScreen.storyboard in Resources */,
 				471122C81EAFB52C00AF071D /* Assets.xcassets in Resources */,
+				477145111EB92103001C32F5 /* randy.urban.jpg in Resources */,
 				471122C31EAFB52C00AF071D /* Main.storyboard in Resources */,
+				477145101EB92103001C32F5 /* mike.chabot.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,6 +552,7 @@
 				471122E71EAFB52C00AF071D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		471122E81EAFB52C00AF071D /* Build configuration list for PBXNativeTarget "DirectoryTests" */ = {
 			isa = XCConfigurationList;
@@ -540,6 +561,7 @@
 				471122EA1EAFB52C00AF071D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		471122EB1EAFB52C00AF071D /* Build configuration list for PBXNativeTarget "DirectoryUITests" */ = {
 			isa = XCConfigurationList;
@@ -548,6 +570,7 @@
 				471122ED1EAFB52C00AF071D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
