@@ -26,6 +26,10 @@
 		477145101EB92103001C32F5 /* mike.chabot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4771450D1EB92103001C32F5 /* mike.chabot.jpg */; };
 		477145111EB92103001C32F5 /* randy.urban.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4771450E1EB92103001C32F5 /* randy.urban.jpg */; };
 		477145121EB92103001C32F5 /* sheryl.haislet.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4771450F1EB92103001C32F5 /* sheryl.haislet.jpg */; };
+		477145171EBA4C44001C32F5 /* julie.ragland.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 477145141EBA4C44001C32F5 /* julie.ragland.jpg */; };
+		477145181EBA4C44001C32F5 /* sarah.hendrixson.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 477145151EBA4C44001C32F5 /* sarah.hendrixson.jpg */; };
+		477145191EBA4C44001C32F5 /* shobita.saxena.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 477145161EBA4C44001C32F5 /* shobita.saxena.jpg */; };
+		4771451B1EBA4ED5001C32F5 /* bruce.mcdonald.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4771451A1EBA4ED5001C32F5 /* bruce.mcdonald.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +75,10 @@
 		4771450D1EB92103001C32F5 /* mike.chabot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mike.chabot.jpg; sourceTree = "<group>"; };
 		4771450E1EB92103001C32F5 /* randy.urban.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = randy.urban.jpg; sourceTree = "<group>"; };
 		4771450F1EB92103001C32F5 /* sheryl.haislet.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sheryl.haislet.jpg; sourceTree = "<group>"; };
+		477145141EBA4C44001C32F5 /* julie.ragland.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = julie.ragland.jpg; sourceTree = "<group>"; };
+		477145151EBA4C44001C32F5 /* sarah.hendrixson.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sarah.hendrixson.jpg; sourceTree = "<group>"; };
+		477145161EBA4C44001C32F5 /* shobita.saxena.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shobita.saxena.jpg; sourceTree = "<group>"; };
+		4771451A1EBA4ED5001C32F5 /* bruce.mcdonald.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bruce.mcdonald.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +173,10 @@
 				4771450D1EB92103001C32F5 /* mike.chabot.jpg */,
 				4771450E1EB92103001C32F5 /* randy.urban.jpg */,
 				4771450F1EB92103001C32F5 /* sheryl.haislet.jpg */,
+				477145141EBA4C44001C32F5 /* julie.ragland.jpg */,
+				477145151EBA4C44001C32F5 /* sarah.hendrixson.jpg */,
+				477145161EBA4C44001C32F5 /* shobita.saxena.jpg */,
+				4771451A1EBA4ED5001C32F5 /* bruce.mcdonald.jpg */,
 			);
 			name = pictures;
 			sourceTree = "<group>";
@@ -281,8 +293,12 @@
 			files = (
 				477145121EB92103001C32F5 /* sheryl.haislet.jpg in Resources */,
 				471122CB1EAFB52C00AF071D /* LaunchScreen.storyboard in Resources */,
+				477145181EBA4C44001C32F5 /* sarah.hendrixson.jpg in Resources */,
+				477145191EBA4C44001C32F5 /* shobita.saxena.jpg in Resources */,
 				471122C81EAFB52C00AF071D /* Assets.xcassets in Resources */,
 				477145111EB92103001C32F5 /* randy.urban.jpg in Resources */,
+				4771451B1EBA4ED5001C32F5 /* bruce.mcdonald.jpg in Resources */,
+				477145171EBA4C44001C32F5 /* julie.ragland.jpg in Resources */,
 				471122C31EAFB52C00AF071D /* Main.storyboard in Resources */,
 				477145101EB92103001C32F5 /* mike.chabot.jpg in Resources */,
 			);
