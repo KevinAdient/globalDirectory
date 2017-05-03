@@ -12,7 +12,7 @@
         <attribute name="streetName1" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="streetName2" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompanyEntity" inverseName="address" inverseEntity="CompanyEntity" syncable="YES"/>
-        <relationship name="peoples" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PeopleEntity" inverseName="myAddress" inverseEntity="PeopleEntity" syncable="YES"/>
+        <relationship name="peoples" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PeopleEntity" inverseName="theirAddress" inverseEntity="PeopleEntity" syncable="YES"/>
         <relationship name="resource" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ResourceEntity" inverseName="location" inverseEntity="ResourceEntity" syncable="YES"/>
     </entity>
     <entity name="CompanyEntity" representedClassName="CompanyEntity" syncable="YES" codeGenerationType="class">
@@ -35,7 +35,7 @@
         <attribute name="departmentName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="departmentUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="reportsToId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="peoples" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PeopleEntity" inverseName="myDepartment" inverseEntity="PeopleEntity" syncable="YES"/>
+        <relationship name="peoples" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PeopleEntity" inverseName="theirDepartment" inverseEntity="PeopleEntity" syncable="YES"/>
     </entity>
     <entity name="PeopleEntity" representedClassName="PeopleEntity" syncable="YES" codeGenerationType="class">
         <attribute name="adminId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -53,9 +53,9 @@
         <attribute name="profileUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompanyEntity" inverseName="peoples" inverseEntity="CompanyEntity" syncable="YES"/>
-        <relationship name="myAddress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AddressEntity" inverseName="peoples" inverseEntity="AddressEntity" syncable="YES"/>
-        <relationship name="myDepartment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DepartmentEntity" inverseName="peoples" inverseEntity="DepartmentEntity" syncable="YES"/>
         <relationship name="officeId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ResourceEntity" inverseName="peoples" inverseEntity="ResourceEntity" syncable="YES"/>
+        <relationship name="theirAddress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AddressEntity" inverseName="peoples" inverseEntity="AddressEntity" syncable="YES"/>
+        <relationship name="theirDepartment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DepartmentEntity" inverseName="peoples" inverseEntity="DepartmentEntity" syncable="YES"/>
     </entity>
     <entity name="ResourceCategoryEntity" representedClassName="ResourceCategoryEntity" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -65,6 +65,7 @@
     </entity>
     <entity name="ResourceEntity" representedClassName="ResourceEntity" syncable="YES" codeGenerationType="class">
         <attribute name="emailAddress" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iAttendUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
@@ -115,7 +116,7 @@
         <element name="DepartmentEntity" positionX="-207" positionY="315" width="128" height="148"/>
         <element name="PeopleEntity" positionX="-477" positionY="9" width="128" height="315"/>
         <element name="ResourceCategoryEntity" positionX="-110" positionY="-184" width="173" height="105"/>
-        <element name="ResourceEntity" positionX="-308" positionY="-270" width="128" height="225"/>
+        <element name="ResourceEntity" positionX="-308" positionY="-270" width="128" height="240"/>
         <element name="UserDeviceDetails" positionX="-225" positionY="-72" width="128" height="495"/>
     </elements>
 </model>
