@@ -26,9 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        UITabBar.appearance().isTranslucent = false
-        UITabBar.appearance().barTintColor = UIColor.white
-        UITabBar.appearance().tintColor = UIColor.orange
+//        UITabBar.appearance().isTranslucent = false
+//        UITabBar.appearance().barTintColor = UIColor.white
+//        UITabBar.appearance().tintColor = UIColor.orange
 
         
         //this copies the populated embedded database if it doesn't already exist

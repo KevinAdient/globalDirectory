@@ -21,6 +21,16 @@ class AvailableViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        super.viewWillAppear(animated)
+        
+        let customTabBarItem:UITabBarItem = UITabBarItem(title: nil, image: UIImage(named: "Selectedcheck")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal), selectedImage: UIImage(named: "Selectedcheck"))
+        customTabBarItem.title = "Available"
+        self.tabBarItem = customTabBarItem
+        
+    }
+    
 
     /*
     // MARK: - Navigation

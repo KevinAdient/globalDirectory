@@ -100,6 +100,10 @@ class PlacesViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         super.viewWillAppear(animated)
         
+        let customTabBarItem:UITabBarItem = UITabBarItem(title: nil, image: UIImage(named: "locationTabIcon")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal), selectedImage: UIImage(named: "locationTabIcon"))
+        customTabBarItem.title = "Places"
+        self.tabBarItem = customTabBarItem
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -121,6 +125,41 @@ class PlacesViewController: UIViewController {
 }
 
 extension PlacesViewController: UISearchBarDelegate {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
+    }
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool
+    {
+        return true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        var predicate:NSPredicate? = nil
+        if searchBar.text?.characters.count != 0 {
+            predicate = NSPredicate(format: "(city contains [cd] %@) || (streetName1 contains[cd] %@)", searchBar.text!, searchBar.text!)
+        }
+        
+        self.fetchedResultsController.fetchRequest.predicate = predicate
+        do {
+            try self.fetchedResultsController.performFetch()
+        } catch {
+            let fetchError = error as NSError
+            print("Unable to Perform Fetch Request")
+            print("\(fetchError), \(fetchError.localizedDescription)")
+        }
+        
+        tableView.reloadData()
+    }
+
     
 }
 
@@ -175,9 +214,6 @@ extension PlacesViewController: NSFetchedResultsControllerDelegate {
             break;
         }
     }
-    
-    
-    
 }
 
 extension PlacesViewController: UITableViewDataSource {
@@ -207,7 +243,7 @@ extension PlacesViewController: UITableViewDataSource {
         let place = fetchedResultsController.object(at: indexPath)
         
         // Configure Cell
-        cell.placeLbl.text = place.city!
+        cell.placeLbl.text = place.city! + " " + place.streetName1!
         
         
     }
@@ -220,6 +256,7 @@ extension PlacesViewController: UITableViewDataSource {
 extension PlacesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //select action
+        searchBar.resignFirstResponder()
     }
 }
 

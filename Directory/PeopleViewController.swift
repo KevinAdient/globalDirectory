@@ -124,6 +124,41 @@ class PeopleViewController: UIViewController {
 }
 
 extension PeopleViewController: UISearchBarDelegate {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
+    }
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool
+    {
+        return true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        var predicate:NSPredicate? = nil
+        if searchBar.text?.characters.count != 0 {
+            predicate = NSPredicate(format: "(lastname contains [cd] %@) || (firstname contains[cd] %@)", searchBar.text!, searchBar.text!)
+        }
+        
+        self.fetchedResultsController.fetchRequest.predicate = predicate
+        do {
+            try self.fetchedResultsController.performFetch()
+        } catch {
+            let fetchError = error as NSError
+            print("Unable to Perform Fetch Request")
+            print("\(fetchError), \(fetchError.localizedDescription)")
+        }
+        
+        tableView.reloadData()
+    }
+
     
 }
 
@@ -227,6 +262,7 @@ extension PeopleViewController: UITableViewDataSource {
 extension PeopleViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //select action
+        searchBar.resignFirstResponder()
     }
 }
 
