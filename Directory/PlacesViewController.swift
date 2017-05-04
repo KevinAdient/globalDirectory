@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class PlacesViewController: UIViewController {
     
@@ -14,16 +15,91 @@ class PlacesViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    //MARK: fetch request init
+    var fetchRequest: NSFetchRequest<AddressEntity> = AddressEntity.fetchRequest()
+    
+    public let persistentContainer = NSPersistentContainer(name: "DirectoryStore")
+    
+    fileprivate lazy var fetchedResultsController: NSFetchedResultsController<AddressEntity> = {
+        // Create Fetch Request
+        let fetchRequest: NSFetchRequest<AddressEntity> = AddressEntity.fetchRequest()
+        
+        // Configure Fetch Request
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(AddressEntity.city), ascending: true)]
+        //        fetchRequest.predicate = NSPredicate(format: "id BEGINSWITH[cd] 'A'")
+        
+        // Create Fetched Results Controller
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.persistentContainer.viewContext, sectionNameKeyPath: #keyPath(AddressEntity.city), cacheName: nil)
+        
+        // Configure Fetched Results Controller
+        fetchedResultsController.delegate = self
+        
+        return fetchedResultsController
+    }()
+
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        persistentContainer.loadPersistentStores { (persistentStoreDescription, error) in
+            if let error = error {
+                print("Unable to Load Persistent Store")
+                print("\(error), \(error.localizedDescription)")
+                
+            } else {
+                self.setupView()
+                
+                do {
+                    try self.fetchedResultsController.performFetch()
+                } catch {
+                    let fetchError = error as NSError
+                    print("Unable to Perform Fetch Request")
+                    print("\(fetchError), \(fetchError.localizedDescription)")
+                }
+                
+                self.updateView()
+            }
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground(_:)), name: Notification.Name.UIApplicationDidEnterBackground, object: nil)
+        
+        
     }
+    
+    // MARK: - View Methods
+    public func setupView() {
+        
+        updateView()
+    }
+    
+    fileprivate func updateView() {
+        var hasPlace = false
+        
+        if let places = fetchedResultsController.fetchedObjects {
+            hasPlace = places.count > 0
+        }
+        
+        tableView.isHidden = !hasPlace
+    }
+    
+    // MARK: - Notification Handling
+    
+    func applicationDidEnterBackground(_ notification: Notification) {
+        do {
+            try persistentContainer.viewContext.save()
+        } catch {
+            print("Unable to Save Changes")
+            print("\(error), \(error.localizedDescription)")
+        }
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         super.viewWillAppear(animated)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,23 +124,102 @@ extension PlacesViewController: UISearchBarDelegate {
     
 }
 
+
+extension PlacesViewController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+        
+        updateView()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch (type) {
+        case .insert:
+            if let indexPath = newIndexPath {
+                tableView.insertRows(at: [indexPath], with: .fade)
+            }
+            break;
+        case .delete:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            break;
+        case .update:
+            if let indexPath = indexPath, let cell = tableView.cellForRow(at: indexPath) as? PlaceTableViewCell {
+                configure(cell, at: indexPath)
+            }
+            break;
+        case .move:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            
+            if let newIndexPath = newIndexPath {
+                tableView.insertRows(at: [newIndexPath], with: .fade)
+            }
+            break;
+        }
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        switch type {
+        case .insert:
+            tableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
+        case .delete:
+            tableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
+        default:
+            break;
+        }
+    }
+    
+    
+    
+}
+
 extension PlacesViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        guard let sections = fetchedResultsController.sections else { return 0 }
+        return sections.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10;
+        guard let sectionInfo = fetchedResultsController.sections?[section] else { fatalError("Unexpected Section") }
+        return sectionInfo.numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "placeCell")!
-        cell.textLabel?.text = "Holland Custom Center"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "placeCell", for: indexPath) as? PlaceTableViewCell else {
+            fatalError("Unexpected Index Path")
+        }
+        
+        // Configure Cell
+        configure(cell, at: indexPath)
+        
         return cell
+    }
+    
+    func configure(_ cell: PlaceTableViewCell, at indexPath: IndexPath) {
+        // Fetch Quote
+        let place = fetchedResultsController.object(at: indexPath)
+        
+        // Configure Cell
+        cell.placeLbl.text = place.city!
+        
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60;
     }
-    
 }
 
 extension PlacesViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //select action
+    }
 }
+

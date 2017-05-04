@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A3DA6351EBB744700948161 /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3DA6341EBB744700948161 /* PlaceTableViewCell.swift */; };
 		0AC400391EBA1AE5002DD60C /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC400381EBA1AE5002DD60C /* PeopleViewController.swift */; };
 		0AC4003B1EBA1B48002DD60C /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC4003A1EBA1B48002DD60C /* PlacesViewController.swift */; };
 		0AC4003D1EBA1B5D002DD60C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC4003C1EBA1B5D002DD60C /* SettingsViewController.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A3DA6341EBB744700948161 /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
 		0AC400381EBA1AE5002DD60C /* PeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
 		0AC4003A1EBA1B48002DD60C /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
 		0AC4003C1EBA1B5D002DD60C /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				0AC400381EBA1AE5002DD60C /* PeopleViewController.swift */,
 				0AC400421EBA2A2A002DD60C /* PeopleTableViewCell.swift */,
 				0AC4003A1EBA1B48002DD60C /* PlacesViewController.swift */,
+				0A3DA6341EBB744700948161 /* PlaceTableViewCell.swift */,
 				0AC4003C1EBA1B5D002DD60C /* SettingsViewController.swift */,
 				0AC4003E1EBA1B70002DD60C /* MyLocationViewController.swift */,
 				0AC400401EBA1B80002DD60C /* AvailableViewController.swift */,
@@ -336,6 +339,7 @@
 				0AC4003D1EBA1B5D002DD60C /* SettingsViewController.swift in Sources */,
 				0AC400431EBA2A2A002DD60C /* PeopleTableViewCell.swift in Sources */,
 				0AC4003F1EBA1B70002DD60C /* MyLocationViewController.swift in Sources */,
+				0A3DA6351EBB744700948161 /* PlaceTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
