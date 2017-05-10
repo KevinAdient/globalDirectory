@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F67a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GFg-At-pwL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F71b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GFg-At-pwL">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -91,13 +91,18 @@
                             <constraint firstItem="hKZ-3Q-cN5" firstAttribute="leading" secondItem="EyD-JT-9UZ" secondAttribute="leading" id="uXD-zI-jDz"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Places" image="locationTabIcon" id="nPp-UK-DLo"/>
+                    <tabBarItem key="tabBarItem" title="Places" image="locationTabIcon" id="nPp-UK-DLo" customClass="RAMAnimatedTabBarItem" customModule="Directory" customModuleProvider="target">
+                        <connections>
+                            <outlet property="animation" destination="MAT-nd-pRh" id="0cx-H6-vJg"/>
+                        </connections>
+                    </tabBarItem>
                     <connections>
                         <outlet property="searchBar" destination="hKZ-3Q-cN5" id="7jw-t9-aQf"/>
                         <outlet property="tableView" destination="qAC-9b-sx6" id="nNy-tA-dU9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a2X-6o-aOt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="MAT-nd-pRh" customClass="RAMBounceAnimation" customModule="Directory" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="1764" y="309.89505247376314"/>
         </scene>
@@ -114,9 +119,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="VOY-Kf-8OJ"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="locationTabIcon" id="VOY-Kf-8OJ" customClass="RAMAnimatedTabBarItem" customModule="Directory" customModuleProvider="target">
+                        <connections>
+                            <outlet property="animation" destination="Lky-aQ-fpI" id="KIi-s3-qFb"/>
+                        </connections>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ncZ-aI-Kci" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="Lky-aQ-fpI" customClass="RAMBounceAnimation" customModule="Directory" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="1318" y="1080"/>
         </scene>
@@ -133,9 +143,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My location" id="d4P-Pa-9sD"/>
+                    <tabBarItem key="tabBarItem" title="My location" image="locationTabIcon" id="d4P-Pa-9sD" customClass="RAMAnimatedTabBarItem" customModule="Directory" customModuleProvider="target">
+                        <connections>
+                            <outlet property="animation" destination="xBy-wV-kzy" id="8UM-vj-iBQ"/>
+                        </connections>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U3i-mE-INH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="xBy-wV-kzy" customClass="RAMBounceAnimation" customModule="Directory" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="290" y="1091"/>
         </scene>
@@ -262,20 +277,25 @@
                             <constraint firstItem="dxf-WP-mxh" firstAttribute="top" secondItem="B74-R0-hkC" secondAttribute="bottom" id="wVT-3h-uBI"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="People" id="exh-7s-ie7"/>
+                    <tabBarItem key="tabBarItem" title="People" image="locationTabIcon" id="exh-7s-ie7" customClass="RAMAnimatedTabBarItem" customModule="Directory" customModuleProvider="target">
+                        <connections>
+                            <outlet property="animation" destination="G5o-Us-MSc" id="TKd-1c-8Eq"/>
+                        </connections>
+                    </tabBarItem>
                     <connections>
                         <outlet property="searchBar" destination="5Rs-T2-ziT" id="Cyx-vK-nrf"/>
                         <outlet property="tableView" destination="B74-R0-hkC" id="RqN-2A-aW2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K4C-GH-8Q6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="G5o-Us-MSc" customClass="RAMBounceAnimation" customModule="Directory" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="1764" y="-345.87706146926541"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Animated Tab Bar Controller-->
         <scene sceneID="Nml-oJ-erW">
             <objects>
-                <tabBarController id="gX2-5j-ERi" sceneMemberID="viewController">
+                <tabBarController id="gX2-5j-ERi" customClass="RAMAnimatedTabBarController" customModule="Directory" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="ZNV-dj-wL7"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="tns-Hz-bGw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
@@ -325,9 +345,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Available" image="Selectedcheck" id="4qU-d5-i7y"/>
+                    <tabBarItem key="tabBarItem" title="Available" image="Selectedcheck" id="4qU-d5-i7y" customClass="RAMAnimatedTabBarItem" customModule="Directory" customModuleProvider="target">
+                        <connections>
+                            <outlet property="animation" destination="Ku1-Uk-XUe" id="zRZ-tM-Lns"/>
+                        </connections>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="44h-ag-COw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="Ku1-Uk-XUe" customClass="RAMBounceAnimation" customModule="Directory" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="-714" y="1080"/>
         </scene>

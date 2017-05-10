@@ -100,9 +100,9 @@ class PlacesViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         super.viewWillAppear(animated)
         
-        let customTabBarItem:UITabBarItem = UITabBarItem(title: nil, image: UIImage(named: "locationTabIcon")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal), selectedImage: UIImage(named: "locationTabIcon"))
-        customTabBarItem.title = "Places"
-        self.tabBarItem = customTabBarItem
+//        let customTabBarItem:RAMAnimatedTabBarItem = UITabBarItem(title: nil, image: UIImage(named: "locationTabIcon")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal), selectedImage: UIImage(named: "locationTabIcon")) as! RAMAnimatedTabBarItem
+//        customTabBarItem.title = "Places"
+//        self.tabBarItem = customTabBarItem
         
     }
 

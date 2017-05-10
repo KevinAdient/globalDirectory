@@ -25,7 +25,7 @@ class PeopleViewController: UIViewController {
         let fetchRequest: NSFetchRequest<PeopleEntity> = PeopleEntity.fetchRequest()
         
         // Configure Fetch Request
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(PeopleEntity.lastname), ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(PeopleEntity.firstname), ascending: true)]
 //        fetchRequest.predicate = NSPredicate(format: "id BEGINSWITH[cd] 'A'")
         
         // Create Fetched Results Controller
@@ -244,7 +244,11 @@ extension PeopleViewController: UITableViewDataSource {
         let people = fetchedResultsController.object(at: indexPath)
         
         // Configure Cell
-        cell.nameLbl.text = people.lastname! + " " + people.firstname!
+        if people.middlename != "" {
+            cell.nameLbl.text = people.firstname! + " " + people.middlename! + " "  + people.lastname!
+        } else {
+            cell.nameLbl.text = people.firstname! + " " + people.lastname!
+        }
         cell.positionLbl.text = people.title!
         cell.locationNameLbl.text = people.theirAddress?.city!
         if let peopleImg = people.picture {

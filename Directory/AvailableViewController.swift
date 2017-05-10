@@ -25,9 +25,9 @@ class AvailableViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         super.viewWillAppear(animated)
         
-        let customTabBarItem:UITabBarItem = UITabBarItem(title: nil, image: UIImage(named: "Selectedcheck")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal), selectedImage: UIImage(named: "Selectedcheck"))
-        customTabBarItem.title = "Available"
-        self.tabBarItem = customTabBarItem
+//        let customTabBarItem:RAMAnimatedTabBarItem = UITabBarItem(title: nil, image: UIImage(named: "Selectedcheck")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal), selectedImage: UIImage(named: "Selectedcheck")) as! RAMAnimatedTabBarItem
+//        customTabBarItem.title = "Available"
+//        self.tabBarItem = customTabBarItem
         
     }
     
