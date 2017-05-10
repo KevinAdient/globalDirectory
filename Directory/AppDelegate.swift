@@ -172,7 +172,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    public func importPlants()->Void {
+        let jsonPlantsName:String = String("prmgeo")
+        let jsonPlantsPath: String = Bundle.main.path(forResource: jsonPlantsName, ofType: "json")! as String
 
+        let readData : Data = try! Data(contentsOf: URL(fileURLWithPath: jsonPlantsPath), options:  NSData.ReadingOptions.dataReadingMapped)
+        //let myString = readData.string
+        //let removedSpecialCharactersString = removeSpecialCharsFromString(text:myString)
+        //let newFilteredData = removedSpecialCharactersString.data
+        do {
+            let plantsResult = try JSONSerialization.jsonObject(with: readData, options: [])
+                //[String : AnyObject])
+            print(plantsResult)
+            
+        } catch let error as NSError {
+            print("Failed to load: \(error.localizedDescription)")
+        }
+
+    }
+    
+    func removeSpecialCharsFromString(text: String) -> String {
+        let replace0 = text.replacingOccurrences(of: "\\\"", with: "\"")
+        let replace = replace0.replacingOccurrences(of: "\\", with: "")
+         //\"\t
+        print(replace)
+        return replace
+        /*
+        let okayChars : Set<Character> =
+            Set("abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890+-*=(),.:!_{}[]\"".characters)
+        return String(text.characters.filter {okayChars.contains($0) })
+        */
+    }
+    /*
+    - (NSString *)stringByRemovingControlCharacters: (NSString *)inputString
+    {
+    NSCharacterSet *controlChars = [NSCharacterSet controlCharacterSet];
+    NSRange range = [inputString rangeOfCharacterFromSet:controlChars];
+    if (range.location != NSNotFound) {
+    NSMutableString *mutable = [NSMutableString stringWithString:inputString];
+    while (range.location != NSNotFound) {
+    [mutable deleteCharactersInRange:range];
+    range = [mutable rangeOfCharacterFromSet:controlChars];
+    }
+    return mutable;
+    }
+    return inputString;
+    }
+*/
     public func createResources()->Void {
         if self.fetchedResource().count > 0 {
             return;
@@ -546,5 +592,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return
     }
 
+}
+
+extension Data {
+    var string: String {
+        return String(data: self, encoding: .utf8) ?? ""
+    }
+}
+extension String {
+    var data: Data {
+        return Data(utf8)
+    }
+    var base64Decoded: Data? {
+        return Data(base64Encoded: self)
+    }
 }
 

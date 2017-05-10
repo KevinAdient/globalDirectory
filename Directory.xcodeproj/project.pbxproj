@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		470B40FC1EC362560029785F /* prmgeo.json in Resources */ = {isa = PBXBuildFile; fileRef = 470B40FB1EC362560029785F /* prmgeo.json */; };
 		471122BE1EAFB52C00AF071D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471122BD1EAFB52C00AF071D /* AppDelegate.swift */; };
 		471122C01EAFB52C00AF071D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471122BF1EAFB52C00AF071D /* ViewController.swift */; };
 		471122C31EAFB52C00AF071D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 471122C11EAFB52C00AF071D /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		470B40FB1EC362560029785F /* prmgeo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = prmgeo.json; sourceTree = "<group>"; };
 		471122BA1EAFB52C00AF071D /* Directory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Directory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		471122BD1EAFB52C00AF071D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		471122BF1EAFB52C00AF071D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			children = (
 				471122BD1EAFB52C00AF071D /* AppDelegate.swift */,
 				471122BF1EAFB52C00AF071D /* ViewController.swift */,
+				470B40FB1EC362560029785F /* prmgeo.json */,
 				471122C11EAFB52C00AF071D /* Main.storyboard */,
 				471122F11EAFE2CE00AF071D /* CoreDataManager.swift */,
 				471122F31EAFE33300AF071D /* SwiftDebugLog.swift */,
@@ -279,6 +282,7 @@
 				477145191EBA4C44001C32F5 /* shobita.saxena.jpg in Resources */,
 				471122C81EAFB52C00AF071D /* Assets.xcassets in Resources */,
 				477145111EB92103001C32F5 /* randy.urban.jpg in Resources */,
+				470B40FC1EC362560029785F /* prmgeo.json in Resources */,
 				4771451B1EBA4ED5001C32F5 /* bruce.mcdonald.jpg in Resources */,
 				477145171EBA4C44001C32F5 /* julie.ragland.jpg in Resources */,
 				471122C31EAFB52C00AF071D /* Main.storyboard in Resources */,

@@ -15,6 +15,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.createResources()
+        appDelegate.importPlants()
     }
 
     override func didReceiveMemoryWarning() {
