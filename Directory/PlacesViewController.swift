@@ -100,10 +100,6 @@ class PlacesViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         super.viewWillAppear(animated)
         
-//        let customTabBarItem:RAMAnimatedTabBarItem = UITabBarItem(title: nil, image: UIImage(named: "locationTabIcon")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal), selectedImage: UIImage(named: "locationTabIcon")) as! RAMAnimatedTabBarItem
-//        customTabBarItem.title = "Places"
-//        self.tabBarItem = customTabBarItem
-        
     }
 
     override func didReceiveMemoryWarning() {
