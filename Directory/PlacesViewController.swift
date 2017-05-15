@@ -294,7 +294,7 @@ extension PlacesViewController: SwipeTableViewCellDelegate {
         case .backgroundColor:
             options.buttonSpacing = 11
         case .circular:
-            options.buttonSpacing = 11
+            options.buttonSpacing = 4
             options.backgroundColor = UIColor.init(red: 244/255.0, green: 140/255.0, blue: 140/255.0, alpha: 1.0)
         }
         
