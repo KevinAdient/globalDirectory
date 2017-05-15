@@ -186,11 +186,11 @@ extension PeopleViewController: NSFetchedResultsControllerDelegate {
                 tableView.insertRows(at: [indexPath], with: .fade)
             }
             break;
-//        case .delete:
-////            if let indexPath = indexPath {
-////                tableView.deleteRows(at: [indexPath], with: .fade)
-////            }
-//            break;
+        case .delete:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            break;
         case .update:
             if let indexPath = indexPath, let cell = tableView.cellForRow(at: indexPath) as? PeopleTableViewCell {
                 configure(cell, at: indexPath)
@@ -204,8 +204,6 @@ extension PeopleViewController: NSFetchedResultsControllerDelegate {
             if let newIndexPath = newIndexPath {
                 tableView.insertRows(at: [newIndexPath], with: .fade)
             }
-            break;
-        default:
             break;
         }
     }
@@ -304,7 +302,7 @@ extension PeopleViewController: SwipeTableViewCellDelegate {
             options.buttonSpacing = 11
         case .circular:
             options.buttonSpacing = 4
-            options.backgroundColor = UIColor.init(red: 244/255.0, green: 140/255.0, blue: 140/255.0, alpha: 1.0)
+            options.backgroundColor = UIColor(red: 244/255.0, green: 140/255.0, blue: 140/255.0, alpha: 1.0)
         }
         
         return options
