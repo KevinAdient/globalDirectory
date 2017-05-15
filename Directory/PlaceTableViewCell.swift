@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class PlaceTableViewCell: UITableViewCell {
+class PlaceTableViewCell: SwipeTableViewCell {
     
     @IBOutlet weak var placeImgView: UIImageView!
     

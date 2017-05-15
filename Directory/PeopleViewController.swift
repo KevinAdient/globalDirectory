@@ -8,12 +8,18 @@
 
 import UIKit
 import CoreData
+import SwipeCellKit
 
 class PeopleViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var tableView: UITableView!
+    
+    var defaultOptions = SwipeTableOptions()
+    var isSwipeRightEnabled = true
+    var buttonDisplayMode: ButtonDisplayMode = .titleAndImage
+    var buttonStyle: ButtonStyle = .circular
     
     //MARK: fetch request init
     var fetchRequest: NSFetchRequest<PeopleEntity> = PeopleEntity.fetchRequest()
@@ -180,11 +186,11 @@ extension PeopleViewController: NSFetchedResultsControllerDelegate {
                 tableView.insertRows(at: [indexPath], with: .fade)
             }
             break;
-        case .delete:
-            if let indexPath = indexPath {
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }
-            break;
+//        case .delete:
+////            if let indexPath = indexPath {
+////                tableView.deleteRows(at: [indexPath], with: .fade)
+////            }
+//            break;
         case .update:
             if let indexPath = indexPath, let cell = tableView.cellForRow(at: indexPath) as? PeopleTableViewCell {
                 configure(cell, at: indexPath)
@@ -199,6 +205,8 @@ extension PeopleViewController: NSFetchedResultsControllerDelegate {
                 tableView.insertRows(at: [newIndexPath], with: .fade)
             }
             break;
+        default:
+            break;
         }
     }
     
@@ -206,8 +214,8 @@ extension PeopleViewController: NSFetchedResultsControllerDelegate {
         switch type {
         case .insert:
             tableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
-        case .delete:
-            tableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
+//        case .delete:
+//            tableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
         default:
             break;
         }
@@ -229,9 +237,8 @@ extension PeopleViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "peopleCell", for: indexPath) as? PeopleTableViewCell else {
-            fatalError("Unexpected Index Path")
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "peopleCell", for: indexPath) as! PeopleTableViewCell
+        cell.delegate = self
         
         // Configure Cell
         configure(cell, at: indexPath)
@@ -268,6 +275,100 @@ extension PeopleViewController: UITableViewDelegate {
         //select action
         searchBar.resignFirstResponder()
     }
+    
 }
+
+extension PeopleViewController: SwipeTableViewCellDelegate {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        let people = fetchedResultsController.object(at: indexPath)
+        
+        if orientation == .left {
+            return[]
+        } else {
+            let requestGPS = SwipeAction(style: .destructive, title: nil) { action, indexPath in
+                print("request gps")
+            }
+            requestGPS.hidesWhenSelected = true
+            configure(action: requestGPS, with: .gps)
+            return [requestGPS]
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
+        var options = SwipeTableOptions()
+        options.expansionStyle =  .selection
+        options.transitionStyle = defaultOptions.transitionStyle
+        
+        switch buttonStyle {
+        case .backgroundColor:
+            options.buttonSpacing = 11
+        case .circular:
+            options.buttonSpacing = 11
+            options.backgroundColor = UIColor.init(red: 244/255.0, green: 140/255.0, blue: 140/255.0, alpha: 1.0)
+        }
+        
+        return options
+    }
+    
+    func configure(action: SwipeAction, with descriptor: ActionDescriptor) {
+        action.title = descriptor.title(forDisplayMode: buttonDisplayMode)
+        action.image = descriptor.image(forStyle: buttonStyle, displayMode: buttonDisplayMode)
+        
+        switch buttonStyle {
+        case .backgroundColor:
+            action.backgroundColor = descriptor.color
+        case .circular:
+            action.backgroundColor = .clear
+            action.textColor = descriptor.color
+            action.font = .systemFont(ofSize: 9)
+            action.transitionDelegate = ScaleTransition.default
+        }
+    }
+}
+
+enum ActionDescriptor {
+    case gps, floorplane, directions
+    
+    func title(forDisplayMode displayMode: ButtonDisplayMode) -> String? {
+        guard displayMode != .imageOnly else { return nil }
+        
+        switch self {
+        case .gps: return "Request GPS"
+        case .floorplane: return "Floor plan"
+        case .directions: return "Directions"
+        }
+    }
+    
+    func image(forStyle style: ButtonStyle, displayMode: ButtonDisplayMode) -> UIImage? {
+        guard displayMode != .titleOnly else { return nil }
+        
+        let name: String
+        switch self {
+        case .gps: name = "flag"
+        case .floorplane: name = "flag"
+        case .directions: name = "flag"
+        }
+        
+        return UIImage(named: style == .backgroundColor ? name : name + "-circle")
+    }
+    
+    var color: UIColor {
+        switch self {
+        case .gps: return UIColor.white
+        case .floorplane: return UIColor.white
+        case .directions: return UIColor.white
+        }
+    }
+}
+
+enum ButtonDisplayMode {
+    case titleAndImage, titleOnly, imageOnly
+}
+
+enum ButtonStyle {
+    case backgroundColor, circular
+}
+
+
 
 

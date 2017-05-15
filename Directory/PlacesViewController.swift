@@ -8,12 +8,18 @@
 
 import UIKit
 import CoreData
+import SwipeCellKit
 
 class PlacesViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var tableView: UITableView!
+    
+    var defaultOptions = SwipeTableOptions()
+    var isSwipeRightEnabled = true
+    var buttonDisplayMode: ButtonDisplayMode = .titleAndImage
+    var buttonStyle: ButtonStyle = .circular
     
     //MARK: fetch request init
     var fetchRequest: NSFetchRequest<AddressEntity> = AddressEntity.fetchRequest()
@@ -228,6 +234,7 @@ extension PlacesViewController: UITableViewDataSource {
             fatalError("Unexpected Index Path")
         }
         
+        cell.delegate = self
         // Configure Cell
         configure(cell, at: indexPath)
         
@@ -255,4 +262,65 @@ extension PlacesViewController: UITableViewDelegate {
         searchBar.resignFirstResponder()
     }
 }
+
+extension PlacesViewController: SwipeTableViewCellDelegate {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        let place = fetchedResultsController.object(at: indexPath)
+        
+        if orientation == .left {
+            return[]
+        } else {
+            let floorPlan = SwipeAction(style: .destructive, title: nil) { action, indexPath in
+                print("floorPlan")
+            }
+            floorPlan.hidesWhenSelected = true
+            configure(action: floorPlan, with: .floorplane)
+            
+            let directions = SwipeAction(style: .destructive, title: nil) { action, indexPath in
+                print("directions")
+            }
+            directions.hidesWhenSelected = true
+            configure(action: directions, with: .directions)
+            return [directions, floorPlan]
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
+        var options = SwipeTableOptions()
+        options.expansionStyle =  .selection
+        options.transitionStyle = defaultOptions.transitionStyle
+        
+        switch buttonStyle {
+        case .backgroundColor:
+            options.buttonSpacing = 11
+        case .circular:
+            options.buttonSpacing = 11
+            options.backgroundColor = UIColor.init(red: 244/255.0, green: 140/255.0, blue: 140/255.0, alpha: 1.0)
+        }
+        
+        return options
+    }
+    
+    func configure(action: SwipeAction, with descriptor: ActionDescriptor) {
+        action.title = descriptor.title(forDisplayMode: buttonDisplayMode)
+        action.image = descriptor.image(forStyle: buttonStyle, displayMode: buttonDisplayMode)
+        
+        switch buttonStyle {
+        case .backgroundColor:
+            action.backgroundColor = descriptor.color
+        case .circular:
+            action.backgroundColor = .clear
+            action.textColor = descriptor.color
+            action.font = .systemFont(ofSize: 9)
+            action.transitionDelegate = ScaleTransition.default
+        }
+    }
+}
+
+
+
+
+
+
+
 
