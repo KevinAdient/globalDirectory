@@ -53,6 +53,7 @@ class PeopleViewController: UIViewController {
         // init core data sources
         let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.createResources()
+        appDelegate.importPlants()
         
         persistentContainer.loadPersistentStores { (persistentStoreDescription, error) in
             if let error = error {

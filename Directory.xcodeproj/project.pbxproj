@@ -35,6 +35,7 @@
 		471122F41EAFE33300AF071D /* SwiftDebugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471122F31EAFE33300AF071D /* SwiftDebugLog.swift */; };
 		474E2B411ECB8F6D00A8D5B5 /* DirectoryStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 474E2B3F1ECB8F6D00A8D5B5 /* DirectoryStore.xcdatamodeld */; };
 		474E2B431ECB8FA500A8D5B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474E2B421ECB8FA500A8D5B5 /* AppDelegate.swift */; };
+		474E2B451ECB91E600A8D5B5 /* prmgeo.json in Resources */ = {isa = PBXBuildFile; fileRef = 474E2B441ECB91E600A8D5B5 /* prmgeo.json */; };
 		477145101EB92103001C32F5 /* mike.chabot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4771450D1EB92103001C32F5 /* mike.chabot.jpg */; };
 		477145111EB92103001C32F5 /* randy.urban.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4771450E1EB92103001C32F5 /* randy.urban.jpg */; };
 		477145121EB92103001C32F5 /* sheryl.haislet.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4771450F1EB92103001C32F5 /* sheryl.haislet.jpg */; };
@@ -109,6 +110,7 @@
 		471122F31EAFE33300AF071D /* SwiftDebugLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftDebugLog.swift; sourceTree = "<group>"; };
 		474E2B401ECB8F6D00A8D5B5 /* DirectoryStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DirectoryStore.xcdatamodel; sourceTree = "<group>"; };
 		474E2B421ECB8FA500A8D5B5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		474E2B441ECB91E600A8D5B5 /* prmgeo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = prmgeo.json; sourceTree = "<group>"; };
 		4771450D1EB92103001C32F5 /* mike.chabot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mike.chabot.jpg; sourceTree = "<group>"; };
 		4771450E1EB92103001C32F5 /* randy.urban.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = randy.urban.jpg; sourceTree = "<group>"; };
 		4771450F1EB92103001C32F5 /* sheryl.haislet.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sheryl.haislet.jpg; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 		471122BC1EAFB52C00AF071D /* Directory */ = {
 			isa = PBXGroup;
 			children = (
+				474E2B441ECB91E600A8D5B5 /* prmgeo.json */,
 				471122F11EAFE2CE00AF071D /* CoreDataManager.swift */,
 				471122F31EAFE33300AF071D /* SwiftDebugLog.swift */,
 				474E2B421ECB8FA500A8D5B5 /* AppDelegate.swift */,
@@ -357,6 +360,7 @@
 				477145111EB92103001C32F5 /* randy.urban.jpg in Resources */,
 				4771451B1EBA4ED5001C32F5 /* bruce.mcdonald.jpg in Resources */,
 				477145171EBA4C44001C32F5 /* julie.ragland.jpg in Resources */,
+				474E2B451ECB91E600A8D5B5 /* prmgeo.json in Resources */,
 				471122C31EAFB52C00AF071D /* Main.storyboard in Resources */,
 				477145101EB92103001C32F5 /* mike.chabot.jpg in Resources */,
 			);
