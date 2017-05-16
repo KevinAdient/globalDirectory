@@ -71,7 +71,7 @@ class PeopleDetailViewController: UIViewController {
         currentPersonMobileLbl.text = currentPerson.mobilephone!
         currentPersionDeptLbl.text = currentPerson.theirDepartment?.departmentName
         currentPersonCompLbl.text = currentPerson.company?.name
-        currentPersonOfficeLbl.text = currentPerson.theirAddress?.city!
+        currentPersonOfficeLbl.text = (currentPerson.theirAddress?.city!)! + " " + (currentPerson.theirAddress?.streetName1)!
         
         reportingToLbl.text = currentPerson.firstname! + "'s Reporting Manager"
         
