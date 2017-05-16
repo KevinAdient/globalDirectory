@@ -10,6 +10,7 @@
 		0A3DA6351EBB744700948161 /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3DA6341EBB744700948161 /* PlaceTableViewCell.swift */; };
 		0A8F424C1EC9E041001703CB /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8F424B1EC9E041001703CB /* SwipeCellKit.framework */; };
 		0A8F424D1EC9E041001703CB /* SwipeCellKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8F424B1EC9E041001703CB /* SwipeCellKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A8F42501ECB32B6001703CB /* PeopleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8F424F1ECB32B6001703CB /* PeopleDetailViewController.swift */; };
 		0AB652601EC3A78100AFA882 /* RAMAnimatedTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB652581EC3A78100AFA882 /* RAMAnimatedTabBarController.swift */; };
 		0AB652611EC3A78100AFA882 /* RAMBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB652591EC3A78100AFA882 /* RAMBadge.swift */; };
 		0AB652621EC3A78100AFA882 /* RAMBounceAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB6525A1EC3A78100AFA882 /* RAMBounceAnimation.swift */; };
@@ -77,6 +78,7 @@
 /* Begin PBXFileReference section */
 		0A3DA6341EBB744700948161 /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
 		0A8F424B1EC9E041001703CB /* SwipeCellKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwipeCellKit.framework; path = Directory/SwipeCell/Carthage/Build/iOS/SwipeCellKit.framework; sourceTree = "<group>"; };
+		0A8F424F1ECB32B6001703CB /* PeopleDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleDetailViewController.swift; sourceTree = "<group>"; };
 		0AB652581EC3A78100AFA882 /* RAMAnimatedTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RAMAnimatedTabBarController.swift; path = Animations/RAMAnimatedTabBarController.swift; sourceTree = "<group>"; };
 		0AB652591EC3A78100AFA882 /* RAMBadge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RAMBadge.swift; path = Animations/RAMBadge.swift; sourceTree = "<group>"; };
 		0AB6525A1EC3A78100AFA882 /* RAMBounceAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RAMBounceAnimation.swift; path = Animations/RAMBounceAnimation.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				471122C11EAFB52C00AF071D /* Main.storyboard */,
 				0AC400381EBA1AE5002DD60C /* PeopleViewController.swift */,
 				0AC400421EBA2A2A002DD60C /* PeopleTableViewCell.swift */,
+				0A8F424F1ECB32B6001703CB /* PeopleDetailViewController.swift */,
 				0AC4003A1EBA1B48002DD60C /* PlacesViewController.swift */,
 				0A3DA6341EBB744700948161 /* PlaceTableViewCell.swift */,
 				0AC4003C1EBA1B5D002DD60C /* SettingsViewController.swift */,
@@ -384,6 +387,7 @@
 				0AC4003B1EBA1B48002DD60C /* PlacesViewController.swift in Sources */,
 				0AB652661EC3A78100AFA882 /* RAMRotationAnimation.swift in Sources */,
 				0AC400411EBA1B80002DD60C /* AvailableViewController.swift in Sources */,
+				0A8F42501ECB32B6001703CB /* PeopleDetailViewController.swift in Sources */,
 				471122F41EAFE33300AF071D /* SwiftDebugLog.swift in Sources */,
 				471122C01EAFB52C00AF071D /* ViewController.swift in Sources */,
 				471122F21EAFE2CE00AF071D /* CoreDataManager.swift in Sources */,

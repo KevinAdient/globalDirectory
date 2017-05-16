@@ -107,9 +107,10 @@ class PeopleViewController: UIViewController {
 
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -272,6 +273,11 @@ extension PeopleViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //select action
         searchBar.resignFirstResponder()
+        let selectedPeople = self.fetchedResultsController.object(at: indexPath) as PeopleEntity
+        
+        let PDVC = self.storyboard?.instantiateViewController(withIdentifier: "PeopleDetailViewController") as! PeopleDetailViewController
+        PDVC.currentPerson = selectedPeople
+        self.navigationController?.pushViewController(PDVC, animated: true)
     }
     
 }
