@@ -729,7 +729,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         peopleEntity1.theirDepartment = departmentEntity1
         peopleEntity1.theirAddress    = addressEntity1
         departmentEntity1.reportsToId  = 2
-
+        self.importPlants()
         self.saveContext()
         return
     }
