@@ -1,26 +1,20 @@
 //
-//  PeopleTableViewCell.swift
+//  PlaceTableViewCell.swift
 //  Directory
 //
-//  Created by Kevin on 5/3/17.
+//  Created by Kevin on 5/4/17.
 //  Copyright © 2017 com.adient. All rights reserved.
 //
 
 import UIKit
 import SwipeCellKit
 
-class PeopleTableViewCell: SwipeTableViewCell {
+class PlaceTableViewCell: SwipeTableViewCell {
     
-    @IBOutlet weak var profileImgView: UIImageView!
+    @IBOutlet weak var placeImgView: UIImageView!
     
-    @IBOutlet weak var nameLbl: UILabel!
+    @IBOutlet weak var placeLbl: UILabel!
 
-    @IBOutlet weak var positionLbl: UILabel!
-    
-    @IBOutlet weak var locationImgView: UIImageView!
-    
-    @IBOutlet weak var locationNameLbl: UILabel!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
