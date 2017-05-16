@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		470B40FC1EC362560029785F /* prmgeo.json in Resources */ = {isa = PBXBuildFile; fileRef = 470B40FB1EC362560029785F /* prmgeo.json */; };
+		0AC400391EBA1AE5002DD60C /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC400381EBA1AE5002DD60C /* PeopleViewController.swift */; };
+		0AC4003B1EBA1B48002DD60C /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC4003A1EBA1B48002DD60C /* PlacesViewController.swift */; };
+		0AC4003D1EBA1B5D002DD60C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC4003C1EBA1B5D002DD60C /* SettingsViewController.swift */; };
+		0AC4003F1EBA1B70002DD60C /* MyLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC4003E1EBA1B70002DD60C /* MyLocationViewController.swift */; };
+		0AC400411EBA1B80002DD60C /* AvailableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC400401EBA1B80002DD60C /* AvailableViewController.swift */; };
+		0AC400431EBA2A2A002DD60C /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC400421EBA2A2A002DD60C /* PeopleTableViewCell.swift */; };
 		471122BE1EAFB52C00AF071D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471122BD1EAFB52C00AF071D /* AppDelegate.swift */; };
 		471122C01EAFB52C00AF071D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471122BF1EAFB52C00AF071D /* ViewController.swift */; };
 		471122C31EAFB52C00AF071D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 471122C11EAFB52C00AF071D /* Main.storyboard */; };
@@ -45,7 +50,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		470B40FB1EC362560029785F /* prmgeo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = prmgeo.json; sourceTree = "<group>"; };
+		0AC400381EBA1AE5002DD60C /* PeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
+		0AC4003A1EBA1B48002DD60C /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
+		0AC4003C1EBA1B5D002DD60C /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		0AC4003E1EBA1B70002DD60C /* MyLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLocationViewController.swift; sourceTree = "<group>"; };
+		0AC400401EBA1B80002DD60C /* AvailableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableViewController.swift; sourceTree = "<group>"; };
+		0AC400421EBA2A2A002DD60C /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
 		471122BA1EAFB52C00AF071D /* Directory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Directory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		471122BD1EAFB52C00AF071D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		471122BF1EAFB52C00AF071D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -120,13 +130,6 @@
 			isa = PBXGroup;
 			children = (
 				471122BD1EAFB52C00AF071D /* AppDelegate.swift */,
-				471122BF1EAFB52C00AF071D /* ViewController.swift */,
-				470B40FB1EC362560029785F /* prmgeo.json */,
-				471122C11EAFB52C00AF071D /* Main.storyboard */,
-				471122F11EAFE2CE00AF071D /* CoreDataManager.swift */,
-				471122F31EAFE33300AF071D /* SwiftDebugLog.swift */,
-				471122BD1EAFB52C00AF071D /* AppDelegate.swift */,
-				471122C11EAFB52C00AF071D /* Main.storyboard */,
 				0AC400381EBA1AE5002DD60C /* PeopleViewController.swift */,
 				0AC400421EBA2A2A002DD60C /* PeopleTableViewCell.swift */,
 				0AC4003A1EBA1B48002DD60C /* PlacesViewController.swift */,
@@ -134,6 +137,9 @@
 				0AC4003E1EBA1B70002DD60C /* MyLocationViewController.swift */,
 				0AC400401EBA1B80002DD60C /* AvailableViewController.swift */,
 				471122BF1EAFB52C00AF071D /* ViewController.swift */,
+				471122C11EAFB52C00AF071D /* Main.storyboard */,
+				471122F11EAFE2CE00AF071D /* CoreDataManager.swift */,
+				471122F31EAFE33300AF071D /* SwiftDebugLog.swift */,
 				471122C71EAFB52C00AF071D /* Assets.xcassets */,
 				471122C91EAFB52C00AF071D /* LaunchScreen.storyboard */,
 				471122CC1EAFB52C00AF071D /* Info.plist */,
@@ -291,7 +297,6 @@
 				477145191EBA4C44001C32F5 /* shobita.saxena.jpg in Resources */,
 				471122C81EAFB52C00AF071D /* Assets.xcassets in Resources */,
 				477145111EB92103001C32F5 /* randy.urban.jpg in Resources */,
-				470B40FC1EC362560029785F /* prmgeo.json in Resources */,
 				4771451B1EBA4ED5001C32F5 /* bruce.mcdonald.jpg in Resources */,
 				477145171EBA4C44001C32F5 /* julie.ragland.jpg in Resources */,
 				471122C31EAFB52C00AF071D /* Main.storyboard in Resources */,
