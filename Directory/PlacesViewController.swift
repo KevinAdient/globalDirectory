@@ -247,7 +247,7 @@ extension PlacesViewController: UITableViewDataSource {
         let place = fetchedResultsController.object(at: indexPath)
         
         // Configure Cell
-        cell.placeLbl.text = "\(place.id)" + " " + place.name! + " " + place.type!
+        cell.placeLbl.text = place.name! + " " + place.type!
         
         
     }

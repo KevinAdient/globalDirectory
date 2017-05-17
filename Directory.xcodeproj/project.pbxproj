@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A3866501ECCCCB500DDFDC5 /* SubEmpCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A38664F1ECCCCB500DDFDC5 /* SubEmpCollectionViewCell.swift */; };
 		0A3DA6351EBB744700948161 /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3DA6341EBB744700948161 /* PlaceTableViewCell.swift */; };
 		0A8F424C1EC9E041001703CB /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8F424B1EC9E041001703CB /* SwipeCellKit.framework */; };
 		0A8F424D1EC9E041001703CB /* SwipeCellKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8F424B1EC9E041001703CB /* SwipeCellKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -77,6 +78,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A38664F1ECCCCB500DDFDC5 /* SubEmpCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubEmpCollectionViewCell.swift; sourceTree = "<group>"; };
 		0A3DA6341EBB744700948161 /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
 		0A8F424B1EC9E041001703CB /* SwipeCellKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwipeCellKit.framework; path = Directory/SwipeCell/Carthage/Build/iOS/SwipeCellKit.framework; sourceTree = "<group>"; };
 		0A8F424F1ECB32B6001703CB /* PeopleDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleDetailViewController.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				0AC400381EBA1AE5002DD60C /* PeopleViewController.swift */,
 				0AC400421EBA2A2A002DD60C /* PeopleTableViewCell.swift */,
 				0A8F424F1ECB32B6001703CB /* PeopleDetailViewController.swift */,
+				0A38664F1ECCCCB500DDFDC5 /* SubEmpCollectionViewCell.swift */,
 				0AC4003A1EBA1B48002DD60C /* PlacesViewController.swift */,
 				0A3DA6341EBB744700948161 /* PlaceTableViewCell.swift */,
 				0AC4003C1EBA1B5D002DD60C /* SettingsViewController.swift */,
@@ -407,6 +410,7 @@
 				0A3DA6351EBB744700948161 /* PlaceTableViewCell.swift in Sources */,
 				474E2B431ECB8FA500A8D5B5 /* AppDelegate.swift in Sources */,
 				0AB652611EC3A78100AFA882 /* RAMBadge.swift in Sources */,
+				0A3866501ECCCCB500DDFDC5 /* SubEmpCollectionViewCell.swift in Sources */,
 				0AB652631EC3A78100AFA882 /* RAMFrameItemAnimation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
