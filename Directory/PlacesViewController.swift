@@ -148,7 +148,7 @@ extension PlacesViewController: UISearchBarDelegate {
         
         var predicate:NSPredicate? = nil
         if searchBar.text?.characters.count != 0 {
-            predicate = NSPredicate(format: "(city contains [cd] %@) || (streetName1 contains[cd] %@)", searchBar.text!, searchBar.text!)
+            predicate = NSPredicate(format: "(name contains [cd] %@)", searchBar.text!)
         }
         
         self.fetchedResultsController.fetchRequest.predicate = predicate
