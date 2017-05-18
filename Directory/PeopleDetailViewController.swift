@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import MessageUI
+import MapKit
 
 class PeopleDetailViewController: UIViewController {
     
@@ -66,22 +67,26 @@ class PeopleDetailViewController: UIViewController {
         }
         currentPersonPositioinLbl.text = currentPerson.title!
         
-        let underlineAttribute1 = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
-        let underlineAttributedString1 = NSAttributedString(string: currentPerson.email!, attributes: underlineAttribute1)
-        currentPersonEmailLbl.attributedText = underlineAttributedString1
+        let underlineAttributeEmail = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+        let underlineAttributedStringEmail = NSAttributedString(string: currentPerson.email!, attributes: underlineAttributeEmail)
+        currentPersonEmailLbl.attributedText = underlineAttributedStringEmail
         
         
-        let underlineAttribute = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
-        let underlineAttributedString = NSAttributedString(string: currentPerson.deskphone!, attributes: underlineAttribute)
-        currentPersonPhoneLbl.attributedText = underlineAttributedString
+        let underlineAttributePhone = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+        let underlineAttributedStringPhone = NSAttributedString(string: currentPerson.deskphone!, attributes: underlineAttributePhone)
+        currentPersonPhoneLbl.attributedText = underlineAttributedStringPhone
         
-        let underlineAttribute2 = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
-        let underlineAttributedString2 = NSAttributedString(string: currentPerson.mobilephone!, attributes: underlineAttribute2)
-        currentPersonMobileLbl.attributedText = underlineAttributedString2
+        let underlineAttributeMobile = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+        let underlineAttributedStringMobile = NSAttributedString(string: currentPerson.mobilephone!, attributes: underlineAttributeMobile)
+        currentPersonMobileLbl.attributedText = underlineAttributedStringMobile
         
         currentPersionDeptLbl.text = currentPerson.theirDepartment?.departmentName
         currentPersonCompLbl.text = currentPerson.company?.name
-        currentPersonOfficeLbl.text = (currentPerson.theirAddress?.city!)! + " " + (currentPerson.theirAddress?.streetName1)!
+        
+        let underlineAttributeAddress = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+        let underlineAttributedStringAddress = NSAttributedString(string: (currentPerson.theirAddress?.city!)! + " " + (currentPerson.theirAddress?.streetName1)!, attributes: underlineAttributeAddress)
+        currentPersonOfficeLbl.attributedText = underlineAttributedStringAddress
+        
         
         
         let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -174,7 +179,29 @@ class PeopleDetailViewController: UIViewController {
         self.sendEmail()
     }
     
+    @IBAction func goToAddressClicked(_ sender: Any) {
+        let lat = currentPerson.theirAddress?.gpsLatitude
+        let long = currentPerson.theirAddress?.gpsLongitude
+        let placeStr = (currentPerson.theirAddress?.city!)! + " " + (currentPerson.theirAddress?.streetName1)!
+        openMapForPlace(lat: lat!, long: long!, placeName: placeStr)
+    }
     
+    //open map function
+    func openMapForPlace(lat: CLLocationDegrees, long: CLLocationDegrees, placeName: String) {
+        let regionDistance:CLLocationDistance = 10000
+        let coordinates = CLLocationCoordinate2DMake(lat, long)
+        let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+        ]
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = placeName
+        mapItem.openInMaps(launchOptions: options)
+    }
+    
+    //make a call method
     private func callNumber(phoneNumber:String) {
         
         if let phoneCallURL = URL(string: "tel://\(phoneNumber)") {
@@ -248,7 +275,6 @@ extension PeopleDetailViewController : MFMailComposeViewControllerDelegate {
             mail.setToRecipients([emailStr])
             mail.setSubject("Hello!")
             mail.setMessageBody("<p>Hello from Adient!</p>", isHTML: true)
-            
             present(mail, animated: true)
         } else {
             // show failure alert
