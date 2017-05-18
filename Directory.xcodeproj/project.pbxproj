@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A3866501ECCCCB500DDFDC5 /* SubEmpCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A38664F1ECCCCB500DDFDC5 /* SubEmpCollectionViewCell.swift */; };
 		0A3DA6351EBB744700948161 /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3DA6341EBB744700948161 /* PlaceTableViewCell.swift */; };
+		0A43CD101ECE1F3D00A5E44A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A43CD0F1ECE1F3D00A5E44A /* MessageUI.framework */; };
 		0A8F424C1EC9E041001703CB /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8F424B1EC9E041001703CB /* SwipeCellKit.framework */; };
 		0A8F424D1EC9E041001703CB /* SwipeCellKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8F424B1EC9E041001703CB /* SwipeCellKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A8F42501ECB32B6001703CB /* PeopleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8F424F1ECB32B6001703CB /* PeopleDetailViewController.swift */; };
@@ -80,6 +81,7 @@
 /* Begin PBXFileReference section */
 		0A38664F1ECCCCB500DDFDC5 /* SubEmpCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubEmpCollectionViewCell.swift; sourceTree = "<group>"; };
 		0A3DA6341EBB744700948161 /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
+		0A43CD0F1ECE1F3D00A5E44A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		0A8F424B1EC9E041001703CB /* SwipeCellKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwipeCellKit.framework; path = Directory/SwipeCell/Carthage/Build/iOS/SwipeCellKit.framework; sourceTree = "<group>"; };
 		0A8F424F1ECB32B6001703CB /* PeopleDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleDetailViewController.swift; sourceTree = "<group>"; };
 		0AB652581EC3A78100AFA882 /* RAMAnimatedTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RAMAnimatedTabBarController.swift; path = Animations/RAMAnimatedTabBarController.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A43CD101ECE1F3D00A5E44A /* MessageUI.framework in Frameworks */,
 				0A8F424C1EC9E041001703CB /* SwipeCellKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -148,6 +151,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A43CD0E1ECE1F3D00A5E44A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0A43CD0F1ECE1F3D00A5E44A /* MessageUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0AB652531EC3A48B00AFA882 /* TabbarAnimation */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +182,7 @@
 				471122D41EAFB52C00AF071D /* DirectoryTests */,
 				471122DF1EAFB52C00AF071D /* DirectoryUITests */,
 				471122BB1EAFB52C00AF071D /* Products */,
+				0A43CD0E1ECE1F3D00A5E44A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

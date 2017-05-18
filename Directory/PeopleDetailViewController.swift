@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import MessageUI
 
 class PeopleDetailViewController: UIViewController {
     
@@ -64,9 +65,20 @@ class PeopleDetailViewController: UIViewController {
             currentPersonNameLbl.text = currentPerson.firstname! + " " + currentPerson.lastname!
         }
         currentPersonPositioinLbl.text = currentPerson.title!
-        currentPersonEmailLbl.text = currentPerson.email!
-        currentPersonPhoneLbl.text = currentPerson.company?.phoneNumber!
-        currentPersonMobileLbl.text = currentPerson.mobilephone!
+        
+        let underlineAttribute1 = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+        let underlineAttributedString1 = NSAttributedString(string: currentPerson.email!, attributes: underlineAttribute1)
+        currentPersonEmailLbl.attributedText = underlineAttributedString1
+        
+        
+        let underlineAttribute = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+        let underlineAttributedString = NSAttributedString(string: currentPerson.deskphone!, attributes: underlineAttribute)
+        currentPersonPhoneLbl.attributedText = underlineAttributedString
+        
+        let underlineAttribute2 = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+        let underlineAttributedString2 = NSAttributedString(string: currentPerson.mobilephone!, attributes: underlineAttribute2)
+        currentPersonMobileLbl.attributedText = underlineAttributedString2
+        
         currentPersionDeptLbl.text = currentPerson.theirDepartment?.departmentName
         currentPersonCompLbl.text = currentPerson.company?.name
         currentPersonOfficeLbl.text = (currentPerson.theirAddress?.city!)! + " " + (currentPerson.theirAddress?.streetName1)!
@@ -149,6 +161,32 @@ class PeopleDetailViewController: UIViewController {
         self.navigationController?.pushViewController(PDVC, animated: true)
     }
     
+    @IBAction func callBusinessPhoneBtnClicked(_ sender: Any) {
+        let businessPhone : String = (currentPerson.deskphone)!
+        callNumber(phoneNumber: businessPhone)
+    }
+    @IBAction func callPersonalPhoneBtnClicked(_ sender: Any) {
+        let personalPhone : String = (currentPerson.mobilephone)!
+        callNumber(phoneNumber: personalPhone)
+    }
+    
+    @IBAction func sendEmailBtnClicked(_ sender: Any) {
+        self.sendEmail()
+    }
+    
+    
+    private func callNumber(phoneNumber:String) {
+        
+        if let phoneCallURL = URL(string: "tel://\(phoneNumber)") {
+            
+            let application:UIApplication = UIApplication.shared
+            if (application.canOpenURL(phoneCallURL)) {
+                application.open(phoneCallURL, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
+    
     
 
     /*
@@ -197,6 +235,28 @@ extension PeopleDetailViewController : UICollectionViewDelegate {
         let PDVC = self.storyboard?.instantiateViewController(withIdentifier: "PeopleDetailViewController") as! PeopleDetailViewController
         PDVC.currentPerson = selectedPeople
         self.navigationController?.pushViewController(PDVC, animated: true)
+    }
+    
+}
+
+extension PeopleDetailViewController : MFMailComposeViewControllerDelegate {
+    func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            let emailStr = currentPerson.email!
+            mail.setToRecipients([emailStr])
+            mail.setSubject("Hello!")
+            mail.setMessageBody("<p>Hello from Adient!</p>", isHTML: true)
+            
+            present(mail, animated: true)
+        } else {
+            // show failure alert
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
     }
     
 }
