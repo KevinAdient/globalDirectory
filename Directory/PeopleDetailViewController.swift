@@ -188,17 +188,12 @@ class PeopleDetailViewController: UIViewController {
     
     //open map function
     func openMapForPlace(lat: CLLocationDegrees, long: CLLocationDegrees, placeName: String) {
-        let regionDistance:CLLocationDistance = 10000
-        let coordinates = CLLocationCoordinate2DMake(lat, long)
-        let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
-        let options = [
-            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
-            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
-        ]
-        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
-        let mapItem = MKMapItem(placemark: placemark)
+        
+        let myTargetCLLocation:CLLocation = CLLocation(latitude: lat, longitude: long) as CLLocation
+        let coordinate = CLLocationCoordinate2DMake(myTargetCLLocation.coordinate.latitude,myTargetCLLocation.coordinate.longitude)
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
         mapItem.name = placeName
-        mapItem.openInMaps(launchOptions: options)
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
     }
     
     //make a call method
@@ -211,6 +206,21 @@ class PeopleDetailViewController: UIViewController {
                 application.open(phoneCallURL, options: [:], completionHandler: nil)
             }
         }
+    }
+    
+    
+    @IBAction func openSkypeClicked(_ sender: Any) {
+//        let skype: NSURL = NSURL(string: String(format: "skype:"))! //add object skype like this
+        let skype: NSURL = NSURL(string: String(format: "ms-sfb://start"))!
+        if UIApplication.shared.canOpenURL(skype as URL) {
+            UIApplication.shared.open(skype as URL, options: [:], completionHandler: nil)
+        }
+        else {
+            // skype not Installed in your Device
+            let itunes: NSURL = NSURL(string: String(format: "https://itunes.apple.com/us/app/skype-for-business-formerly-lync-2013/id605841731?mt=8"))!
+            UIApplication.shared.open(itunes as URL, options: [:], completionHandler: nil)
+        }
+        
     }
     
     
