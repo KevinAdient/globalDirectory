@@ -571,10 +571,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         lobby1.location?.gpsLongitude = -86.070802
         lobby1.location?.gpsRadius = 30 //meters
 
-        let peopleEntity1:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
+        let mikeEntity:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
         let mikesBossEntity:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
-        let departmentEntity1:DepartmentEntity = NSEntityDescription.insertNewObject(forEntityName: "DepartmentEntity", into: managedContext) as! DepartmentEntity
-        departmentEntity1.departmentName = "Ditial Office"
         let departmentEntity2:DepartmentEntity = NSEntityDescription.insertNewObject(forEntityName: "DepartmentEntity", into: managedContext) as! DepartmentEntity
         departmentEntity2.departmentName = "AP-Supp-CTU-Ply-IT App Mgmt"
         let sarahEntity:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
@@ -695,24 +693,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         sarahEntity.company       = companyEntity
         sarahEntity.theirAddress  = addressEntity1
 
-        peopleEntity1.globalUserId = "achabotm"
-        peopleEntity1.employeeId   = 21
-        peopleEntity1.lastname     = "Chabot"
-        peopleEntity1.firstname    = "Mike"
-        peopleEntity1.middlename   = "M"
-        peopleEntity1.email        = "mike.chabot@adient.com"
-        peopleEntity1.picture      = NSData(contentsOfFile: Bundle.main.path(forResource: "mike.chabot", ofType: "jpg")!)
-        peopleEntity1.deskphone    = "+16163942516"
-        peopleEntity1.mobilephone  = "+16162183730"
-        peopleEntity1.imName       = "sip:mike.chabot@adient.com"
-        peopleEntity1.title         = "Dir Solutions Delivery Srvcs"
-        peopleEntity1.profileUrl    = "https://mysite.adient.com/person.aspx/?user=mike.chabot%40adient.com"
-        peopleEntity1.company       = companyEntity
-        departmentEntity1.departmentName = "IT Digital Office"
-        departmentEntity1.departmentHeadId = 20 //"randall.j.urban"
-        departmentEntity1.reportsToId = 20  //randy reports to randy
-        departmentEntity1.departmentId = 1
-        peopleEntity1.theirDepartment = departmentEntity1
+        let mikesDepartmentEntity:DepartmentEntity = NSEntityDescription.insertNewObject(forEntityName: "DepartmentEntity", into: managedContext) as! DepartmentEntity
+        mikesDepartmentEntity.departmentName = "Ditial Office"
+        mikesDepartmentEntity.departmentName = "IT Digital Office"
+        mikesDepartmentEntity.departmentHeadId = 20 //"randall.j.urban"
+        mikesDepartmentEntity.reportsToId = 20  //mike reports to randy
+        mikesDepartmentEntity.departmentId = 1
+
+        mikeEntity.globalUserId = "achabotm"
+        mikeEntity.employeeId   = 21
+        mikeEntity.lastname     = "Chabot"
+        mikeEntity.firstname    = "Mike"
+        mikeEntity.middlename   = "M"
+        mikeEntity.email        = "mike.chabot@adient.com"
+        mikeEntity.picture      = NSData(contentsOfFile: Bundle.main.path(forResource: "mike.chabot", ofType: "jpg")!)
+        mikeEntity.deskphone    = "+16163942516"
+        mikeEntity.mobilephone  = "+16162183730"
+        mikeEntity.imName       = "sip:mike.chabot@adient.com"
+        mikeEntity.title         = "Dir Solutions Delivery Srvcs"
+        mikeEntity.profileUrl    = "https://mysite.adient.com/person.aspx/?user=mike.chabot%40adient.com"
+        mikeEntity.company       = companyEntity
+        mikeEntity.theirDepartment = mikesDepartmentEntity
+        mikeEntity.theirAddress    = addressEntity1
+
+        
+        let randyDepartmentEntity:DepartmentEntity = NSEntityDescription.insertNewObject(forEntityName: "DepartmentEntity", into: managedContext) as! DepartmentEntity
+        randyDepartmentEntity.departmentName = "Ditial Office"
+        randyDepartmentEntity.departmentName = "IT Digital Office"
+        randyDepartmentEntity.departmentHeadId = 20 //"randall.j.urban"
+        randyDepartmentEntity.reportsToId = 2  //randy reports to sheryl
+        randyDepartmentEntity.departmentId = 1
+        
         
         
         mikesBossEntity.employeeId   = 20
@@ -729,9 +740,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         mikesBossEntity.profileUrl   = "https://mysite.adient.com/person.aspx/?user=randall.j.urban%40adient.com"
         mikesBossEntity.company      = companyEntity
         mikesBossEntity.theirAddress = helmAddressEntity1
-        peopleEntity1.theirDepartment = departmentEntity1
-        peopleEntity1.theirAddress    = addressEntity1
-        departmentEntity1.reportsToId  = 2
+        mikesBossEntity.theirDepartment = randyDepartmentEntity
         self.importPlants()
         self.saveContext()
         return
