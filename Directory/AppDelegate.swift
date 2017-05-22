@@ -222,7 +222,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         resourceCategoryEntity.id = plantStartingId
                         plantStartingId += 1
                         resourceCategoryEntity.type = "plant"
-                        resourceCategoryEntity.plant = plantEntity
+                        resourceCategoryEntity.plants = plantEntity
                         if parentCompany != nil {
                             plantEntity.parentCompany = parentCompany
                         }
@@ -426,19 +426,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         resourceCategory0.id = 1050
         resourceCategory0.name = "Holland Customer Center"
         resourceCategory0.type = "building"
-        resourceCategory0.location = addressEntity1
+        resourceCategory0.locations = addressEntity1
         
         let plymouthCategory:ResourceCategoryEntity = NSEntityDescription.insertNewObject(forEntityName: "ResourceCategoryEntity", into: managedContext) as! ResourceCategoryEntity
         plymouthCategory.id = 1000
         plymouthCategory.name = "Central Tech Unit Plymouth MI"
         plymouthCategory.type = "building"
-        plymouthCategory.location = plymouthAddressEntity1
+        plymouthCategory.locations = plymouthAddressEntity1
 
         let wisconsinCategory:ResourceCategoryEntity = NSEntityDescription.insertNewObject(forEntityName: "ResourceCategoryEntity", into: managedContext) as! ResourceCategoryEntity
         wisconsinCategory.id = 2000
         wisconsinCategory.name = "Wisconsin Adient HQ"
         wisconsinCategory.type = "building"
-        wisconsinCategory.location = milwaukeeAddressEntity1
+        wisconsinCategory.locations = milwaukeeAddressEntity1
 
         
         let resourceCategory1:ResourceCategoryEntity = NSEntityDescription.insertNewObject(forEntityName: "ResourceCategoryEntity", into: managedContext) as! ResourceCategoryEntity

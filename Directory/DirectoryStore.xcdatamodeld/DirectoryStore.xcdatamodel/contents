@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F71b" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16G8c" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AddressEntity" representedClassName="AddressEntity" syncable="YES" codeGenerationType="class">
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="countryCode" optional="YES" attributeType="String" syncable="YES"/>
@@ -29,7 +29,7 @@
         <relationship name="addresses" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AddressEntity" inverseName="company" inverseEntity="AddressEntity" syncable="YES"/>
         <relationship name="peoples" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PeopleEntity" inverseName="company" inverseEntity="PeopleEntity" syncable="YES"/>
         <relationship name="plants" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlantEntity" inverseName="parentCompany" inverseEntity="PlantEntity" syncable="YES"/>
-        <relationship name="resourceCategories" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ResourceCategoryEntity" syncable="YES"/>
+        <relationship name="resourceCategories" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ResourceCategoryEntity" inverseName="company" inverseEntity="ResourceCategoryEntity" syncable="YES"/>
         <relationship name="resources" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ResourceEntity" inverseName="company" inverseEntity="ResourceEntity" syncable="YES"/>
     </entity>
     <entity name="DepartmentEntity" representedClassName="DepartmentEntity" syncable="YES" codeGenerationType="class">
@@ -84,6 +84,7 @@
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompanyEntity" inverseName="resourceCategories" inverseEntity="CompanyEntity" syncable="YES"/>
         <relationship name="locations" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AddressEntity" inverseName="resourceCategory" inverseEntity="AddressEntity" syncable="YES"/>
         <relationship name="plants" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlantEntity" inverseName="resourceCategory" inverseEntity="PlantEntity" syncable="YES"/>
         <relationship name="resources" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ResourceEntity" inverseName="category" inverseEntity="ResourceEntity" syncable="YES"/>
@@ -140,11 +141,11 @@
     </entity>
     <elements>
         <element name="AddressEntity" positionX="-29" positionY="-306" width="128" height="270"/>
-        <element name="CompanyEntity" positionX="-218" positionY="-333" width="128" height="238"/>
+        <element name="CompanyEntity" positionX="-218" positionY="-333" width="128" height="240"/>
         <element name="DepartmentEntity" positionX="-207" positionY="315" width="128" height="148"/>
         <element name="PeopleEntity" positionX="-477" positionY="9" width="128" height="315"/>
         <element name="PlantEntity" positionX="-171" positionY="6" width="128" height="300"/>
-        <element name="ResourceCategoryEntity" positionX="61" positionY="-495" width="173" height="133"/>
+        <element name="ResourceCategoryEntity" positionX="61" positionY="-495" width="173" height="150"/>
         <element name="ResourceEntity" positionX="-135" positionY="-657" width="128" height="285"/>
         <element name="UserDeviceDetails" positionX="52" positionY="36" width="128" height="495"/>
     </elements>
