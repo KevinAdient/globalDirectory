@@ -574,6 +574,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let peopleEntity1:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
         let mikesBossEntity:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
         let departmentEntity1:DepartmentEntity = NSEntityDescription.insertNewObject(forEntityName: "DepartmentEntity", into: managedContext) as! DepartmentEntity
+        departmentEntity1.departmentName = "Ditial Office"
         let departmentEntity2:DepartmentEntity = NSEntityDescription.insertNewObject(forEntityName: "DepartmentEntity", into: managedContext) as! DepartmentEntity
         departmentEntity2.departmentName = "AP-Supp-CTU-Ply-IT App Mgmt"
         let sarahEntity:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
@@ -707,11 +708,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         peopleEntity1.title         = "Dir Solutions Delivery Srvcs"
         peopleEntity1.profileUrl    = "https://mysite.adient.com/person.aspx/?user=mike.chabot%40adient.com"
         peopleEntity1.company       = companyEntity
-
         departmentEntity1.departmentName = "IT Digital Office"
         departmentEntity1.departmentHeadId = 20 //"randall.j.urban"
-        departmentEntity1.reportsToId = 2  //randy reports to sheryl
+        departmentEntity1.reportsToId = 20  //randy reports to randy
         departmentEntity1.departmentId = 1
+        peopleEntity1.theirDepartment = departmentEntity1
+        
+        
         mikesBossEntity.employeeId   = 20
         mikesBossEntity.globalUserId = "aurbanr"
         mikesBossEntity.picture      = NSData(contentsOfFile: Bundle.main.path(forResource: "randy.urban", ofType: "jpg")!)
