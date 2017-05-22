@@ -22,20 +22,20 @@ class PlacesViewController: UIViewController {
     var buttonStyle: ButtonStyle = .circular
     
     //MARK: fetch request init
-    var fetchRequest: NSFetchRequest<AddressEntity> = AddressEntity.fetchRequest()
+    var fetchRequest: NSFetchRequest<ResourceCategoryEntity> = ResourceCategoryEntity.fetchRequest()
     
     public let persistentContainer = NSPersistentContainer(name: "DirectoryStore")
     
-    fileprivate lazy var fetchedResultsController: NSFetchedResultsController<AddressEntity> = {
+    fileprivate lazy var fetchedResultsController: NSFetchedResultsController<ResourceCategoryEntity> = {
         // Create Fetch Request
-        let fetchRequest: NSFetchRequest<AddressEntity> = AddressEntity.fetchRequest()
+        let fetchRequest: NSFetchRequest<ResourceCategoryEntity> = ResourceCategoryEntity.fetchRequest()
         
         // Configure Fetch Request
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(AddressEntity.city), ascending: true)]
-        //        fetchRequest.predicate = NSPredicate(format: "id BEGINSWITH[cd] 'A'")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(ResourceCategoryEntity.name), ascending: true)]
+        fetchRequest.predicate = NSPredicate(format: "type == 'plant' || type == 'building'")
         
         // Create Fetched Results Controller
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.persistentContainer.viewContext, sectionNameKeyPath: #keyPath(AddressEntity.city), cacheName: nil)
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.persistentContainer.viewContext, sectionNameKeyPath: #keyPath(ResourceCategoryEntity.name), cacheName: nil)
         
         // Configure Fetched Results Controller
         fetchedResultsController.delegate = self
@@ -247,7 +247,7 @@ extension PlacesViewController: UITableViewDataSource {
         let place = fetchedResultsController.object(at: indexPath)
         
         // Configure Cell
-        cell.placeLbl.text = place.city! + " " + place.streetName1!
+        cell.placeLbl.text = place.name! + " " + place.type!
         
         
     }
