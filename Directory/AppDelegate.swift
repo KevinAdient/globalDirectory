@@ -426,16 +426,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         resourceCategory0.id = 1050
         resourceCategory0.name = "Holland Customer Center"
         resourceCategory0.type = "building"
+        resourceCategory0.location = addressEntity1
         
         let plymouthCategory:ResourceCategoryEntity = NSEntityDescription.insertNewObject(forEntityName: "ResourceCategoryEntity", into: managedContext) as! ResourceCategoryEntity
         plymouthCategory.id = 1000
         plymouthCategory.name = "Central Tech Unit Plymouth MI"
         plymouthCategory.type = "building"
+        plymouthCategory.location = plymouthAddressEntity1
 
         let wisconsinCategory:ResourceCategoryEntity = NSEntityDescription.insertNewObject(forEntityName: "ResourceCategoryEntity", into: managedContext) as! ResourceCategoryEntity
         wisconsinCategory.id = 2000
         wisconsinCategory.name = "Wisconsin Adient HQ"
         wisconsinCategory.type = "building"
+        wisconsinCategory.location = milwaukeeAddressEntity1
 
         
         let resourceCategory1:ResourceCategoryEntity = NSEntityDescription.insertNewObject(forEntityName: "ResourceCategoryEntity", into: managedContext) as! ResourceCategoryEntity
@@ -486,6 +489,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         resourceConferenceRoom2.category   = resourceCategory1
         resourceConferenceRoom2.phoneNumber = "+16163946276"
         resourceConferenceRoom2.iAttendUrl = "https://ag.adient.com/mobile/iAttend?conf=IT3278"
+        //for some reason this isn't getting populated below....
         resourceConferenceRoom2.location = addressEntityRC1
         resourceConferenceRoom2.location?.gpsLatitude = 42.771192
         resourceConferenceRoom2.location?.gpsLongitude = -86.071312
