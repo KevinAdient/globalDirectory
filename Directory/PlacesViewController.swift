@@ -265,11 +265,17 @@ extension PlacesViewController: UITableViewDelegate {
         //select action
         searchBar.resignFirstResponder()
         let currentPlace = fetchedResultsController.object(at: indexPath)
-        let lat = currentPlace.plant?.plantAddress?.gpsLatitude
-        let long = currentPlace.plant?.plantAddress?.gpsLongitude
-        let placeStr = (currentPlace.plant?.plantAddress?.city!)! + " " + (currentPlace.plant?.plantAddress?.streetName1)!
-        openMapForPlace(lat: lat!, long: long!, placeName: placeStr)
         
+        if (currentPlace.type == "plant") {
+            let lat = currentPlace.plant?.plantAddress?.gpsLatitude
+            let long = currentPlace.plant?.plantAddress?.gpsLongitude
+            let placeStr = (currentPlace.plant?.plantAddress?.city!)! + " " + (currentPlace.plant?.plantAddress?.streetName1)!
+            openMapForPlace(lat: lat!, long: long!, placeName: placeStr)
+        } else {
+            let alert = UIAlertController(title: "Alert", message: "No GPS information current", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     //open map function
