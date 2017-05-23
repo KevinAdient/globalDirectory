@@ -11,7 +11,6 @@
 		0A3DA6351EBB744700948161 /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3DA6341EBB744700948161 /* PlaceTableViewCell.swift */; };
 		0A43CD101ECE1F3D00A5E44A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A43CD0F1ECE1F3D00A5E44A /* MessageUI.framework */; };
 		0A43CD121ECE22EA00A5E44A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A43CD111ECE22EA00A5E44A /* MapKit.framework */; };
-		0A8F424C1EC9E041001703CB /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8F424B1EC9E041001703CB /* SwipeCellKit.framework */; };
 		0A8F424D1EC9E041001703CB /* SwipeCellKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8F424B1EC9E041001703CB /* SwipeCellKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A8F42501ECB32B6001703CB /* PeopleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8F424F1ECB32B6001703CB /* PeopleDetailViewController.swift */; };
 		0AB652601EC3A78100AFA882 /* RAMAnimatedTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB652581EC3A78100AFA882 /* RAMAnimatedTabBarController.swift */; };
@@ -46,6 +45,7 @@
 		477145181EBA4C44001C32F5 /* sarah.hendrixson.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 477145151EBA4C44001C32F5 /* sarah.hendrixson.jpg */; };
 		477145191EBA4C44001C32F5 /* shobita.saxena.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 477145161EBA4C44001C32F5 /* shobita.saxena.jpg */; };
 		4771451B1EBA4ED5001C32F5 /* bruce.mcdonald.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4771451A1EBA4ED5001C32F5 /* bruce.mcdonald.jpg */; };
+		478BC54B1ED483CF007EC125 /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 478BC54A1ED483CF007EC125 /* SwipeCellKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +124,7 @@
 		477145151EBA4C44001C32F5 /* sarah.hendrixson.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sarah.hendrixson.jpg; sourceTree = "<group>"; };
 		477145161EBA4C44001C32F5 /* shobita.saxena.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shobita.saxena.jpg; sourceTree = "<group>"; };
 		4771451A1EBA4ED5001C32F5 /* bruce.mcdonald.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bruce.mcdonald.jpg; sourceTree = "<group>"; };
+		478BC54A1ED483CF007EC125 /* SwipeCellKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwipeCellKit.framework; path = Directory/Carthage/Build/iOS/SwipeCellKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,9 +132,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				478BC54B1ED483CF007EC125 /* SwipeCellKit.framework in Frameworks */,
 				0A43CD121ECE22EA00A5E44A /* MapKit.framework in Frameworks */,
 				0A43CD101ECE1F3D00A5E44A /* MessageUI.framework in Frameworks */,
-				0A8F424C1EC9E041001703CB /* SwipeCellKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +158,8 @@
 		0A43CD0E1ECE1F3D00A5E44A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				478BC54A1ED483CF007EC125 /* SwipeCellKit.framework */,
+				0A8F424B1EC9E041001703CB /* SwipeCellKit.framework */,
 				0A43CD111ECE22EA00A5E44A /* MapKit.framework */,
 				0A43CD0F1ECE1F3D00A5E44A /* MessageUI.framework */,
 			);
@@ -181,7 +184,6 @@
 		471122B11EAFB52B00AF071D = {
 			isa = PBXGroup;
 			children = (
-				0A8F424B1EC9E041001703CB /* SwipeCellKit.framework */,
 				471122BC1EAFB52C00AF071D /* Directory */,
 				471122D41EAFB52C00AF071D /* DirectoryTests */,
 				471122DF1EAFB52C00AF071D /* DirectoryUITests */,
@@ -271,6 +273,7 @@
 				471122B71EAFB52B00AF071D /* Frameworks */,
 				471122B81EAFB52B00AF071D /* Resources */,
 				0A8F424E1EC9E041001703CB /* Embed Frameworks */,
+				478BC54C1ED483E7007EC125 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -400,6 +403,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		478BC54C1ED483E7007EC125 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Directory/Carthage/Build/iOS/SwipeCellKit.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		471122B61EAFB52B00AF071D /* Sources */ = {
@@ -586,6 +606,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Directory/SwipeCell/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Directory/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Directory/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -605,6 +626,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Directory/SwipeCell/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Directory/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Directory/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

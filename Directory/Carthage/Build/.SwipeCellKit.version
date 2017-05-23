@@ -1,0 +1,10 @@
+{
+  "xcodeVersion" : "Xcode 8.3.2\nBuild version 8E2002",
+  "commitish" : "1.8.0",
+  "iOS" : [
+    {
+      "hash" : "2ce40b808433313d21cef5f5697c46f7bfb8c939f89719edab14eaf6bbd66a01",
+      "name" : "SwipeCellKit"
+    }
+  ]
+}
