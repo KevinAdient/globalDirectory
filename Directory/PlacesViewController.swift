@@ -34,6 +34,7 @@ class PlacesViewController: UIViewController {
         // Configure Fetch Request
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(ResourceCategoryEntity.name), ascending: true)]
         fetchRequest.predicate = NSPredicate(format: "type == 'plant' || type == 'building'")
+//        fetchRequest.predicate = NSPredicate(format: "type == 'plant'")
         
         // Create Fetched Results Controller
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.persistentContainer.viewContext, sectionNameKeyPath: #keyPath(ResourceCategoryEntity.name), cacheName: nil)
@@ -248,7 +249,8 @@ extension PlacesViewController: UITableViewDataSource {
         let place = fetchedResultsController.object(at: indexPath)
         
         // Configure Cell
-        cell.placeLbl.text = place.name! + " " + place.type!
+        cell.placeLbl.text = place.name!
+
         
         
     }
@@ -280,6 +282,7 @@ extension PlacesViewController: UITableViewDelegate {
 
         mapItem.openInMaps(launchOptions: [MKLaunchOptionsMapTypeKey : MKMapType.satellite.rawValue])
 //        mapItem.openInMaps(launchOptions: nil)
+        //TODU: change map itme image
     }
 
 }
