@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import SwipeCellKit
+import MapKit
 
 class PlacesViewController: UIViewController {
     
@@ -261,7 +262,25 @@ extension PlacesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //select action
         searchBar.resignFirstResponder()
+        let currentPlace = fetchedResultsController.object(at: indexPath)
+        let lat = currentPlace.plant?.plantAddress?.gpsLatitude
+        let long = currentPlace.plant?.plantAddress?.gpsLongitude
+        let placeStr = (currentPlace.plant?.plantAddress?.city!)! + " " + (currentPlace.plant?.plantAddress?.streetName1)!
+        openMapForPlace(lat: lat!, long: long!, placeName: placeStr)
+        
     }
+    
+    //open map function
+    func openMapForPlace(lat: CLLocationDegrees, long: CLLocationDegrees, placeName: String) {
+        
+        let myTargetCLLocation:CLLocation = CLLocation(latitude: lat, longitude: long) as CLLocation
+        let coordinate = CLLocationCoordinate2DMake(myTargetCLLocation.coordinate.latitude,myTargetCLLocation.coordinate.longitude)
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
+        mapItem.name = placeName
+//        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+        mapItem.openInMaps(launchOptions: nil)
+    }
+
 }
 
 extension PlacesViewController: SwipeTableViewCellDelegate {
