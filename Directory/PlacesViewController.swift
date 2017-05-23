@@ -277,8 +277,9 @@ extension PlacesViewController: UITableViewDelegate {
         let coordinate = CLLocationCoordinate2DMake(myTargetCLLocation.coordinate.latitude,myTargetCLLocation.coordinate.longitude)
         let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
         mapItem.name = placeName
-//        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
-        mapItem.openInMaps(launchOptions: nil)
+
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsMapTypeKey : MKMapType.satellite.rawValue])
+//        mapItem.openInMaps(launchOptions: nil)
     }
 
 }
