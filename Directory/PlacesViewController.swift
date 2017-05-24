@@ -288,7 +288,7 @@ extension PlacesViewController: UITableViewDelegate {
 
         mapItem.openInMaps(launchOptions: [MKLaunchOptionsMapTypeKey : MKMapType.satellite.rawValue])
 //        mapItem.openInMaps(launchOptions: nil)
-        //TODU: change map itme image
+        //TODU: change map item image
     }
 
 }

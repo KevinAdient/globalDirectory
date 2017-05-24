@@ -46,17 +46,17 @@ class PeopleDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         reportingToManagerImgView.layer.borderWidth = 1
         reportingToManagerImgView.layer.borderColor = UIColor(red: 244/255.0, green: 140/255.0, blue: 140/255.0, alpha: 1.0).cgColor
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.black
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
-        
-        
+
         self.currentPersonImgView?.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         self.currentPersonImgView.image = UIImage(data: self.currentPerson.picture! as Data)
         
-        UIView.animate(withDuration: 2.0, animations: {() -> Void in
+        UIView.animate(withDuration: 0.5, animations: {() -> Void in
             self.currentPersonImgView?.transform = CGAffineTransform(scaleX: 1, y: 1)
         })
         
@@ -69,15 +69,18 @@ class PeopleDetailViewController: UIViewController {
         
         let underlineAttributeEmail = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
         let underlineAttributedStringEmail = NSAttributedString(string: currentPerson.email!, attributes: underlineAttributeEmail)
+        currentPersonEmailLbl.font = UIFont(name: "Domus-Regular", size: 14)
         currentPersonEmailLbl.attributedText = underlineAttributedStringEmail
         
         
         let underlineAttributePhone = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
         let underlineAttributedStringPhone = NSAttributedString(string: currentPerson.deskphone!, attributes: underlineAttributePhone)
+        currentPersonPhoneLbl.font = UIFont(name: "Domus-Regular", size: 14)
         currentPersonPhoneLbl.attributedText = underlineAttributedStringPhone
         
         let underlineAttributeMobile = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
         let underlineAttributedStringMobile = NSAttributedString(string: currentPerson.mobilephone!, attributes: underlineAttributeMobile)
+        currentPersonMobileLbl.font = UIFont(name: "Domus-Regular", size: 14)
         currentPersonMobileLbl.attributedText = underlineAttributedStringMobile
         
         currentPersionDeptLbl.text = currentPerson.theirDepartment?.departmentName
@@ -85,6 +88,8 @@ class PeopleDetailViewController: UIViewController {
         
         let underlineAttributeAddress = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
         let underlineAttributedStringAddress = NSAttributedString(string: (currentPerson.theirAddress?.city!)! + " " + (currentPerson.theirAddress?.streetName1)!, attributes: underlineAttributeAddress)
+        currentPersonOfficeLbl
+            .font = UIFont(name: "Domus-Regular", size: 14)
         currentPersonOfficeLbl.attributedText = underlineAttributedStringAddress
         
         
@@ -116,7 +121,7 @@ class PeopleDetailViewController: UIViewController {
                 self.reportingToManagerImgView?.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
                 self.reportingToManagerImgView.image = UIImage(data: self.toReprotingToManager.picture! as Data)
                 
-                UIView.animate(withDuration: 2.0, animations: {() -> Void in
+                UIView.animate(withDuration: 0.5, animations: {() -> Void in
                     self.reportingToManagerImgView?.transform = CGAffineTransform(scaleX: 1, y: 1)
                 })
                 
@@ -157,6 +162,12 @@ class PeopleDetailViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    //change status bar color
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     @IBAction func reprotingToManagerImgBtn(_ sender: Any) {
@@ -256,7 +267,7 @@ extension PeopleDetailViewController : UICollectionViewDataSource {
         cell.subEmpImgView.image = UIImage(data: currentSubEmp.picture! as Data)
         cell.subEmpImgView.layer.borderWidth = 1
         cell.subEmpImgView.layer.borderColor = UIColor(red: 244/255.0, green: 140/255.0, blue: 140/255.0, alpha: 1.0).cgColor
-        UIView.animate(withDuration: 2.0, animations: {() -> Void in
+        UIView.animate(withDuration: 0.5, animations: {() -> Void in
             cell.subEmpImgView?.transform = CGAffineTransform(scaleX: 1, y: 1)
         })
         return cell

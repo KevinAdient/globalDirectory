@@ -8,6 +8,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Domus-Regular.otf">
+            <string>Domus-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Places-->
         <scene sceneID="T85-2j-n0a">
@@ -39,7 +44,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aZq-kz-jOo" id="HpG-GV-jtI">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N55-lZ-mKD">
@@ -47,7 +52,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="yPr-1s-leM"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" name="Domus-Regular" family="Domus" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -217,46 +222,46 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="peopleCell" rowHeight="60" id="ffo-bP-hH6" customClass="PeopleTableViewCell" customModule="Directory" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="peopleCell" rowHeight="80" id="ffo-bP-hH6" customClass="PeopleTableViewCell" customModule="Directory" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ffo-bP-hH6" id="yxW-mX-0oi">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uGI-Pb-O54">
-                                                    <rect key="frame" x="80" y="5" width="247" height="18"/>
-                                                    <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                                    <rect key="frame" x="80" y="5" width="247" height="29"/>
+                                                    <fontDescription key="fontDescription" name="Domus-Regular" family="Domus" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e9E-1Y-Dul">
-                                                    <rect key="frame" x="80" y="23" width="247" height="12"/>
+                                                    <rect key="frame" x="80" y="34" width="247" height="12"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="12" id="Di1-eK-JCM"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
+                                                    <fontDescription key="fontDescription" name="Domus-Regular" family="Domus" pointSize="10"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="seA-0z-GP9">
-                                                    <rect key="frame" x="100" y="38" width="227" height="19"/>
+                                                    <rect key="frame" x="100" y="49" width="227" height="19"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="19" id="v8Z-gK-VC2"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" name="Domus-Regular" family="Domus" pointSize="13"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Places off" translatesAutoresizingMaskIntoConstraints="NO" id="o5A-mB-1la">
-                                                    <rect key="frame" x="80" y="40" width="15" height="15"/>
+                                                    <rect key="frame" x="80" y="51" width="15" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="2Kd-y6-ynG"/>
                                                         <constraint firstAttribute="width" constant="15" id="K2T-82-tok"/>
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lhu-RD-s8L">
-                                                    <rect key="frame" x="15" y="5" width="50" height="50"/>
+                                                    <rect key="frame" x="15" y="15" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="PPG-0w-IrK"/>
                                                         <constraint firstAttribute="width" constant="50" id="yEi-9a-wKN"/>
@@ -378,7 +383,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="6zQ-Ij-cNW"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="Domus-Regular" family="Domus" pointSize="23"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -387,14 +392,14 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="caj-hv-tEJ"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <fontDescription key="fontDescription" name="Domus-Regular" family="Domus" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGl-E1-ZUE">
                                         <rect key="frame" x="11" y="185" width="41" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <fontDescription key="fontDescription" name="Domus-Regular" family="Domus" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -412,7 +417,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Business phone:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UhS-z5-hkO">
                                         <rect key="frame" x="11" y="220" width="93" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <fontDescription key="fontDescription" name="Domus-Regular" family="Domus" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -438,7 +443,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mobile:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hpE-jn-zBA">
                                         <rect key="frame" x="11" y="258" width="42" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <fontDescription key="fontDescription" name="Domus-Regular" family="Domus" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -456,14 +461,14 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Department:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSX-Jb-D32">
                                         <rect key="frame" x="11" y="293" width="90" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <fontDescription key="fontDescription" name="Domus-Regular" family="Domus" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="department Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvm-AI-61p">
                                         <rect key="frame" x="116" y="297" width="233" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <fontDescription key="fontDescription" name="Domus-Regular" family="Domus" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -474,14 +479,14 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Company:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Prb-qe-Goz">
                                         <rect key="frame" x="11" y="331" width="57" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <fontDescription key="fontDescription" name="Domus-Regular" family="Domus" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="company Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDH-ou-trJ">
                                         <rect key="frame" x="116" y="335" width="233" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <fontDescription key="fontDescription" name="Domus-Regular" family="Domus" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -492,7 +497,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Office:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1gY-Vn-ZGi">
                                         <rect key="frame" x="11" y="366" width="90" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <fontDescription key="fontDescription" name="Domus-Regular" family="Domus" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -508,19 +513,20 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xja-zH-ObU">
-                                        <rect key="frame" x="246" y="118" width="49" height="21"/>
+                                        <rect key="frame" x="246" y="118" width="65" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <fontDescription key="fontDescription" name="Domus-Regular" family="Domus" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Selectedcheck" translatesAutoresizingMaskIntoConstraints="NO" id="wli-pR-Rjz">
-                                        <rect key="frame" x="217" y="121" width="15" height="15"/>
+                                        <rect key="frame" x="217" y="121" width="20" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TBV-iG-hQO">
                                         <rect key="frame" x="116" y="224" width="233" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Domus-Regular" family="Domus" pointSize="13"/>
                                         <connections>
                                             <action selector="callBusinessPhoneBtnClicked:" destination="gCe-K4-FOq" eventType="touchUpInside" id="UWP-qP-yBB"/>
                                         </connections>
@@ -528,6 +534,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ys-t4-A7b">
                                         <rect key="frame" x="114" y="262" width="235" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Domus-Regular" family="Domus" pointSize="13"/>
                                         <connections>
                                             <action selector="callPersonalPhoneBtnClicked:" destination="gCe-K4-FOq" eventType="touchUpInside" id="Gvj-W1-fJf"/>
                                         </connections>
@@ -535,6 +542,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxK-QD-NzR">
                                         <rect key="frame" x="116" y="189" width="233" height="18"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Domus-Regular" family="Domus" pointSize="13"/>
                                         <connections>
                                             <action selector="sendEmailBtnClicked:" destination="gCe-K4-FOq" eventType="touchUpInside" id="rVW-PB-VkX"/>
                                         </connections>
@@ -542,6 +550,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LiY-ZB-Hbv">
                                         <rect key="frame" x="116" y="370" width="233" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Domus-Regular" family="Domus" pointSize="13"/>
                                         <connections>
                                             <action selector="goToAddressClicked:" destination="gCe-K4-FOq" eventType="touchUpInside" id="Ud7-Xa-9YF"/>
                                         </connections>
@@ -549,6 +558,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIv-q1-f1J">
                                         <rect key="frame" x="206" y="115" width="105" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Domus-Regular" family="Domus" pointSize="19"/>
                                         <connections>
                                             <action selector="openSkypeClicked:" destination="gCe-K4-FOq" eventType="touchUpInside" id="Ww2-kO-sZm"/>
                                         </connections>
@@ -568,25 +578,14 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MnL-uI-Gje">
-                                <rect key="frame" x="0.0" y="400" width="375" height="115"/>
+                                <rect key="frame" x="0.0" y="400" width="375" height="133"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDy-el-4ht">
-                                        <rect key="frame" x="19" y="29" width="221" height="40"/>
+                                        <rect key="frame" x="19" y="34" width="221" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="221" id="WBf-vl-297"/>
-                                            <constraint firstAttribute="height" constant="40" id="Z35-H6-fu0"/>
+                                            <constraint firstAttribute="height" constant="40" id="euQ-25-rcn"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfa-ZP-ua8">
-                                        <rect key="frame" x="19" y="69" width="221" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="7oN-w5-Ugw"/>
-                                            <constraint firstAttribute="width" constant="221" id="dSH-tt-qIa"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <fontDescription key="fontDescription" name="Domus-Regular" family="Domus" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -603,8 +602,8 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8OK-Ru-DaK">
                                         <rect key="frame" x="260" y="26" width="80" height="80"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="91e-OT-ZTW"/>
-                                            <constraint firstAttribute="height" constant="80" id="n1P-qN-1JL"/>
+                                            <constraint firstAttribute="height" constant="80" id="JQq-PL-vQQ"/>
+                                            <constraint firstAttribute="width" constant="80" id="rxL-P5-fFv"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -617,11 +616,10 @@
                                         <rect key="frame" x="15" y="8" width="163" height="21"/>
                                         <color key="backgroundColor" red="0.95686274510000002" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="163" id="QJp-bG-6yE"/>
-                                            <constraint firstAttribute="width" constant="163" id="RUQ-M8-FmS"/>
-                                            <constraint firstAttribute="height" constant="21" id="nfg-Wr-XS0"/>
+                                            <constraint firstAttribute="height" constant="21" id="hsh-vx-dbc"/>
+                                            <constraint firstAttribute="width" constant="163" id="yLB-nI-8eX"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <fontDescription key="fontDescription" name="Domus-Regular" family="Domus" pointSize="11"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
@@ -631,29 +629,40 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfa-ZP-ua8">
+                                        <rect key="frame" x="19" y="82" width="221" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="GXL-zo-Q6F"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Domus-Regular" family="Domus" pointSize="13"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="pfa-ZP-ua8" firstAttribute="top" secondItem="VDy-el-4ht" secondAttribute="bottom" id="026-WN-K8r"/>
-                                    <constraint firstItem="8OK-Ru-DaK" firstAttribute="leading" secondItem="pfa-ZP-ua8" secondAttribute="trailing" constant="20" id="0Fx-RN-Eew"/>
-                                    <constraint firstItem="qYP-2P-iBp" firstAttribute="top" secondItem="MnL-uI-Gje" secondAttribute="top" constant="8" id="Ekj-fZ-mZs"/>
-                                    <constraint firstItem="eha-ni-y76" firstAttribute="top" secondItem="MnL-uI-Gje" secondAttribute="top" constant="26" id="Oip-Rb-HNZ"/>
-                                    <constraint firstItem="qYP-2P-iBp" firstAttribute="leading" secondItem="MnL-uI-Gje" secondAttribute="leading" constant="15" id="PXh-2E-ZEN"/>
-                                    <constraint firstItem="pfa-ZP-ua8" firstAttribute="leading" secondItem="MnL-uI-Gje" secondAttribute="leading" constant="19" id="Rlo-ju-NXa"/>
-                                    <constraint firstItem="eha-ni-y76" firstAttribute="leading" secondItem="pfa-ZP-ua8" secondAttribute="trailing" constant="20" id="Yaa-9X-pUD"/>
-                                    <constraint firstItem="8OK-Ru-DaK" firstAttribute="top" secondItem="MnL-uI-Gje" secondAttribute="top" constant="26" id="cC4-wo-HvZ"/>
-                                    <constraint firstItem="qYP-2P-iBp" firstAttribute="top" secondItem="MnL-uI-Gje" secondAttribute="top" constant="8" id="dWH-VL-G7o"/>
-                                    <constraint firstAttribute="height" constant="115" id="ePO-Nn-OjY"/>
-                                    <constraint firstItem="qYP-2P-iBp" firstAttribute="leading" secondItem="MnL-uI-Gje" secondAttribute="leading" constant="15" id="fY4-Zj-8px"/>
-                                    <constraint firstItem="VDy-el-4ht" firstAttribute="leading" secondItem="MnL-uI-Gje" secondAttribute="leading" constant="19" id="qyx-cN-NvA"/>
-                                    <constraint firstItem="VDy-el-4ht" firstAttribute="top" secondItem="qYP-2P-iBp" secondAttribute="bottom" id="tE3-K5-B3Y"/>
+                                    <constraint firstItem="pfa-ZP-ua8" firstAttribute="top" secondItem="VDy-el-4ht" secondAttribute="bottom" constant="8" id="0KF-yj-4kf"/>
+                                    <constraint firstItem="eha-ni-y76" firstAttribute="top" secondItem="MnL-uI-Gje" secondAttribute="top" constant="26" id="1Vi-jQ-aPq"/>
+                                    <constraint firstItem="8OK-Ru-DaK" firstAttribute="leading" secondItem="pfa-ZP-ua8" secondAttribute="trailing" constant="20" id="2DI-DI-3SM"/>
+                                    <constraint firstAttribute="trailing" secondItem="8OK-Ru-DaK" secondAttribute="trailing" constant="35" id="2HC-Rx-201"/>
+                                    <constraint firstItem="VDy-el-4ht" firstAttribute="top" secondItem="qYP-2P-iBp" secondAttribute="bottom" constant="5" id="8Ch-Qq-K5F"/>
+                                    <constraint firstItem="qYP-2P-iBp" firstAttribute="top" secondItem="MnL-uI-Gje" secondAttribute="top" constant="8" id="Djh-aB-gEJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="eha-ni-y76" secondAttribute="trailing" constant="35" id="Lim-QH-cLU"/>
+                                    <constraint firstItem="8OK-Ru-DaK" firstAttribute="centerY" secondItem="MnL-uI-Gje" secondAttribute="centerY" id="MHA-ZC-h3Q"/>
+                                    <constraint firstItem="qYP-2P-iBp" firstAttribute="leading" secondItem="MnL-uI-Gje" secondAttribute="leading" constant="15" id="RUa-W5-FEG"/>
+                                    <constraint firstItem="pfa-ZP-ua8" firstAttribute="leading" secondItem="MnL-uI-Gje" secondAttribute="leading" constant="19" id="iWS-TE-1oa"/>
+                                    <constraint firstItem="8OK-Ru-DaK" firstAttribute="leading" secondItem="VDy-el-4ht" secondAttribute="trailing" constant="20" id="p2B-tV-oId"/>
+                                    <constraint firstItem="VDy-el-4ht" firstAttribute="leading" secondItem="MnL-uI-Gje" secondAttribute="leading" constant="19" id="vIr-C0-e6q"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nEI-fD-BL4">
-                                <rect key="frame" x="0.0" y="516" width="375" height="151"/>
+                                <rect key="frame" x="0.0" y="534" width="375" height="133"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rSq-UP-InK">
-                                        <rect key="frame" x="0.0" y="34" width="375" height="112"/>
+                                        <rect key="frame" x="0.0" y="26.5" width="375" height="100"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="1FB-VC-DRt"/>
+                                        </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="20" minimumInteritemSpacing="20" id="a6d-fD-4Ik">
                                             <size key="itemSize" width="100" height="100"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -662,7 +671,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="subEmpCell" id="MoT-vB-PRF" customClass="SubEmpCollectionViewCell" customModule="Directory" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="6" width="100" height="100"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
@@ -683,7 +692,7 @@
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="elB-uy-JbX">
                                                             <rect key="frame" x="0.0" y="80" width="100" height="20"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                            <fontDescription key="fontDescription" name="Domus-Regular" family="Domus" pointSize="10"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -713,10 +722,10 @@
                                         <rect key="frame" x="19" y="8" width="133" height="21"/>
                                         <color key="backgroundColor" red="0.95686274510000002" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="133" id="BJ7-kH-G6U"/>
-                                            <constraint firstAttribute="height" constant="21" id="Qoe-XU-Uk1"/>
+                                            <constraint firstAttribute="height" constant="21" id="Bdf-6o-dfS"/>
+                                            <constraint firstAttribute="width" constant="133" id="odo-8V-zQR"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <fontDescription key="fontDescription" name="Domus-Regular" family="Domus" pointSize="11"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
@@ -728,39 +737,44 @@
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="YAq-cL-F3V" firstAttribute="top" secondItem="nEI-fD-BL4" secondAttribute="top" constant="8" id="WUJ-9O-eND"/>
-                                    <constraint firstItem="rSq-UP-InK" firstAttribute="leading" secondItem="nEI-fD-BL4" secondAttribute="leading" id="bYd-gH-28h"/>
-                                    <constraint firstAttribute="trailing" secondItem="rSq-UP-InK" secondAttribute="trailing" id="fCE-kZ-JOx"/>
-                                    <constraint firstAttribute="bottom" secondItem="rSq-UP-InK" secondAttribute="bottom" constant="5" id="kk0-Tp-4gm"/>
-                                    <constraint firstItem="rSq-UP-InK" firstAttribute="top" secondItem="YAq-cL-F3V" secondAttribute="bottom" constant="5" id="p7F-bl-dKC"/>
-                                    <constraint firstItem="YAq-cL-F3V" firstAttribute="leading" secondItem="nEI-fD-BL4" secondAttribute="leading" constant="19" id="wMS-t4-IUP"/>
+                                    <constraint firstItem="rSq-UP-InK" firstAttribute="centerY" secondItem="nEI-fD-BL4" secondAttribute="centerY" constant="10" id="2EA-L8-bbo"/>
+                                    <constraint firstItem="YAq-cL-F3V" firstAttribute="leading" secondItem="nEI-fD-BL4" secondAttribute="leading" constant="19" id="BnO-CI-fm6"/>
+                                    <constraint firstAttribute="trailing" secondItem="rSq-UP-InK" secondAttribute="trailing" id="WnC-nP-Efb"/>
+                                    <constraint firstItem="YAq-cL-F3V" firstAttribute="top" secondItem="nEI-fD-BL4" secondAttribute="top" constant="8" id="ff9-pp-q1W"/>
+                                    <constraint firstItem="rSq-UP-InK" firstAttribute="leading" secondItem="nEI-fD-BL4" secondAttribute="leading" id="vkg-fp-eaT"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="86b-wn-GsU">
-                                <rect key="frame" x="0.0" y="515" width="375" height="1"/>
+                                <rect key="frame" x="0.0" y="533" width="375" height="1"/>
                                 <color key="backgroundColor" red="0.95686274510000002" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="Ggd-Kd-nv6"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="mcD-hK-MVi"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="86b-wn-GsU" secondAttribute="trailing" id="03O-Lq-77t"/>
-                            <constraint firstItem="MnL-uI-Gje" firstAttribute="top" secondItem="grK-Rx-kj7" secondAttribute="bottom" id="0MT-hM-aJW"/>
-                            <constraint firstAttribute="trailing" secondItem="MnL-uI-Gje" secondAttribute="trailing" id="Gnc-dd-GJ5"/>
+                            <constraint firstAttribute="trailing" secondItem="nEI-fD-BL4" secondAttribute="trailing" id="8rE-Xq-gDi"/>
+                            <constraint firstItem="nEI-fD-BL4" firstAttribute="top" secondItem="86b-wn-GsU" secondAttribute="bottom" id="9fJ-cf-5jA"/>
+                            <constraint firstItem="HFJ-YX-dRJ" firstAttribute="top" secondItem="nEI-fD-BL4" secondAttribute="bottom" id="D5q-fc-EMA"/>
+                            <constraint firstItem="86b-wn-GsU" firstAttribute="top" secondItem="MnL-uI-Gje" secondAttribute="bottom" id="GEe-0w-zfE"/>
                             <constraint firstItem="grK-Rx-kj7" firstAttribute="top" secondItem="Oez-mx-5GV" secondAttribute="top" id="RnQ-qz-wrE"/>
+                            <constraint firstItem="MnL-uI-Gje" firstAttribute="leading" secondItem="Oez-mx-5GV" secondAttribute="leading" id="Sn5-vi-ZBs"/>
                             <constraint firstItem="grK-Rx-kj7" firstAttribute="leading" secondItem="Oez-mx-5GV" secondAttribute="leading" id="USA-Ds-P1I"/>
-                            <constraint firstItem="nEI-fD-BL4" firstAttribute="top" secondItem="86b-wn-GsU" secondAttribute="bottom" id="WPX-N9-vHu"/>
-                            <constraint firstItem="nEI-fD-BL4" firstAttribute="leading" secondItem="Oez-mx-5GV" secondAttribute="leading" id="Wtl-6r-PMg"/>
-                            <constraint firstItem="MnL-uI-Gje" firstAttribute="leading" secondItem="Oez-mx-5GV" secondAttribute="leading" id="ajC-w9-DYl"/>
-                            <constraint firstItem="HFJ-YX-dRJ" firstAttribute="top" secondItem="nEI-fD-BL4" secondAttribute="bottom" id="bgD-lq-Jjq"/>
+                            <constraint firstItem="86b-wn-GsU" firstAttribute="top" secondItem="MnL-uI-Gje" secondAttribute="bottom" id="XIW-ej-klM"/>
                             <constraint firstAttribute="trailing" secondItem="grK-Rx-kj7" secondAttribute="trailing" id="eK6-Cm-IEJ"/>
-                            <constraint firstAttribute="trailing" secondItem="nEI-fD-BL4" secondAttribute="trailing" id="rlp-mE-PvL"/>
+                            <constraint firstItem="MnL-uI-Gje" firstAttribute="top" secondItem="grK-Rx-kj7" secondAttribute="bottom" id="fTS-OX-qha"/>
+                            <constraint firstItem="nEI-fD-BL4" firstAttribute="height" secondItem="MnL-uI-Gje" secondAttribute="height" id="gKb-zh-BDe"/>
+                            <constraint firstAttribute="trailing" secondItem="86b-wn-GsU" secondAttribute="trailing" id="l7L-8z-xMD"/>
+                            <constraint firstItem="nEI-fD-BL4" firstAttribute="leading" secondItem="Oez-mx-5GV" secondAttribute="leading" id="m57-va-fUs"/>
+                            <constraint firstItem="86b-wn-GsU" firstAttribute="leading" secondItem="Oez-mx-5GV" secondAttribute="leading" id="rY1-M0-Uze"/>
                             <constraint firstItem="86b-wn-GsU" firstAttribute="leading" secondItem="Oez-mx-5GV" secondAttribute="leading" id="sL1-mR-R21"/>
-                            <constraint firstItem="86b-wn-GsU" firstAttribute="top" secondItem="MnL-uI-Gje" secondAttribute="bottom" id="vEQ-O8-9QR"/>
+                            <constraint firstAttribute="trailing" secondItem="MnL-uI-Gje" secondAttribute="trailing" id="z7B-gy-KCc"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="rSq-UP-InK" id="Kdd-e3-pA8"/>
                         <outlet property="currentPersionDeptLbl" destination="mvm-AI-61p" id="y19-WQ-RjO"/>
@@ -782,7 +796,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6qz-68-9ez" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2528.8000000000002" y="-310.79460269865069"/>
+            <point key="canvasLocation" x="2536.8000000000002" y="-338.68065967016497"/>
         </scene>
         <!--Animated Tab Bar Controller-->
         <scene sceneID="Nml-oJ-erW">
@@ -812,7 +826,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GFg-At-pwL" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eHR-TI-8YS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="eHR-TI-8YS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
