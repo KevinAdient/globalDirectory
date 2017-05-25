@@ -11,6 +11,7 @@ import CoreData
 import MessageUI
 import MapKit
 
+
 class PeopleDetailViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -44,8 +45,18 @@ class PeopleDetailViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
         // Do any additional setup after loading the view.
-        reportingToManagerImgView.layer.borderWidth = 1
-        reportingToManagerImgView.layer.borderColor = UIColor(red: 244/255.0, green: 140/255.0, blue: 140/255.0, alpha: 1.0).cgColor
+//        reportingToManagerImgView.layer.shadowColor = UIColor.blue.cgColor
+//        reportingToManagerImgView.layer.shadowOpacity = 1
+//        reportingToManagerImgView.layer.shadowOffset = CGSize(width: -1, height: 1)
+//        reportingToManagerImgView.layer.shadowRadius = 5
+//        
+//        reportingToManagerImgView.layer.shadowPath = UIBezierPath(rect: reportingToManagerImgView.bounds).cgPath
+//        reportingToManagerImgView.layer.shouldRasterize = true
+        
+//        reportingToManagerImgView.layer.borderWidth = 1
+//        reportingToManagerImgView.layer.borderColor = UIColor(red: 244/255.0, green: 140/255.0, blue: 140/255.0, alpha: 1.0).cgColor
+  
+        
         self.navigationController?.navigationBar.barStyle = UIBarStyle.black
     }
     
@@ -55,6 +66,7 @@ class PeopleDetailViewController: UIViewController {
 
         self.currentPersonImgView?.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         self.currentPersonImgView.image = UIImage(data: self.currentPerson.picture! as Data)
+        
         
         UIView.animate(withDuration: 0.5, animations: {() -> Void in
             self.currentPersonImgView?.transform = CGAffineTransform(scaleX: 1, y: 1)
@@ -119,7 +131,9 @@ class PeopleDetailViewController: UIViewController {
                 
                 reprotingToManagerPositionLbl.text = toReprotingToManager.title!
                 self.reportingToManagerImgView?.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+
                 self.reportingToManagerImgView.image = UIImage(data: self.toReprotingToManager.picture! as Data)
+                
                 
                 UIView.animate(withDuration: 0.5, animations: {() -> Void in
                     self.reportingToManagerImgView?.transform = CGAffineTransform(scaleX: 1, y: 1)
@@ -235,6 +249,9 @@ class PeopleDetailViewController: UIViewController {
     }
     
     
+    //Mark: add shadow on round corner imgeview
+    
+    
     
 
     /*
@@ -265,8 +282,15 @@ extension PeopleDetailViewController : UICollectionViewDataSource {
         
         cell.subEmpImgView?.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         cell.subEmpImgView.image = UIImage(data: currentSubEmp.picture! as Data)
-        cell.subEmpImgView.layer.borderWidth = 1
-        cell.subEmpImgView.layer.borderColor = UIColor(red: 244/255.0, green: 140/255.0, blue: 140/255.0, alpha: 1.0).cgColor
+//        cell.subEmpImgView.layer.borderWidth = 1
+//        cell.subEmpImgView.layer.borderColor = UIColor(red: 244/255.0, green: 140/255.0, blue: 140/255.0, alpha: 1.0).cgColor
+//        cell.subEmpImgView.layer.shadowColor = UIColor.blue.cgColor
+//        cell.subEmpImgView.layer.shadowOpacity = 1
+//        cell.subEmpImgView.layer.shadowOffset = CGSize.zero
+//        cell.subEmpImgView.layer.shadowRadius = 5
+//         cell.subEmpImgView.clipsToBounds = true
+//        cell.subEmpImgView.layer.shadowPath = UIBezierPath(rect: cell.subEmpImgView.bounds).cgPath
+        
         UIView.animate(withDuration: 0.5, animations: {() -> Void in
             cell.subEmpImgView?.transform = CGAffineTransform(scaleX: 1, y: 1)
         })
@@ -307,6 +331,9 @@ extension PeopleDetailViewController : MFMailComposeViewControllerDelegate {
     }
     
 }
+
+
+
 
 
 
