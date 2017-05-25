@@ -248,9 +248,6 @@ class PeopleDetailViewController: UIViewController {
     }
     
     
-    //Mark: add shadow on round corner imgeview
-    
-    
     
 
     /*
@@ -281,14 +278,6 @@ extension PeopleDetailViewController : UICollectionViewDataSource {
         
         cell.subEmpImgView?.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         cell.subEmpImgView.image = UIImage(data: currentSubEmp.picture! as Data)
-//        cell.subEmpImgView.layer.borderWidth = 1
-//        cell.subEmpImgView.layer.borderColor = UIColor(red: 244/255.0, green: 140/255.0, blue: 140/255.0, alpha: 1.0).cgColor
-//        cell.subEmpImgView.layer.shadowColor = UIColor.blue.cgColor
-//        cell.subEmpImgView.layer.shadowOpacity = 1
-//        cell.subEmpImgView.layer.shadowOffset = CGSize.zero
-//        cell.subEmpImgView.layer.shadowRadius = 5
-//         cell.subEmpImgView.clipsToBounds = true
-//        cell.subEmpImgView.layer.shadowPath = UIBezierPath(rect: cell.subEmpImgView.bounds).cgPath
         
         UIView.animate(withDuration: 0.5, animations: {() -> Void in
             cell.subEmpImgView?.transform = CGAffineTransform(scaleX: 1, y: 1)
@@ -331,6 +320,7 @@ extension PeopleDetailViewController : MFMailComposeViewControllerDelegate {
     
 }
 
+//Mark: add shadow on round corner imgeview
 extension UIView {
     
     @IBInspectable var shadow: Bool {
@@ -357,7 +347,6 @@ extension UIView {
             }
         }
     }
-    
     
     func addShadow(shadowColor: CGColor = UIColor.black.cgColor,
                    shadowOffset: CGSize = CGSize(width: 1.0, height: 2.0),
