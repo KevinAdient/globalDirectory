@@ -226,7 +226,10 @@ class PeopleDetailViewController: UIViewController {
     
     @IBAction func openSkypeClicked(_ sender: Any) {
 //        let skype: NSURL = NSURL(string: String(format: "skype:"))! //add object skype like this
-        let skype: NSURL = NSURL(string: String(format: "ms-sfb://start"))!
+    
+        let skype: NSURL = NSURL(string: String(format: "ms-sfb://chat?id=" + self.currentPerson.globalUserId! + "@adient.com"))!
+        //let skype: NSURL = NSURL(string: String(format: "ms-sfb://chat?id=" + "harsha.thulluri-ext" + "@adient.com"))!
+        //let skype: NSURL = NSURL(string: String(format: "ms-sfb://start"))!
         if UIApplication.shared.canOpenURL(skype as URL) {
             UIApplication.shared.open(skype as URL, options: [:], completionHandler: nil)
         }
