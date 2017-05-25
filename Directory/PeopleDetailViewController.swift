@@ -35,6 +35,7 @@ class PeopleDetailViewController: UIViewController {
     @IBOutlet weak var reprotingToManagerNameLbl: UILabel!
     @IBOutlet weak var reprotingToManagerPositionLbl: UILabel!
     @IBOutlet weak var reportingToManagerImgView: UIImageView!
+    @IBOutlet weak var reportingToManagerImgSuperView: UIView!
     @IBOutlet weak var reprotingToManagerImgButton: UIButton!
     
     @IBOutlet weak var peopleReportsToLbl: UILabel!
@@ -44,17 +45,6 @@ class PeopleDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
-        // Do any additional setup after loading the view.
-//        reportingToManagerImgView.layer.shadowColor = UIColor.blue.cgColor
-//        reportingToManagerImgView.layer.shadowOpacity = 1
-//        reportingToManagerImgView.layer.shadowOffset = CGSize(width: -1, height: 1)
-//        reportingToManagerImgView.layer.shadowRadius = 5
-//        
-//        reportingToManagerImgView.layer.shadowPath = UIBezierPath(rect: reportingToManagerImgView.bounds).cgPath
-//        reportingToManagerImgView.layer.shouldRasterize = true
-        
-//        reportingToManagerImgView.layer.borderWidth = 1
-//        reportingToManagerImgView.layer.borderColor = UIColor(red: 244/255.0, green: 140/255.0, blue: 140/255.0, alpha: 1.0).cgColor
   
         
         self.navigationController?.navigationBar.barStyle = UIBarStyle.black
@@ -141,6 +131,7 @@ class PeopleDetailViewController: UIViewController {
             } else {
                 reprotingToManagerImgButton.isEnabled = false
                 reportingToManagerImgView.isHidden = true
+                reportingToManagerImgSuperView.isHidden = true
             }
             
         } catch {
