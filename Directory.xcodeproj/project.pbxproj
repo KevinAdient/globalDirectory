@@ -34,6 +34,7 @@
 		471122E11EAFB52C00AF071D /* DirectoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471122E01EAFB52C00AF071D /* DirectoryUITests.swift */; };
 		471122F21EAFE2CE00AF071D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471122F11EAFE2CE00AF071D /* CoreDataManager.swift */; };
 		471122F41EAFE33300AF071D /* SwiftDebugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471122F31EAFE33300AF071D /* SwiftDebugLog.swift */; };
+		474C2A3A1EDF4E290083EE25 /* directReports.json in Resources */ = {isa = PBXBuildFile; fileRef = 474C2A391EDF4E290083EE25 /* directReports.json */; };
 		474E2B411ECB8F6D00A8D5B5 /* DirectoryStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 474E2B3F1ECB8F6D00A8D5B5 /* DirectoryStore.xcdatamodeld */; };
 		474E2B431ECB8FA500A8D5B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474E2B421ECB8FA500A8D5B5 /* AppDelegate.swift */; };
 		474E2B451ECB91E600A8D5B5 /* prmgeo.json in Resources */ = {isa = PBXBuildFile; fileRef = 474E2B441ECB91E600A8D5B5 /* prmgeo.json */; };
@@ -110,6 +111,7 @@
 		471122E21EAFB52C00AF071D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		471122F11EAFE2CE00AF071D /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		471122F31EAFE33300AF071D /* SwiftDebugLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftDebugLog.swift; sourceTree = "<group>"; };
+		474C2A391EDF4E290083EE25 /* directReports.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = directReports.json; sourceTree = "<group>"; };
 		474E2B401ECB8F6D00A8D5B5 /* DirectoryStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DirectoryStore.xcdatamodel; sourceTree = "<group>"; };
 		474E2B421ECB8FA500A8D5B5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		474E2B441ECB91E600A8D5B5 /* prmgeo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = prmgeo.json; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				474E2B441ECB91E600A8D5B5 /* prmgeo.json */,
+				474C2A391EDF4E290083EE25 /* directReports.json */,
 				471122F11EAFE2CE00AF071D /* CoreDataManager.swift */,
 				471122F31EAFE33300AF071D /* SwiftDebugLog.swift */,
 				474E2B421ECB8FA500A8D5B5 /* AppDelegate.swift */,
@@ -255,6 +258,7 @@
 				471122B71EAFB52B00AF071D /* Frameworks */,
 				471122B81EAFB52B00AF071D /* Resources */,
 				0A8F424E1EC9E041001703CB /* Embed Frameworks */,
+				478BC54D1ED48C2B007EC125 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -359,6 +363,7 @@
 				471122CB1EAFB52C00AF071D /* LaunchScreen.storyboard in Resources */,
 				477145181EBA4C44001C32F5 /* sarah.hendrixson.jpg in Resources */,
 				477145191EBA4C44001C32F5 /* shobita.saxena.jpg in Resources */,
+				474C2A3A1EDF4E290083EE25 /* directReports.json in Resources */,
 				471122C81EAFB52C00AF071D /* Assets.xcassets in Resources */,
 				477145111EB92103001C32F5 /* randy.urban.jpg in Resources */,
 				4771451B1EBA4ED5001C32F5 /* bruce.mcdonald.jpg in Resources */,
@@ -384,6 +389,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		478BC54D1ED48C2B007EC125 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Directory/Carthage/Build/iOS/SwipeCellKit.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		471122B61EAFB52B00AF071D /* Sources */ = {

@@ -78,7 +78,9 @@ class PeopleDetailViewController: UIViewController {
         //report manager
         let managerFetch : NSFetchRequest<PeopleEntity> = PeopleEntity.fetchRequest()
         
-        let managerId: Int64? = currentPerson.theirDepartment?.reportsToId
+        let myempId: String = currentPerson.employeeId!
+
+        let managerId = currentPerson.theirDepartment?.reportsToId
         if (managerId != nil) {
             managerFetch.predicate = NSPredicate(format: "employeeId == %@", "\(managerId!)")
         }
@@ -118,7 +120,6 @@ class PeopleDetailViewController: UIViewController {
         
         //MARK: subs
         let managerFetchSubs : NSFetchRequest<PeopleEntity> = PeopleEntity.fetchRequest()
-        let myempId: Int64 = currentPerson.employeeId
         
         do {
             let reportToThis = try context.fetch(managerFetchSubs)
