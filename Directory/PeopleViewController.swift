@@ -349,9 +349,9 @@ enum ActionDescriptor {
         
         let name: String
         switch self {
-        case .gps: name = "flag"
-        case .floorplane: name = "flag"
-        case .directions: name = "flag"
+        case .gps: name = "ShareGPS"
+        case .floorplane: name = "Floorplan"
+        case .directions: name = "Directions"
         }
         
         return UIImage(named: style == .backgroundColor ? name : name + "-circle")
