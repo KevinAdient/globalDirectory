@@ -17,7 +17,7 @@ class PeopleViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var defaultOptions = SwipeTableOptions()
-    var isSwipeRightEnabled = true
+    var isSwipeRightEnabled = true     
     var buttonDisplayMode: ButtonDisplayMode = .titleAndImage
     var buttonStyle: ButtonStyle = .circular
     

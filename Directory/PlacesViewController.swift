@@ -93,7 +93,6 @@ class PlacesViewController: UIViewController {
     }
     
     // MARK: - Notification Handling
-    
     func applicationDidEnterBackground(_ notification: Notification) {
         do {
             try persistentContainer.viewContext.save()
