@@ -52,6 +52,7 @@
 		BCDAC2E51ED605D800792963 /* Domus-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = BCDAC2DF1ED605B600792963 /* Domus-Regular.otf */; };
 		BCDAC2E61ED605DB00792963 /* Domus-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BCDAC2E01ED605B600792963 /* Domus-Semibold.otf */; };
 		BCDAC2E71ED605DE00792963 /* Domus-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = BCDAC2E11ED605B600792963 /* Domus-Ultralight.otf */; };
+		BCEFB8D11EE5E0C40095D766 /* StatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEFB8D01EE5E0C40095D766 /* StatusTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +138,7 @@
 		BCDAC2DF1ED605B600792963 /* Domus-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Domus-Regular.otf"; sourceTree = "<group>"; };
 		BCDAC2E01ED605B600792963 /* Domus-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Domus-Semibold.otf"; sourceTree = "<group>"; };
 		BCDAC2E11ED605B600792963 /* Domus-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Domus-Ultralight.otf"; sourceTree = "<group>"; };
+		BCEFB8D01EE5E0C40095D766 /* StatusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +233,7 @@
 				0A3DA6341EBB744700948161 /* PlaceTableViewCell.swift */,
 				0AC4003C1EBA1B5D002DD60C /* SettingsViewController.swift */,
 				0AC4003E1EBA1B70002DD60C /* MyLocationViewController.swift */,
+				BCEFB8D01EE5E0C40095D766 /* StatusTableViewCell.swift */,
 				0AC400401EBA1B80002DD60C /* AvailableViewController.swift */,
 				471122BF1EAFB52C00AF071D /* ViewController.swift */,
 				474E2B3F1ECB8F6D00A8D5B5 /* DirectoryStore.xcdatamodeld */,
@@ -466,6 +469,7 @@
 				471122C01EAFB52C00AF071D /* ViewController.swift in Sources */,
 				471122F21EAFE2CE00AF071D /* CoreDataManager.swift in Sources */,
 				0AB652651EC3A78100AFA882 /* RAMItemAnimationProtocol.swift in Sources */,
+				BCEFB8D11EE5E0C40095D766 /* StatusTableViewCell.swift in Sources */,
 				0AB652621EC3A78100AFA882 /* RAMBounceAnimation.swift in Sources */,
 				0AB652641EC3A78100AFA882 /* RAMFumeAnimation.swift in Sources */,
 				0AC400391EBA1AE5002DD60C /* PeopleViewController.swift in Sources */,

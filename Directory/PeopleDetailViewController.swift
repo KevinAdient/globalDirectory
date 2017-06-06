@@ -22,6 +22,8 @@ class PeopleDetailViewController: UIViewController {
     var reportSubs : [PeopleEntity] = [PeopleEntity]()
     
     @IBOutlet weak var currentPersonImgView: UIImageView!
+    
+    @IBOutlet weak var currentPersonParentView: UIView!
     @IBOutlet weak var currentPersonNameLbl: UILabel!
     @IBOutlet weak var currentPersonPositioinLbl: UILabel!
     @IBOutlet weak var currentPersonEmailLbl: UILabel!
@@ -40,14 +42,25 @@ class PeopleDetailViewController: UIViewController {
     
     @IBOutlet weak var peopleReportsToLbl: UILabel!
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
   
         
         self.navigationController?.navigationBar.barStyle = UIBarStyle.black
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(backToRootVC))
+        var gotorootprofileImage = UIImage(named: "gotorootprofile")
+        
+        gotorootprofileImage = gotorootprofileImage?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: gotorootprofileImage, style: .plain, target: self, action: #selector(backToRootVC))
+        
+        
+    }
+    
+    func backToRootVC() {
+        print("backtoroot")
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,11 +68,13 @@ class PeopleDetailViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
 
         self.currentPersonImgView?.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        self.currentPersonParentView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         self.currentPersonImgView.image = UIImage(data: self.currentPerson.picture! as Data)
         
         
         UIView.animate(withDuration: 0.5, animations: {() -> Void in
             self.currentPersonImgView?.transform = CGAffineTransform(scaleX: 1, y: 1)
+            self.currentPersonParentView.transform = CGAffineTransform(scaleX: 1, y: 1)
         })
         
         if (currentPerson.middlename != nil) {
@@ -120,12 +135,14 @@ class PeopleDetailViewController: UIViewController {
                 
                 reprotingToManagerPositionLbl.text = toReprotingToManager.title!
                 self.reportingToManagerImgView?.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                self.reportingToManagerImgSuperView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
 
                 self.reportingToManagerImgView.image = UIImage(data: self.toReprotingToManager.picture! as Data)
                 
                 
                 UIView.animate(withDuration: 0.5, animations: {() -> Void in
                     self.reportingToManagerImgView?.transform = CGAffineTransform(scaleX: 1, y: 1)
+                    self.reportingToManagerImgSuperView.transform = CGAffineTransform(scaleX: 1, y: 1)
                 })
                 
             } else {
@@ -271,10 +288,12 @@ extension PeopleDetailViewController : UICollectionViewDataSource {
         }
         
         cell.subEmpImgView?.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        cell.subEmpSuperView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         cell.subEmpImgView.image = UIImage(data: currentSubEmp.picture! as Data)
         
         UIView.animate(withDuration: 0.5, animations: {() -> Void in
             cell.subEmpImgView?.transform = CGAffineTransform(scaleX: 1, y: 1)
+            cell.subEmpSuperView.transform = CGAffineTransform(scaleX: 1, y: 1)
         })
         return cell
     }

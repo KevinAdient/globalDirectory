@@ -294,19 +294,33 @@ extension PlacesViewController: UITableViewDelegate {
 
 extension PlacesViewController: SwipeTableViewCellDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        let place = fetchedResultsController.object(at: indexPath)
+        let currentPlace = fetchedResultsController.object(at: indexPath)
         
         if orientation == .left {
             return[]
         } else {
             let floorPlan = SwipeAction(style: .destructive, title: nil) { action, indexPath in
                 print("floorPlan")
+                
             }
             floorPlan.hidesWhenSelected = true
             configure(action: floorPlan, with: .floorplane)
             
             let directions = SwipeAction(style: .destructive, title: nil) { action, indexPath in
                 print("directions")
+                
+                //go to direction
+                if (currentPlace.type == "plant") {
+                    let lat = currentPlace.plant?.plantAddress?.gpsLatitude
+                    let long = currentPlace.plant?.plantAddress?.gpsLongitude
+                    let placeStr = (currentPlace.plant?.plantAddress?.city!)! + " " + (currentPlace.plant?.plantAddress?.streetName1)!
+                    self.openMapForPlace(lat: lat!, long: long!, placeName: placeStr)
+                } else {
+                    let alert = UIAlertController(title: "Alert", message: "No GPS information current", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            
             }
             directions.hidesWhenSelected = true
             configure(action: directions, with: .directions)
