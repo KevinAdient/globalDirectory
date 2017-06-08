@@ -289,8 +289,10 @@ extension PeopleViewController: UITableViewDataSource {
         }
         cell.positionLbl.text = people.title!
         cell.locationNameLbl.text = people.theirAddress?.city!
-        if let peopleImg = people.picture {
-            cell.profileImgView.image = UIImage(data: peopleImg as Data)
+        if people.picture != nil {
+            cell.profileImgView.image = UIImage(data: people.picture! as Data)
+        } else {
+            cell.profileImgView.image = UIImage(named: "DefaultProfilepic")
         }
         
         

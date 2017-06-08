@@ -73,7 +73,7 @@ class PeopleDetailViewController: UIViewController {
         if self.currentPerson.picture != nil {
             self.currentPersonImgView.image = UIImage(data: self.currentPerson.picture! as Data)
         
-            UIView.animate(withDuration: 2.0, animations: {() -> Void in
+            UIView.animate(withDuration: 0.5, animations: {() -> Void in
                 self.currentPersonImgView?.transform = CGAffineTransform(scaleX: 1, y: 1)
             })
         }else {
@@ -145,9 +145,17 @@ class PeopleDetailViewController: UIViewController {
                     self.reportingToManagerImgView?.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
                     self.reportingToManagerImgView.image = UIImage(data: self.toReprotingToManager.picture! as Data)
                     
-                    UIView.animate(withDuration: 2.0, animations: {() -> Void in
+                    UIView.animate(withDuration: 0.5, animations: {() -> Void in
                         self.reportingToManagerImgView?.transform = CGAffineTransform(scaleX: 1, y: 1)
                     })
+                } else {
+                    self.reportingToManagerImgView?.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                    self.reportingToManagerImgView.image = UIImage(named: "DefaultProfilepic")
+                    
+                    UIView.animate(withDuration: 0.5, animations: {() -> Void in
+                        self.reportingToManagerImgView?.transform = CGAffineTransform(scaleX: 1, y: 1)
+                    })
+                    
                 }
                 
             } else {
@@ -294,9 +302,9 @@ extension PeopleDetailViewController : UICollectionViewDataSource {
         if currentSubEmp.picture != nil {
             cell.subEmpImgView?.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
             cell.subEmpImgView.image = UIImage(data: currentSubEmp.picture! as Data)
-            cell.subEmpImgView.layer.borderWidth = 1
-            cell.subEmpImgView.layer.borderColor = UIColor(red: 244/255.0, green: 140/255.0, blue: 140/255.0, alpha: 1.0).cgColor
-            UIView.animate(withDuration: 2.0, animations: {() -> Void in
+//            cell.subEmpImgView.layer.borderWidth = 1
+//            cell.subEmpImgView.layer.borderColor = UIColor(red: 244/255.0, green: 140/255.0, blue: 140/255.0, alpha: 1.0).cgColor
+            UIView.animate(withDuration: 0.5, animations: {() -> Void in
                 cell.subEmpImgView?.transform = CGAffineTransform(scaleX: 1, y: 1)
             })
         }
