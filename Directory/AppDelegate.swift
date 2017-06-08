@@ -42,9 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes=[NSForegroundColorAttributeName:UIColor.white]
-        
-        //Mark:  hide navigation bar button "back"
-        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60), for:UIBarMetrics.default)
         return true
     }
     
@@ -121,6 +118,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return myFetchedCompany
     }
 
+    
+    //if we already have one with this name
+    func fetchedResourceCategory(_ resourceName:String) ->[ResourceCategoryEntity] {
+        let moc = getManagedContext()
+        let resourceCategoryFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "ResourceCategoryEntity")
+        var myFetchedResourceCategory:[ResourceCategoryEntity]
+        do {
+            resourceCategoryFetch.predicate = NSPredicate(format:"name = %@",resourceName )
+            myFetchedResourceCategory = try moc.fetch(resourceCategoryFetch) as! [ResourceCategoryEntity]
+        } catch {
+            fatalError("Failed to fetch any category resources: \(error)")
+        }
+        return myFetchedResourceCategory
+    }
+
     func fetchedResource() ->[ResourceEntity] {
         let moc = getManagedContext()
         let resourcesFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "ResourceEntity")
@@ -151,10 +163,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return theLocatedEntity
     }
     
+    func fetchEmployeeId(employeeId:String)->PeopleEntity? {
+        let moc = self.getManagedContext()
+        let personFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PeopleEntity")
+        let predicateString:String = String(format:"employeeId CONTAINS[cd] \"%@\"", employeeId)
+        print("predicate String = \(predicateString)")
+        personFetchRequest.predicate = NSPredicate(format:predicateString)
+        var theLocatedEntities:[PeopleEntity]
+        let emptyProgramEntity:PeopleEntity? = nil
+        do {
+            theLocatedEntities = try moc.fetch(personFetchRequest) as! [PeopleEntity]
+            
+        } catch {
+            fatalError("Failed to fetch the programEntity named :\(employeeId), error = \(error)")
+        }
+        if(theLocatedEntities.count > 0){
+            return theLocatedEntities[0]
+        }
+        return emptyProgramEntity
+    }
+
     func fetchThisPerson(lastName:String)->PeopleEntity? {
         let moc = self.getManagedContext()
         let personFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PeopleEntity")
-        let predicateString:String = String(format:"lastname CONTAINS[cd] %@ OR firstname CONTAINS[cd] %@", lastName, lastName)
+        let predicateString:String = String(format:"lastname CONTAINS[cd] \"%@\"", lastName)
         print("predicate String = \(predicateString)")
         personFetchRequest.predicate = NSPredicate(format:predicateString)
         var theLocatedEntities:[PeopleEntity]
@@ -171,6 +203,90 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return emptyProgramEntity
     }
     
+    func fetchManagerUsing(displayName:String)->PeopleEntity? {
+        let moc = self.getManagedContext()
+        let personFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PeopleEntity")
+        let predicateString:String = String(format:"displayName CONTAINS[cd] \"%@\"", displayName)
+        print("predicate String = \(predicateString)")
+        personFetchRequest.predicate = NSPredicate(format:predicateString)
+        var theLocatedEntities:[PeopleEntity]
+        let emptyProgramEntity:PeopleEntity? = nil
+        do {
+            theLocatedEntities = try moc.fetch(personFetchRequest) as! [PeopleEntity]
+            
+        } catch {
+            fatalError("Failed to fetch the programEntity named :\(displayName), error = \(error)")
+        }
+        if(theLocatedEntities.count > 0){
+            return theLocatedEntities[0]
+        }
+        return emptyProgramEntity
+    }
+
+    func fetchManagersDepartment(managersName:String)->DepartmentEntity? {
+        let moc = self.getManagedContext()
+        let departmentFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "DepartmentEntity")
+        let predicateString = String(format:"departmentHeadId contains[cd] \"%@\"", managersName)
+        print("predicate String = \(predicateString)")
+        departmentFetchRequest.predicate = NSPredicate(format:predicateString)
+        var theLocatedEntities:[DepartmentEntity]
+        let emptyDepartmentEntity:DepartmentEntity? = nil
+        do {
+            theLocatedEntities = try moc.fetch(departmentFetchRequest) as! [DepartmentEntity]
+            
+        } catch {
+            fatalError("Failed to fetch the managersDepartmentEntity named :\(managersName), error = \(error)")
+        }
+        if(theLocatedEntities.count > 0){
+            return theLocatedEntities[0]
+        }
+        return emptyDepartmentEntity
+    }
+
+    func fetchDepartment(departmentName:String)->DepartmentEntity? {
+        let moc = self.getManagedContext()
+        let departmentFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "DepartmentEntity")
+        //check for the dash
+//        let preparseDepartmentName = departmentName.replacingOccurrences(of: "Adient - ", with: "", options: .literal, range: nil)
+//      let predicateString = String(format:"departmentName contains[cd] \"%@\"", preparseDepartmentName)
+        let predicateString = String(format:"departmentName contains[cd] \"%@\"", departmentName)
+        print("predicate String = \(predicateString)")
+        departmentFetchRequest.predicate = NSPredicate(format:predicateString)
+        var theLocatedEntities:[DepartmentEntity]
+        let emptyDepartmentEntity:DepartmentEntity? = nil
+        do {
+            theLocatedEntities = try moc.fetch(departmentFetchRequest) as! [DepartmentEntity]
+            
+        } catch {
+            fatalError("Failed to fetch the programEntity named :\(departmentName), error = \(error)")
+        }
+        if(theLocatedEntities.count > 0){
+            return theLocatedEntities[0]
+        }
+        return emptyDepartmentEntity
+    }
+
+    //only checking street and city keys
+    func fetchAddress(streetAddress:String, cityAddress:String)->AddressEntity? {
+        let moc = self.getManagedContext()
+        let addressFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "AddressEntity")
+        let predicateString = String(format:"streetName1 contains[cd] \"%@\" AND city contains[cd] \"%@\" ", streetAddress, cityAddress)
+        print("predicate String = \(predicateString)")
+        addressFetchRequest.predicate = NSPredicate(format:predicateString)
+        var theLocatedEntities:[AddressEntity]
+        let emptyAddressEntity:AddressEntity? = nil
+        do {
+            theLocatedEntities = try moc.fetch(addressFetchRequest) as! [AddressEntity]
+            
+        } catch {
+            fatalError("Failed to fetch the addressEntity named :\(streetAddress), \(cityAddress), error = \(error)")
+        }
+        if(theLocatedEntities.count > 0){
+            return theLocatedEntities[0]
+        }
+        return emptyAddressEntity
+    }
+
     func getManagedContext() -> NSManagedObjectContext {
         return self.myCoreDataManager.persistentContainer.viewContext
     }
@@ -189,6 +305,187 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    public func importJuliesReports()->Void {
+        var iCounterResources : Int64 = 3000
+        var iDepartmentIdCounter : Int16 = 100
+        let julieReportsName:String = String("directReports")
+        let jsonPeoplePath: String = Bundle.main.path(forResource: julieReportsName, ofType: "json")! as String
+        
+        let readData : Data = try! Data(contentsOf: URL(fileURLWithPath: jsonPeoplePath), options:  NSData.ReadingOptions.dataReadingMapped)
+    
+        let companyEntity:CompanyEntity = NSEntityDescription.insertNewObject(forEntityName: "CompanyEntity", into: getManagedContext()) as! CompanyEntity
+        companyEntity.domain = "adient.com"
+        //companyEntity.headquartersId
+        companyEntity.name = "Adient"
+        companyEntity.id   = 1
+        companyEntity.imDomain = "adient.com"
+        companyEntity.phoneNumber = "+1 734 254 5000"
+        companyEntity.url  = "adient.com"
+        companyEntity.stockSymbol = "ADNT"
+    
+        do {
+            let peopleDictionary = try JSONSerialization.jsonObject(with: readData, options: [])
+                as! [String : AnyObject]
+            
+            //print(peopleDictionary)
+            //iterate over the dictionary
+            for(juliesReports,theArray) in peopleDictionary {
+                var myAddressEntity: AddressEntity? = nil
+                var myResourceCategoryEntity: ResourceCategoryEntity
+                var myDepartmentEntity: DepartmentEntity?
+                var myPeopleEntity: PeopleEntity?
+                    print("juliesReports = \(theArray)\n")
+                    let largeArray = theArray as! NSArray
+                    for arrayElement in largeArray {
+                        let myReportsDictionary = arrayElement as! Dictionary<String, AnyObject>
+                        let displayName :String = myReportsDictionary["displayname"] as! String
+                        print("displayname = \(displayName)\n")
+                        let GivenName = myReportsDictionary["GivenName"]
+                        print ("GivenName = \(GivenName!)\n")
+                        let Surname = myReportsDictionary["Surname"]
+                        print ("Surname = \(Surname!)\n")
+                        let SamAccountName = myReportsDictionary["SamAccountName"]
+                        print ("SamAccountName = \(SamAccountName!)\n")
+                        let EmailAddress = myReportsDictionary["EmailAddress"]
+                        print ("EmailAddress = \(EmailAddress!)\n")
+                        let employeeId = EmailAddress
+                        print("replacing employeeId with email address\n")
+                        
+                        let manager : String = myReportsDictionary["manager"] as! String
+                        print ("manager = \(manager)\n")
+                        let Department :String? = myReportsDictionary["Department"] as? String
+                        print ("Department = \(String(describing: Department))\n")
+                        let StreetAddress = myReportsDictionary["StreetAddress"]
+                        print ("StreetAddress = \(StreetAddress!)\n")
+                        let city = myReportsDictionary["city"]
+                        print ("city = \(city!)\n")
+                        let State = myReportsDictionary["State"]
+                        print ("State = \(State!)\n")
+                        let co : String = myReportsDictionary["co"] as! String
+                        print ("co = \(co)\n")
+                        var myPostalCode : String?
+                        //var myPostalCodeNumber : NSNumber?
+                        if let myPostalCodeNumber = myReportsDictionary["PostalCode"] as? NSNumber {
+                            myPostalCode = myPostalCodeNumber.stringValue
+                        }
+                         //let myPostalCodeNumber : NSNumber = myReportsDictionary["PostalCode"] as! NSNumber
+                       // let myPostalCode : String = myPostalCodeNumber.stringValue
+                        if myPostalCode != nil {
+                            print ("PostalCode = \(myPostalCode)\n")
+                        }else {
+                            print ("PostalCode is empty\n")
+                        }
+                        let physicalDeliveryOfficeName = myReportsDictionary["physicalDeliveryOfficeName"]
+                        print ("physicalDeliveryOfficeName = \(physicalDeliveryOfficeName!)\n")
+                        let fetchedResourceCategoryArray = self.fetchedResourceCategory(physicalDeliveryOfficeName as! String)
+                        if fetchedResourceCategoryArray.count <= 0 {
+                            let newResourceCategory:ResourceCategoryEntity = NSEntityDescription.insertNewObject(forEntityName: "ResourceCategoryEntity", into: getManagedContext()) as! ResourceCategoryEntity
+                            newResourceCategory.id = iCounterResources
+                            iCounterResources = iCounterResources + 1
+                            newResourceCategory.name = physicalDeliveryOfficeName as! String
+                            newResourceCategory.type = "building"
+                            myResourceCategoryEntity = newResourceCategory
+                            
+                            //add the address because it is new
+                            if let addressEntityExists = fetchAddress(streetAddress:StreetAddress as! String, cityAddress:city as! String){
+                                myAddressEntity = addressEntityExists
+                            }else {
+                                let addressEntity:AddressEntity = NSEntityDescription.insertNewObject(forEntityName: "AddressEntity", into: self.getManagedContext()) as! AddressEntity
+                                addressEntity.city = city as! String
+                                addressEntity.streetName1 = StreetAddress as! String
+                                //if State
+                                addressEntity.stateOrProvince = State as? String
+                                
+                                if co == "United States of America" {
+                                    addressEntity.countryCode = "US"
+                                }else {
+                                    addressEntity.countryCode = co 
+                                }
+                                if myPostalCode != nil {
+                                    addressEntity.postalCode = myPostalCode
+                                }
+                                myAddressEntity = addressEntity
+                            }
+                            myResourceCategoryEntity.locations = myAddressEntity
+                        }else {//didn't find any resourceCategory that matched name
+                            myResourceCategoryEntity = fetchedResourceCategoryArray[0]
+                            if myResourceCategoryEntity.locations != nil {
+                                myAddressEntity = myResourceCategoryEntity.locations!
+                            }
+                        }
+                        
+                        if let existingPeopleEntity = fetchEmployeeId(employeeId:EmailAddress as! String) {
+                            myPeopleEntity = existingPeopleEntity
+                        }else {
+                            let peopleEntity:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: getManagedContext()) as! PeopleEntity
+                            let telephoneNumber = myReportsDictionary["telephoneNumber"]
+                            print ("telephoneNumber = \(telephoneNumber!)\n")
+                            let mobile = myReportsDictionary["mobile"]
+                            print ("mobile = \(mobile!)\n")
+                            let title = myReportsDictionary["title"]
+                            print ("title = \(title!)\n")
+                            peopleEntity.displayName = displayName
+                            peopleEntity.employeeId = employeeId as! String
+                            peopleEntity.deskphone = telephoneNumber as? String
+                            peopleEntity.mobilephone = mobile as! String
+                            peopleEntity.title = title as! String
+                            peopleEntity.firstname = GivenName as! String
+                            peopleEntity.lastname = Surname as! String
+                            peopleEntity.globalUserId = SamAccountName as! String
+                            peopleEntity.email = EmailAddress as! String
+                            
+                            //passes in the fullname of the manager to get the email of manager
+                            if let managersPeopleEntity : PeopleEntity = fetchManagerUsing(displayName:manager as! String) {
+                            peopleEntity.reportsToId = managersPeopleEntity.email
+                            }else {
+                                peopleEntity.reportsToId = manager as! String
+                            }
+                            peopleEntity.theirAddress = myAddressEntity
+                            peopleEntity.company = companyEntity
+                            
+                            myPeopleEntity = peopleEntity
+                        }
+                        
+                        
+                        //this tests this employee's department
+                        if Department == ""  || Department == nil {
+                            //fetch the manager's department
+                            let managersDepartmentEntity = fetchManagersDepartment(managersName: manager as! String)
+                            if managersDepartmentEntity != nil {
+                                myDepartmentEntity = managersDepartmentEntity!
+                            }
+                        } else {
+                            let existingDepartmentEntity = fetchDepartment(departmentName: Department!)
+                            if existingDepartmentEntity != nil {
+                                myDepartmentEntity = existingDepartmentEntity
+                            }else {
+                            //add departmentEntity
+                                let newDepartmentEntity:DepartmentEntity = NSEntityDescription.insertNewObject(forEntityName: "DepartmentEntity", into: getManagedContext()) as! DepartmentEntity
+                                newDepartmentEntity.departmentName = Department!
+                                newDepartmentEntity.departmentId = iDepartmentIdCounter
+                                iDepartmentIdCounter += 1
+                                newDepartmentEntity.headReportsToId = manager as! String
+                                newDepartmentEntity.departmentHeadId = manager as! String
+                                myDepartmentEntity = newDepartmentEntity
+                            }
+                        }
+                        if myDepartmentEntity != nil {
+                            myPeopleEntity?.theirDepartment = myDepartmentEntity
+                        }
+                        
+//HERE PETE
+                }
+            }
+
+        } catch let error as NSError {
+            print("Failed to load: \(error.localizedDescription)")
+        }
+        self.saveContext()
+
+
+    }
+    
     public func importPlants()->Void {
         let companyFetch = self.fetchTheCompany()
         var parentCompany : CompanyEntity? = nil
@@ -225,7 +522,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         resourceCategoryEntity.id = plantStartingId
                         plantStartingId += 1
                         resourceCategoryEntity.type = "plant"
-                        resourceCategoryEntity.plant = plantEntity
+                        resourceCategoryEntity.plants = plantEntity
                         if parentCompany != nil {
                             plantEntity.parentCompany = parentCompany
                         }
@@ -369,7 +666,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return;
         }
         let managedContext = self.getManagedContext()
+        self.importJuliesReports()
         
+        //fetchCompanyEntity
+        let theCompanyEntity :[CompanyEntity] = fetchTheCompany()
+        var myCompanyEntity : CompanyEntity?
+        if theCompanyEntity.count > 0 {
+            myCompanyEntity = theCompanyEntity[0]
+        }
+        /*
         let companyEntity:CompanyEntity = NSEntityDescription.insertNewObject(forEntityName: "CompanyEntity", into: managedContext) as! CompanyEntity
         companyEntity.domain = "adient.com"
         //companyEntity.headquartersId
@@ -379,66 +684,112 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         companyEntity.phoneNumber = "630 209 7542"
         companyEntity.url  = "adient.com"
         companyEntity.stockSymbol = "ADNT"
-        
-        let addressEntity1:AddressEntity = NSEntityDescription.insertNewObject(forEntityName: "AddressEntity", into: managedContext) as! AddressEntity
-        addressEntity1.city = "Holland"
-        addressEntity1.countryCode  = "US"
-        addressEntity1.gpsAltitude  = 0.0
-        addressEntity1.gpsLatitude  = 42.7663572
-        addressEntity1.gpsLongitude = -86.0571885
-        addressEntity1.gpsRadius    = 600.0
-        addressEntity1.postalCode   = "49423"
-        addressEntity1.stateOrProvince = "Michigan"
-        addressEntity1.streetName1   = "727 South Waverly Road"
+        */
+        var myAddressEntity1 : AddressEntity?
+        var myPlymouthAddressEntity1 : AddressEntity?
+        var myHelmAddressEntity1 : AddressEntity?
+        var myMilwaukeeAddressEntity1 : AddressEntity?
+        var myDigitalOfficeDepartment : DepartmentEntity?
 
         
-        let plymouthAddressEntity1:AddressEntity = NSEntityDescription.insertNewObject(forEntityName: "AddressEntity", into: managedContext) as! AddressEntity
-        plymouthAddressEntity1.city = "Plymouth"
-        plymouthAddressEntity1.countryCode  = "US"
-        plymouthAddressEntity1.gpsAltitude  = 0.0
-        plymouthAddressEntity1.gpsLatitude  = 42.3853165
-        plymouthAddressEntity1.gpsLongitude = -83.5293167
-        plymouthAddressEntity1.gpsRadius    = 400.0
-        plymouthAddressEntity1.postalCode   = "48170"
-        plymouthAddressEntity1.stateOrProvince = "Michigan"
-        plymouthAddressEntity1.streetName1   = "49200 Halyard Drive"//734-254-5000 site general number
+        if let existingAddressEntity = fetchAddress(streetAddress: "727 South Waverly Road", cityAddress: "Holland") {
+            myAddressEntity1 = existingAddressEntity
+            myAddressEntity1?.gpsLatitude  = 42.7663572
+            myAddressEntity1?.gpsLongitude = -86.0571885
+            myAddressEntity1?.gpsRadius    = 600.0
+            myAddressEntity1?.postalCode   = "49423"
+        }else {
+            let addressEntity1:AddressEntity = NSEntityDescription.insertNewObject(forEntityName: "AddressEntity", into: managedContext) as! AddressEntity
+            addressEntity1.city = "Holland"
+            addressEntity1.countryCode  = "US"
+            addressEntity1.gpsAltitude  = 0.0
+            addressEntity1.gpsLatitude  = 42.7663572
+            addressEntity1.gpsLongitude = -86.0571885
+            addressEntity1.gpsRadius    = 600.0
+            addressEntity1.postalCode   = "49423"
+            addressEntity1.stateOrProvince = "Michigan"
+            addressEntity1.streetName1   = "727 South Waverly Road"
+            myAddressEntity1 = addressEntity1
+        }
+        
+        if let existingAddressEntity = fetchAddress(streetAddress: "49200 Halyard Drive", cityAddress: "Plymouth") {
+            myPlymouthAddressEntity1 = existingAddressEntity
+            myPlymouthAddressEntity1?.gpsLatitude  = 42.3853165
+            myPlymouthAddressEntity1?.gpsLongitude = -83.5293167
+            myPlymouthAddressEntity1?.gpsRadius    = 400.0
+            myPlymouthAddressEntity1?.postalCode   = "48170"
+        }else {
+            let plymouthAddressEntity1:AddressEntity = NSEntityDescription.insertNewObject(forEntityName: "AddressEntity", into: managedContext) as! AddressEntity
+            plymouthAddressEntity1.city = "Plymouth"
+            plymouthAddressEntity1.countryCode  = "US"
+            plymouthAddressEntity1.gpsAltitude  = 0.0
+            plymouthAddressEntity1.gpsLatitude  = 42.3853165
+            plymouthAddressEntity1.gpsLongitude = -83.5293167
+            plymouthAddressEntity1.gpsRadius    = 400.0
+            plymouthAddressEntity1.postalCode   = "48170"
+            plymouthAddressEntity1.stateOrProvince = "Michigan"
+            plymouthAddressEntity1.streetName1   = "49200 Halyard Drive"//734-254-5000 site general number
+            myPlymouthAddressEntity1 = plymouthAddressEntity1
+        }
 
-        let helmAddressEntity1:AddressEntity = NSEntityDescription.insertNewObject(forEntityName: "AddressEntity", into: managedContext) as! AddressEntity
-        helmAddressEntity1.city = "Plymouth"
-        helmAddressEntity1.countryCode  = "US"
-        helmAddressEntity1.gpsAltitude  = 0.0
-        helmAddressEntity1.gpsLatitude  = 42.3926075
-        helmAddressEntity1.gpsLongitude = -83.4905251
-        helmAddressEntity1.gpsRadius    = 200.0
-        helmAddressEntity1.postalCode   = "48170"
-        helmAddressEntity1.stateOrProvince = "Michigan"
-        helmAddressEntity1.streetName1   = "45000 Helm St"//734-254-5000 site general number
+        if let existingAddressEntity = fetchAddress(streetAddress: "45000 Helm St", cityAddress: "Plymouth") {
+            myHelmAddressEntity1 = existingAddressEntity
+            myHelmAddressEntity1?.gpsLatitude  = 42.3926075
+            myHelmAddressEntity1?.gpsLongitude = -83.4905251
+            myHelmAddressEntity1?.gpsRadius    = 200.0
+            myHelmAddressEntity1?.postalCode   = "48170"
+        }else {
+            let helmAddressEntity1:AddressEntity = NSEntityDescription.insertNewObject(forEntityName: "AddressEntity", into: managedContext) as! AddressEntity
+            helmAddressEntity1.city = "Plymouth"
+            helmAddressEntity1.countryCode  = "US"
+            helmAddressEntity1.gpsAltitude  = 0.0
+            helmAddressEntity1.gpsLatitude  = 42.3926075
+            helmAddressEntity1.gpsLongitude = -83.4905251
+            helmAddressEntity1.gpsRadius    = 200.0
+            helmAddressEntity1.postalCode   = "48170"
+            helmAddressEntity1.stateOrProvince = "MI"
+            helmAddressEntity1.streetName1   = "45000 Helm St"//734-254-5000 site general number
+            myHelmAddressEntity1 = helmAddressEntity1
+        }
+        
+        if let existingAddressEntity = fetchAddress(streetAddress: "833 E Michigan Street", cityAddress: "Milwaukee") {
+            myMilwaukeeAddressEntity1 = existingAddressEntity
+            myMilwaukeeAddressEntity1?.gpsLatitude  = 43.037536
+            myMilwaukeeAddressEntity1?.gpsLongitude = -87.9029545
+            myMilwaukeeAddressEntity1?.gpsRadius    = 400.0
+            myMilwaukeeAddressEntity1?.postalCode   = "53202"
 
-        let milwaukeeAddressEntity1:AddressEntity = NSEntityDescription.insertNewObject(forEntityName: "AddressEntity", into: managedContext) as! AddressEntity
-        milwaukeeAddressEntity1.city = "Milwaukee"
-        milwaukeeAddressEntity1.countryCode  = "US"
-        milwaukeeAddressEntity1.gpsAltitude  = 0.0
-        milwaukeeAddressEntity1.gpsLatitude  = 43.037536
-        milwaukeeAddressEntity1.gpsLongitude = -87.9029545
-        milwaukeeAddressEntity1.gpsRadius    = 400.0
-        milwaukeeAddressEntity1.postalCode   = "53202"
-        milwaukeeAddressEntity1.stateOrProvince = "Wisconsin"
-        milwaukeeAddressEntity1.streetName1   = "833 E Michigan Street"//734-254-5000 site general number
+        }else {
+            let milwaukeeAddressEntity1:AddressEntity = NSEntityDescription.insertNewObject(forEntityName: "AddressEntity", into: managedContext) as! AddressEntity
+            milwaukeeAddressEntity1.city = "Milwaukee"
+            milwaukeeAddressEntity1.countryCode  = "US"
+            milwaukeeAddressEntity1.gpsAltitude  = 0.0
+            milwaukeeAddressEntity1.gpsLatitude  = 43.037536
+            milwaukeeAddressEntity1.gpsLongitude = -87.9029545
+            milwaukeeAddressEntity1.gpsRadius    = 400.0
+            milwaukeeAddressEntity1.postalCode   = "53202"
+            milwaukeeAddressEntity1.stateOrProvince = "WI"
+            milwaukeeAddressEntity1.streetName1   = "833 E Michigan Street"//734-254-5000 site general number
+            myMilwaukeeAddressEntity1 = milwaukeeAddressEntity1
+        }
         
         let resourceCategory0:ResourceCategoryEntity = NSEntityDescription.insertNewObject(forEntityName: "ResourceCategoryEntity", into: managedContext) as! ResourceCategoryEntity
         resourceCategory0.id = 1050
         resourceCategory0.name = "Holland Customer Center"
         resourceCategory0.type = "building"
+        resourceCategory0.locations = myAddressEntity1
         
         let plymouthCategory:ResourceCategoryEntity = NSEntityDescription.insertNewObject(forEntityName: "ResourceCategoryEntity", into: managedContext) as! ResourceCategoryEntity
         plymouthCategory.id = 1000
         plymouthCategory.name = "Central Tech Unit Plymouth MI"
         plymouthCategory.type = "building"
+        plymouthCategory.locations = myPlymouthAddressEntity1
 
         let wisconsinCategory:ResourceCategoryEntity = NSEntityDescription.insertNewObject(forEntityName: "ResourceCategoryEntity", into: managedContext) as! ResourceCategoryEntity
         wisconsinCategory.id = 2000
-        wisconsinCategory.name = "Wisconsin Adient HQ"
+        wisconsinCategory.name = "Adient Milwaukee Corp Office"
         wisconsinCategory.type = "building"
+        wisconsinCategory.locations = myMilwaukeeAddressEntity1
 
         
         let resourceCategory1:ResourceCategoryEntity = NSEntityDescription.insertNewObject(forEntityName: "ResourceCategoryEntity", into: managedContext) as! ResourceCategoryEntity
@@ -471,6 +822,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         lobbyResource.name = "lobby"
         lobbyResource.type = "lobby"
         
+        let addressEntityRC1 = myAddressEntity1
+    /*
         let addressEntityRC1:AddressEntity = NSEntityDescription.insertNewObject(forEntityName: "AddressEntity", into: managedContext) as! AddressEntity
         addressEntityRC1.city = "Holland"
         addressEntityRC1.countryCode  = "US"
@@ -478,7 +831,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         addressEntityRC1.postalCode   = "49423"
         addressEntityRC1.stateOrProvince = "Michigan"
         addressEntityRC1.streetName1   = "727 South Waverly Road"
-        
+    */
         let resourceConferenceRoom2:ResourceEntity = NSEntityDescription.insertNewObject(forEntityName: "ResourceEntity", into: managedContext) as! ResourceEntity
         resourceConferenceRoom2.phoneNumber = "+16302097542"
         resourceConferenceRoom2.id = 2
@@ -489,11 +842,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         resourceConferenceRoom2.category   = resourceCategory1
         resourceConferenceRoom2.phoneNumber = "+16163946276"
         resourceConferenceRoom2.iAttendUrl = "https://ag.adient.com/mobile/iAttend?conf=IT3278"
+        //for some reason this isn't getting populated below....
         resourceConferenceRoom2.location = addressEntityRC1
         resourceConferenceRoom2.location?.gpsLatitude = 42.771192
         resourceConferenceRoom2.location?.gpsLongitude = -86.071312
         resourceConferenceRoom2.location?.gpsRadius = 25 //meters
-        resourceConferenceRoom2.company = companyEntity
+        resourceConferenceRoom2.company = myCompanyEntity
 
         let resourceConferenceRoom3:ResourceEntity = NSEntityDescription.insertNewObject(forEntityName: "ResourceEntity", into: managedContext) as! ResourceEntity
         resourceConferenceRoom3.phoneNumber = "+16302097542"
@@ -509,7 +863,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         resourceConferenceRoom3.location?.gpsLatitude = 42.771192
         resourceConferenceRoom3.location?.gpsLongitude = -86.071312
         resourceConferenceRoom3.location?.gpsRadius = 25 //meters
-        resourceConferenceRoom3.company = companyEntity
+        resourceConferenceRoom3.company = myCompanyEntity
 
         let resourceConferenceRoom4:ResourceEntity = NSEntityDescription.insertNewObject(forEntityName: "ResourceEntity", into: managedContext) as! ResourceEntity
         resourceConferenceRoom4.phoneNumber = "+16302097542"
@@ -525,7 +879,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         resourceConferenceRoom4.location?.gpsLatitude = 42.771319
         resourceConferenceRoom4.location?.gpsLongitude = -86.071423
         resourceConferenceRoom4.location?.gpsRadius = 25 //meters
-        resourceConferenceRoom4.company = companyEntity
+        resourceConferenceRoom4.company = myCompanyEntity
 
         let resourceConferenceRoom5:ResourceEntity = NSEntityDescription.insertNewObject(forEntityName: "ResourceEntity", into: managedContext) as! ResourceEntity
         resourceConferenceRoom5.phoneNumber = "+17342543800; 40331174"
@@ -541,7 +895,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         resourceConferenceRoom5.location?.gpsLatitude = 42.771273
         resourceConferenceRoom5.location?.gpsLongitude = -86.071442
         resourceConferenceRoom5.location?.gpsRadius = 5 //meters
-        resourceConferenceRoom5.company = companyEntity
+        resourceConferenceRoom5.company = myCompanyEntity
 
         let resourceConferenceRoom6:ResourceEntity = NSEntityDescription.insertNewObject(forEntityName: "ResourceEntity", into: managedContext) as! ResourceEntity
         resourceConferenceRoom6.phoneNumber = "+17342543800; 40331174"
@@ -557,7 +911,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         resourceConferenceRoom6.location?.gpsLatitude = 42.771250
         resourceConferenceRoom6.location?.gpsLongitude = -86.071128
         resourceConferenceRoom6.location?.gpsRadius = 20 //meters
-        resourceConferenceRoom6.company = companyEntity
+        resourceConferenceRoom6.company = myCompanyEntity
 
         let lobby1:ResourceEntity = NSEntityDescription.insertNewObject(forEntityName: "ResourceEntity", into: managedContext) as! ResourceEntity
         lobby1.phoneNumber = ""
@@ -574,176 +928,294 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         lobby1.location?.gpsLongitude = -86.070802
         lobby1.location?.gpsRadius = 30 //meters
 
-        let mikeEntity:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
-        let mikesBossEntity:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
-        let departmentEntity2:DepartmentEntity = NSEntityDescription.insertNewObject(forEntityName: "DepartmentEntity", into: managedContext) as! DepartmentEntity
-        departmentEntity2.departmentName = "AP-Supp-CTU-Ply-IT App Mgmt"
-        let sarahEntity:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
     /*
         let kevinEntity:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
         let harshaEntity:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
         let sangaEntity:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
         let peteEntity:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
     */
-        let shobitaEntity:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
-        let julieEntity:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
-        let sherylEntity:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
-        let bruceEntity:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
-        
-        bruceEntity.globalUserId = "amcdonaldb"
-        bruceEntity.employeeId   = 1
-        bruceEntity.firstname    = "Bruce"
-        bruceEntity.lastname     = "McDonald"
-        bruceEntity.middlename   = ""
-        bruceEntity.email        = "bruce.mcdonald@adient.com"
-        bruceEntity.picture      = NSData(contentsOfFile: Bundle.main.path(forResource: "bruce.mcdonald", ofType: "jpg")!)
-        bruceEntity.deskphone    = "+14142208988"
-        bruceEntity.mobilephone  = "+14142233501"
-        bruceEntity.imName       = "sip:bruce.mcdonald@adient.com"
-        bruceEntity.title         = "Chairman and CEO"
-        bruceEntity.profileUrl    = "https://mysite.adient.com/person.aspx/?user=bruce.mcdonald%40adient.com"
-        let departmentEntity6:DepartmentEntity = NSEntityDescription.insertNewObject(forEntityName: "DepartmentEntity", into: managedContext) as! DepartmentEntity
-        departmentEntity6.departmentName = "Adient Office of the CEO"
-        bruceEntity.theirDepartment = departmentEntity6
-        bruceEntity.company       = companyEntity
-        bruceEntity.theirAddress  = milwaukeeAddressEntity1
-        departmentEntity6.reportsToId = 0
-        departmentEntity6.departmentHeadId = 1
-        departmentEntity6.departmentId = 6
-        
-        sherylEntity.globalUserId = "ahaislets"
-        sherylEntity.employeeId   = 2
-        sherylEntity.lastname     = "Haislet"
-        sherylEntity.firstname    = "Sheryl"
-        sherylEntity.middlename   = "L"
-        sherylEntity.email        = "sheryl.l.haislet@adient.com"
-        sherylEntity.picture      = NSData(contentsOfFile: Bundle.main.path(forResource: "sheryl.haislet", ofType: "jpg")!)
-        sherylEntity.deskphone    = "+173425431176"
-        sherylEntity.mobilephone  = "+16162831888"
-        sherylEntity.imName       = "sip:sheryl.l.haislet@adient.com"
-        sherylEntity.title         = "VP IT"
-        sherylEntity.profileUrl    = "https://mysite.adient.com/person.aspx/?user=sheryl.l.haislet%40adient.com"
-        let departmentEntity3:DepartmentEntity = NSEntityDescription.insertNewObject(forEntityName: "DepartmentEntity", into: managedContext) as! DepartmentEntity
-        departmentEntity3.departmentName = "Adient Mgt Glen"
-        sherylEntity.theirDepartment = departmentEntity3
-        departmentEntity3.reportsToId = 1
-        departmentEntity3.departmentHeadId = 2
-        departmentEntity3.departmentId = 2
-        
-        sherylEntity.company       = companyEntity
-        sherylEntity.theirAddress  = plymouthAddressEntity1
 
-        julieEntity.globalUserId = "araglandj"
-        julieEntity.employeeId   = 3
-        julieEntity.lastname     = "Ragland"
-        julieEntity.firstname    = "Julie"
-        julieEntity.middlename   = ""
-        julieEntity.email        = " julie.ragland@adient.com"
-        julieEntity.picture      = NSData(contentsOfFile: Bundle.main.path(forResource: "julie.ragland", ofType: "jpg")!)
-        julieEntity.deskphone    = "+14142208986"
-        julieEntity.mobilephone  = "+14145261426"
-        julieEntity.imName       = "sip:julie.ragland@adient.com"
-        julieEntity.title         = "VP Corporate Applications"
-        julieEntity.profileUrl    = "https://mysite.adient.com/person.aspx/?user=julie.ragland%40adient.com"
-        let departmentEntity4:DepartmentEntity = NSEntityDescription.insertNewObject(forEntityName: "DepartmentEntity", into: managedContext) as! DepartmentEntity
-        departmentEntity4.departmentName = "Adient - Office of CIO"
-        departmentEntity4.reportsToId = 2
-        departmentEntity4.departmentHeadId = 3
-        departmentEntity4.departmentId = 4
-        julieEntity.theirDepartment = departmentEntity4
-        julieEntity.company       = companyEntity
-        julieEntity.theirAddress  = milwaukeeAddressEntity1
-        
-        shobitaEntity.globalUserId = "ashobitas"
-        shobitaEntity.employeeId   = 4
-        shobitaEntity.lastname     = "Saxena"
-        shobitaEntity.firstname    = "Shobhita"
-        shobitaEntity.middlename   = ""
-        shobitaEntity.email        = "shobhita.saxena@adient.com"
-        shobitaEntity.picture      = NSData(contentsOfFile: Bundle.main.path(forResource: "shobita.saxena", ofType: "jpg")!)
-        shobitaEntity.deskphone    = "+17342546752"
-        shobitaEntity.mobilephone  = "+12482078910"
-        shobitaEntity.imName       = "sip:shobhita.saxena@adient.com"
-        shobitaEntity.title         = "Exec Dir Project Delivery Srvcs"
-        shobitaEntity.profileUrl    = "https://mysite.adient.com/person.aspx/?user=sheryl.l.haislet%40adient.com"
-        let departmentEntity5:DepartmentEntity = NSEntityDescription.insertNewObject(forEntityName: "DepartmentEntity", into: managedContext) as! DepartmentEntity
-        departmentEntity5.departmentName = "AP-Adient-IT-CTU 08"
-        departmentEntity5.reportsToId = 3
-        departmentEntity5.departmentHeadId = 4
-        departmentEntity5.departmentId = 5
-        shobitaEntity.theirDepartment = departmentEntity5
-        shobitaEntity.company       = companyEntity
-        shobitaEntity.theirAddress  = helmAddressEntity1
+        var myBruceEntity : PeopleEntity?
+        if let theBruceEntity = fetchEmployeeId(employeeId: "bruce.mcdonald@adient.com") {
+            theBruceEntity.picture      = NSData(contentsOfFile: Bundle.main.path(forResource: "bruce.mcdonald", ofType: "jpg")!)
+            theBruceEntity.imName       = "sip:bruce.mcdonald@adient.com"
+            theBruceEntity.profileUrl   = "https://mysite.adient.com/person.aspx/?user=bruce.mcdonald%40adient.com"
+            myBruceEntity = theBruceEntity
+            theBruceEntity.reportsToId  = "boardOfDirectors@adient.com"
+        }else {
+            let bruceEntity:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
+            
+            bruceEntity.globalUserId = "amcdonaldb"
+            bruceEntity.employeeId   = "bruce.mcdonald@adient.com"
+            bruceEntity.firstname    = "Bruce"
+            bruceEntity.lastname     = "McDonald"
+            bruceEntity.middlename   = ""
+            bruceEntity.email        = "bruce.mcdonald@adient.com"
+            bruceEntity.picture      = NSData(contentsOfFile: Bundle.main.path(forResource: "bruce.mcdonald", ofType: "jpg")!)
+            bruceEntity.deskphone    = "+14142208988"
+            bruceEntity.mobilephone  = "+14142233501"
+            bruceEntity.imName       = "sip:bruce.mcdonald@adient.com"
+            bruceEntity.title         = "Chairman and CEO"
+            bruceEntity.profileUrl    = "https://mysite.adient.com/person.aspx/?user=bruce.mcdonald%40adient.com"
+            bruceEntity.company       = myCompanyEntity
+            bruceEntity.theirAddress  = myMilwaukeeAddressEntity1
+            bruceEntity.reportsToId  = "boardOfDirectors@adient.com"
+            myBruceEntity = bruceEntity
+        }
+        if let bruceDepartment = fetchDepartment(departmentName: "Adient Office of the CEO"){
+            bruceDepartment.headReportsToId = "0"
+            bruceDepartment.departmentHeadId = "bruce.mcdonald@adient.com"
+            myBruceEntity?.theirDepartment = bruceDepartment
 
-        sarahEntity.globalUserId = "ahendrixsons"
-        sarahEntity.employeeId   = 40
-        sarahEntity.firstname    = "Sarah"
-        sarahEntity.lastname     = "Hendrixson"
-        sarahEntity.middlename   = "A"
-        sarahEntity.email        = "sarah.a.hendrixson@adient.com"
-        sarahEntity.picture      = NSData(contentsOfFile: Bundle.main.path(forResource: "sarah.hendrixson", ofType: "jpg")!)
-        sarahEntity.deskphone    = "+16163948819"
-        sarahEntity.mobilephone  = "+16163401320"
-        sarahEntity.imName       = "sip:sarah.a.hendrixson@adient.com"
-        sarahEntity.title         = "Mgr E2P Bus Rel Process & Modeling"
-        sarahEntity.profileUrl    = "hhttps://mysite.adient.com/person.aspx/?user=sarah.a.hendrixson%40adient.com"
-        let departmentEntity7:DepartmentEntity = NSEntityDescription.insertNewObject(forEntityName: "DepartmentEntity", into: managedContext) as! DepartmentEntity
-        departmentEntity7.departmentName = "AP-Supp-CTU-Ply-IT App Mgmt"
-        departmentEntity7.reportsToId = 4
-        departmentEntity7.departmentHeadId = 40
-        departmentEntity7.departmentId = 7
-        sarahEntity.theirDepartment = departmentEntity7
-        sarahEntity.company       = companyEntity
-        sarahEntity.theirAddress  = addressEntity1
+        }else {
+            let departmentEntity:DepartmentEntity = NSEntityDescription.insertNewObject(forEntityName: "DepartmentEntity", into: managedContext) as! DepartmentEntity
+            departmentEntity.departmentName = "Adient Office of the CEO"
+            departmentEntity.headReportsToId = "0"
+            departmentEntity.departmentHeadId = "bruce.mcdonald@adient.com"
+            departmentEntity.departmentId = 6
+            myBruceEntity?.theirDepartment = departmentEntity
+        }
 
-        let mikesDepartmentEntity:DepartmentEntity = NSEntityDescription.insertNewObject(forEntityName: "DepartmentEntity", into: managedContext) as! DepartmentEntity
-        mikesDepartmentEntity.departmentName = "Ditial Office"
-        mikesDepartmentEntity.departmentName = "IT Digital Office"
-        mikesDepartmentEntity.departmentHeadId = 20 //"randall.j.urban"
-        mikesDepartmentEntity.reportsToId = 20  //mike reports to randy
-        mikesDepartmentEntity.departmentId = 1
-
-        mikeEntity.globalUserId = "achabotm"
-        mikeEntity.employeeId   = 21
-        mikeEntity.lastname     = "Chabot"
-        mikeEntity.firstname    = "Mike"
-        mikeEntity.middlename   = "M"
-        mikeEntity.email        = "mike.chabot@adient.com"
-        mikeEntity.picture      = NSData(contentsOfFile: Bundle.main.path(forResource: "mike.chabot", ofType: "jpg")!)
-        mikeEntity.deskphone    = "+16163942516"
-        mikeEntity.mobilephone  = "+16162183730"
-        mikeEntity.imName       = "sip:mike.chabot@adient.com"
-        mikeEntity.title         = "Dir Solutions Delivery Srvcs"
-        mikeEntity.profileUrl    = "https://mysite.adient.com/person.aspx/?user=mike.chabot%40adient.com"
-        mikeEntity.company       = companyEntity
-        mikeEntity.theirDepartment = mikesDepartmentEntity
-        mikeEntity.theirAddress    = addressEntity1
+        var mySherylEntity : PeopleEntity?
+        if let theSherylEntity = fetchEmployeeId(employeeId: "sheryl.l.haislet@adient.com") {
+            theSherylEntity.picture      = NSData(contentsOfFile: Bundle.main.path(forResource: "sheryl.haislet", ofType: "jpg")!)
+            theSherylEntity.imName       = "sip:sheryl.l.haislet@adient.com"
+            theSherylEntity.profileUrl    = "https://mysite.adient.com/person.aspx/?user=sheryl.l.haislet%40adient.com"
+            theSherylEntity.reportsToId   = "bruce.mcdonald@adient.com"
+            mySherylEntity = theSherylEntity
+        }else {
+            let sherylEntity:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
+            sherylEntity.globalUserId = "ahaislets"
+            sherylEntity.employeeId   = "sheryl.l.haislet@adient.com"
+            sherylEntity.lastname     = "Haislet"
+            sherylEntity.firstname    = "Sheryl"
+            sherylEntity.middlename   = "L"
+            sherylEntity.email        = "sheryl.l.haislet@adient.com"
+            sherylEntity.picture      = NSData(contentsOfFile: Bundle.main.path(forResource: "sheryl.haislet", ofType: "jpg")!)
+            sherylEntity.deskphone    = "+173425431176"
+            sherylEntity.mobilephone  = "+16162831888"
+            sherylEntity.imName       = "sip:sheryl.l.haislet@adient.com"
+            sherylEntity.title         = "VP IT"
+            sherylEntity.profileUrl    = "https://mysite.adient.com/person.aspx/?user=sheryl.l.haislet%40adient.com"
+            sherylEntity.company       = myCompanyEntity
+            sherylEntity.theirAddress  = myPlymouthAddressEntity1
+            sherylEntity.reportsToId   = "bruce.mcdonald@adient.com"
+            mySherylEntity = sherylEntity
+        }
+        if let sherylDepartment = fetchDepartment(departmentName: "Adient - Office of CIO"){
+            sherylDepartment.headReportsToId = "bruce.mcdonald@adient.com"
+            sherylDepartment.departmentHeadId = "sheryl.l.haislet@adient.com"
+            mySherylEntity?.theirDepartment = sherylDepartment
+            
+        }else {
+            let departmentEntity:DepartmentEntity = NSEntityDescription.insertNewObject(forEntityName: "DepartmentEntity", into: managedContext) as! DepartmentEntity
+            departmentEntity.departmentName = "Adient - Office of CIO"
+            departmentEntity.headReportsToId = "bruce.mcdonald@adient.com"
+            departmentEntity.departmentHeadId = "sheryl.l.haislet@adient.com"
+            departmentEntity.departmentId = 6
+            mySherylEntity?.theirDepartment = departmentEntity
+        }
 
         
-        let randyDepartmentEntity:DepartmentEntity = NSEntityDescription.insertNewObject(forEntityName: "DepartmentEntity", into: managedContext) as! DepartmentEntity
-        randyDepartmentEntity.departmentName = "Ditial Office"
-        randyDepartmentEntity.departmentName = "IT Digital Office"
-        randyDepartmentEntity.departmentHeadId = 20 //"randall.j.urban"
-        randyDepartmentEntity.reportsToId = 2  //randy reports to sheryl
-        randyDepartmentEntity.departmentId = 1
+        var myJulieEntity : PeopleEntity?
+        if let theJulieEntity = fetchEmployeeId(employeeId: "julie.ragland@adient.com") {
+            theJulieEntity.picture      = NSData(contentsOfFile: Bundle.main.path(forResource: "julie.ragland", ofType: "jpg")!)
+            theJulieEntity.imName       = "sip:julie.ragland@adient.com"
+            theJulieEntity.profileUrl    = "https://mysite.adient.com/person.aspx/?user=julie.ragland%40adient.com"
+            theJulieEntity.company       = myCompanyEntity
+            theJulieEntity.theirAddress  = myMilwaukeeAddressEntity1
+            theJulieEntity.reportsToId   = "sheryl.l.haislet@adient.com"
+            myJulieEntity = theJulieEntity
+        }else {
+            let julieEntity:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
+            julieEntity.globalUserId = "araglandj"
+            julieEntity.employeeId   = "julie.ragland@adient.com"
+            julieEntity.lastname     = "Ragland"
+            julieEntity.firstname    = "Julie"
+            julieEntity.middlename   = ""
+            julieEntity.email        = "julie.ragland@adient.com"
+            julieEntity.picture      = NSData(contentsOfFile: Bundle.main.path(forResource: "julie.ragland", ofType: "jpg")!)
+            julieEntity.deskphone    = "+14142208986"
+            julieEntity.mobilephone  = "+14145261426"
+            julieEntity.imName       = "sip:julie.ragland@adient.com"
+            julieEntity.title         = "VP Corporate Applications"
+            julieEntity.profileUrl    = "https://mysite.adient.com/person.aspx/?user=julie.ragland%40adient.com"
+            julieEntity.reportsToId   = "sheryl.l.haislet@adient.com"
+            julieEntity.company       = myCompanyEntity
+            julieEntity.theirAddress  = myMilwaukeeAddressEntity1
+            myJulieEntity = julieEntity
+        }
+        if let julieDepartment = fetchDepartment(departmentName: "Adient Mgt Glen"){
+            julieDepartment.headReportsToId = "sheryl.l.haislet@adient.com"
+            julieDepartment.departmentHeadId = "julie.ragland@adient.com"
+            myJulieEntity?.theirDepartment = julieDepartment
+            
+        }else {
+            let departmentEntity:DepartmentEntity = NSEntityDescription.insertNewObject(forEntityName: "DepartmentEntity", into: managedContext) as! DepartmentEntity
+            departmentEntity.departmentName = "Adient Mgt Glen"
+            departmentEntity.headReportsToId = "sheryl.l.haislet@adient.com"
+            departmentEntity.departmentHeadId = "julie.ragland@adient.com"
+            departmentEntity.departmentId = 6
+            myJulieEntity?.theirDepartment = departmentEntity
+        }
+
+        var myShobitaEntity : PeopleEntity?
+        if let theShobitaEntity = fetchEmployeeId(employeeId: "shobhita.saxena@adient.com") {
+            theShobitaEntity.picture      = NSData(contentsOfFile: Bundle.main.path(forResource: "shobita.saxena", ofType: "jpg")!)
+            theShobitaEntity.imName       = "sip:shobhita.saxena@adient.com"
+            theShobitaEntity.profileUrl    = "https://mysite.adient.com/person.aspx/?user=sheryl.l.haislet%40adient.com"
+            theShobitaEntity.reportsToId   = "julie.ragland@adient.com"
+            myShobitaEntity = theShobitaEntity
+        }else {
+            let shobitaEntity:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
+            shobitaEntity.globalUserId = "ashobitas"
+            shobitaEntity.employeeId   = "shobhita.saxena@adient.com"
+            shobitaEntity.lastname     = "Saxena"
+            shobitaEntity.firstname    = "Shobhita"
+            shobitaEntity.middlename   = ""
+            shobitaEntity.email        = "shobhita.saxena@adient.com"
+            shobitaEntity.picture      = NSData(contentsOfFile: Bundle.main.path(forResource: "shobita.saxena", ofType: "jpg")!)
+            shobitaEntity.deskphone    = "+17342546752"
+            shobitaEntity.mobilephone  = "+12482078910"
+            shobitaEntity.imName       = "sip:shobhita.saxena@adient.com"
+            shobitaEntity.title         = "Exec Dir Project Delivery Srvcs"
+            shobitaEntity.profileUrl    = "https://mysite.adient.com/person.aspx/?user=sheryl.l.haislet%40adient.com"
+            shobitaEntity.reportsToId   = "julie.ragland@adient.com"
+            shobitaEntity.company       = myCompanyEntity
+            shobitaEntity.theirAddress  = myHelmAddressEntity1
+            myShobitaEntity = shobitaEntity
+        }
+
         
+        if let theDepartmentEntity = fetchDepartment(departmentName: "AP-Adient-IT-CTU 08") {
+            theDepartmentEntity.headReportsToId = "julie.ragland@adient.com"
+            theDepartmentEntity.departmentHeadId = "shobhita.saxena@adient.com"
+            myShobitaEntity?.theirDepartment = theDepartmentEntity
+        }else {
+            let shobitaDepartmentEntity:DepartmentEntity = NSEntityDescription.insertNewObject(forEntityName: "DepartmentEntity", into: managedContext) as! DepartmentEntity
+            shobitaDepartmentEntity.departmentName = "AP-Adient-IT-CTU 08"
+            shobitaDepartmentEntity.headReportsToId = "julie.ragland@adient.com"
+            shobitaDepartmentEntity.departmentHeadId = "shobhita.saxena@adient.com"
+            shobitaDepartmentEntity.departmentId = 5
+            myShobitaEntity?.theirDepartment = shobitaDepartmentEntity
+        }
+
+        var mySarahEntity : PeopleEntity?
+        if let theSarahEntity = fetchEmployeeId(employeeId: "sarah.a.hendrixson@adient.com") {
+            theSarahEntity.picture      = NSData(contentsOfFile: Bundle.main.path(forResource: "sarah.hendrixson", ofType: "jpg")!)
+            theSarahEntity.imName       = "sip:sarah.a.hendrixson@adient.com"
+            theSarahEntity.profileUrl    = "hhttps://mysite.adient.com/person.aspx/?user=sarah.a.hendrixson%40adient.com"
+            theSarahEntity.reportsToId   = "shobhita.saxena@adient.com"
+            theSarahEntity.company       = myCompanyEntity
+            theSarahEntity.theirAddress  = myAddressEntity1
+            mySarahEntity = theSarahEntity
+        }else {
+            let sarahEntity:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
+            sarahEntity.globalUserId = "ahendrixsons"
+            sarahEntity.employeeId   = "40"
+            sarahEntity.firstname    = "Sarah"
+            sarahEntity.lastname     = "Hendrixson"
+            sarahEntity.middlename   = "A"
+            sarahEntity.email        = "sarah.a.hendrixson@adient.com"
+            sarahEntity.picture      = NSData(contentsOfFile: Bundle.main.path(forResource: "sarah.hendrixson", ofType: "jpg")!)
+            sarahEntity.deskphone    = "+16163948819"
+            sarahEntity.mobilephone  = "+16163401320"
+            sarahEntity.imName       = "sip:sarah.a.hendrixson@adient.com"
+            sarahEntity.title         = "Mgr E2P Bus Rel Process & Modeling"
+            sarahEntity.profileUrl    = "hhttps://mysite.adient.com/person.aspx/?user=sarah.a.hendrixson%40adient.com"
+            sarahEntity.reportsToId   = "shobhita.saxena@adient.com"
+            sarahEntity.company       = myCompanyEntity
+            sarahEntity.theirAddress  = myAddressEntity1
+            mySarahEntity = sarahEntity
+        }
         
+        if let theDepartmentEntity = fetchDepartment(departmentName: "AP-Supp-CTU-Ply-IT App Mgmt") {
+            theDepartmentEntity.headReportsToId = "shobhita.saxena@adient.com"
+            theDepartmentEntity.departmentHeadId = "sarah.a.hendrixson@adient.com"
+            mySarahEntity?.theirDepartment = theDepartmentEntity
+        }else {
+            let departmentEntity:DepartmentEntity = NSEntityDescription.insertNewObject(forEntityName: "DepartmentEntity", into: managedContext) as! DepartmentEntity
+            departmentEntity.departmentName = "AP-Supp-CTU-Ply-IT App Mgmt"
+            departmentEntity.headReportsToId = "shobhita.saxena@adient.com"
+            departmentEntity.departmentHeadId = "sarah.a.hendrixson@adient.com"
+            departmentEntity.departmentId = 5
+            mySarahEntity?.theirDepartment = departmentEntity
+        }
+
+        var myMikeChabotPeopleEntity : PeopleEntity?
         
-        mikesBossEntity.employeeId   = 20
-        mikesBossEntity.globalUserId = "aurbanr"
-        mikesBossEntity.picture      = NSData(contentsOfFile: Bundle.main.path(forResource: "randy.urban", ofType: "jpg")!)
-        mikesBossEntity.email        = "randall.j.urban@adient.com"
-        mikesBossEntity.firstname    = "Randall"
-        mikesBossEntity.middlename   = "J"
-        mikesBossEntity.lastname     = "Urban"
-        mikesBossEntity.title        = "VP Digital Office"
-        mikesBossEntity.deskphone    = "+17342546613"
-        mikesBossEntity.mobilephone  = "+17344175548"
-        mikesBossEntity.imName       = "sip:randall.j.urban@adient.com"
-        mikesBossEntity.profileUrl   = "https://mysite.adient.com/person.aspx/?user=randall.j.urban%40adient.com"
-        mikesBossEntity.company      = companyEntity
-        mikesBossEntity.theirAddress = helmAddressEntity1
-        mikesBossEntity.theirDepartment = randyDepartmentEntity
+        if let theMikeChabotPeopleEntity = fetchEmployeeId(employeeId:"mike.chabot@adient.com") {
+            theMikeChabotPeopleEntity.picture      = NSData(contentsOfFile: Bundle.main.path(forResource: "mike.chabot", ofType: "jpg")!)
+            theMikeChabotPeopleEntity.imName       = "sip:mike.chabot@adient.com"
+            theMikeChabotPeopleEntity.profileUrl   = "https://mysite.adient.com/person.aspx/?user=mike.chabot%40adient.com"
+            theMikeChabotPeopleEntity.reportsToId  = "randall.j.urban@adient.com"
+            theMikeChabotPeopleEntity.theirAddress = myAddressEntity1
+            theMikeChabotPeopleEntity.company      = myCompanyEntity
+            
+        } else {
+            let mikeEntity:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
+            mikeEntity.globalUserId = "achabotm"
+            mikeEntity.employeeId   = "21"
+            mikeEntity.lastname     = "Chabot"
+            mikeEntity.firstname    = "Mike"
+            mikeEntity.middlename   = "M"
+            mikeEntity.email        = "mike.chabot@adient.com"
+            mikeEntity.picture      = NSData(contentsOfFile: Bundle.main.path(forResource: "mike.chabot", ofType: "jpg")!)
+            mikeEntity.deskphone    = "+16163942516"
+            mikeEntity.mobilephone  = "+16162183730"
+            mikeEntity.imName       = "sip:mike.chabot@adient.com"
+            mikeEntity.title         = "Dir Solutions Delivery Srvcs"
+            mikeEntity.profileUrl    = "https://mysite.adient.com/person.aspx/?user=mike.chabot%40adient.com"
+            mikeEntity.company       = myCompanyEntity
+            mikeEntity.reportsToId   = "randall.j.urban@adient.com"
+            mikeEntity.theirAddress    = myAddressEntity1
+
+        }
+        if let theDigitalOffice = fetchDepartment(departmentName: "IT Digital Office") {
+            theDigitalOffice.departmentHeadId  = "randall.j.urban@adient.com"
+            theDigitalOffice.headReportsToId   = "sheryl.l.haislet@adient.com"  //randy reports
+            myDigitalOfficeDepartment = theDigitalOffice
+        }else {
+            let departmentEntity:DepartmentEntity = NSEntityDescription.insertNewObject(forEntityName: "DepartmentEntity", into: managedContext) as! DepartmentEntity
+            
+            departmentEntity.departmentName    = "IT Digital Office"
+            departmentEntity.departmentHeadId  = "randall.j.urban@adient.com"
+            departmentEntity.headReportsToId   = "sheryl.l.haislet@adient.com"  //randy reports to sheryl
+            departmentEntity.departmentId = 1
+            myDigitalOfficeDepartment = departmentEntity
+        }
+        myMikeChabotPeopleEntity?.theirDepartment = myDigitalOfficeDepartment
+
+        var myRandallPeopleEntity : PeopleEntity?
+        if let theRandallUrbanPeopleEntity = fetchEmployeeId(employeeId:"randall.j.urban@adient.com") {
+            theRandallUrbanPeopleEntity.imName       = "sip:randall.j.urban@adient.com"
+            theRandallUrbanPeopleEntity.profileUrl   = "https://mysite.adient.com/person.aspx/?user=randall.j.urban%40adient.com"
+            theRandallUrbanPeopleEntity.reportsToId  = "sheryl.l.haislet@adient.com"
+            theRandallUrbanPeopleEntity.company      = myCompanyEntity
+            theRandallUrbanPeopleEntity.theirAddress = myHelmAddressEntity1
+            myRandallPeopleEntity = theRandallUrbanPeopleEntity
+            
+        }else {
+            let randallEntity:PeopleEntity = NSEntityDescription.insertNewObject(forEntityName: "PeopleEntity", into: managedContext) as! PeopleEntity
+            randallEntity.employeeId   = "randall.j.urban@adient.com"
+            randallEntity.globalUserId = "aurbanr"
+            randallEntity.picture      = NSData(contentsOfFile: Bundle.main.path(forResource: "randy.urban", ofType: "jpg")!)
+            randallEntity.email        = "randall.j.urban@adient.com"
+            randallEntity.firstname    = "Randall"
+            randallEntity.middlename   = "J"
+            randallEntity.lastname     = "Urban"
+            randallEntity.title        = "VP Digital Office"
+            randallEntity.deskphone    = "+17342546613"
+            randallEntity.mobilephone  = "+17344175548"
+            randallEntity.imName       = "sip:randall.j.urban@adient.com"
+            randallEntity.profileUrl   = "https://mysite.adient.com/person.aspx/?user=randall.j.urban%40adient.com"
+            randallEntity.reportsToId  = "sheryl.l.haislet@adient.com"
+            randallEntity.company      = myCompanyEntity
+            randallEntity.theirAddress = myHelmAddressEntity1
+            myRandallPeopleEntity      = randallEntity
+        }
+        myRandallPeopleEntity?.theirDepartment = myDigitalOfficeDepartment
+        
         self.importPlants()
         self.saveContext()
         return

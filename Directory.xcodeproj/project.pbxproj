@@ -46,6 +46,7 @@
 		477145191EBA4C44001C32F5 /* shobita.saxena.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 477145161EBA4C44001C32F5 /* shobita.saxena.jpg */; };
 		4771451B1EBA4ED5001C32F5 /* bruce.mcdonald.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4771451A1EBA4ED5001C32F5 /* bruce.mcdonald.jpg */; };
 		478BC54B1ED483CF007EC125 /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 478BC54A1ED483CF007EC125 /* SwipeCellKit.framework */; };
+		47B83CDD1EE9905F00D05011 /* directReports.json in Resources */ = {isa = PBXBuildFile; fileRef = 47B83CDC1EE9905F00D05011 /* directReports.json */; };
 		BCDAC2E21ED605D000792963 /* Domus-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BCDAC2DC1ED605B600792963 /* Domus-Bold.otf */; };
 		BCDAC2E31ED605D300792963 /* Domus-Extralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = BCDAC2DD1ED605B600792963 /* Domus-Extralight.otf */; };
 		BCDAC2E41ED605D500792963 /* Domus-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = BCDAC2DE1ED605B600792963 /* Domus-Light.otf */; };
@@ -132,6 +133,7 @@
 		477145161EBA4C44001C32F5 /* shobita.saxena.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shobita.saxena.jpg; sourceTree = "<group>"; };
 		4771451A1EBA4ED5001C32F5 /* bruce.mcdonald.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bruce.mcdonald.jpg; sourceTree = "<group>"; };
 		478BC54A1ED483CF007EC125 /* SwipeCellKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwipeCellKit.framework; path = Directory/Carthage/Build/iOS/SwipeCellKit.framework; sourceTree = "<group>"; };
+		47B83CDC1EE9905F00D05011 /* directReports.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = directReports.json; sourceTree = "<group>"; };
 		BCDAC2DC1ED605B600792963 /* Domus-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Domus-Bold.otf"; sourceTree = "<group>"; };
 		BCDAC2DD1ED605B600792963 /* Domus-Extralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Domus-Extralight.otf"; sourceTree = "<group>"; };
 		BCDAC2DE1ED605B600792963 /* Domus-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Domus-Light.otf"; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 			children = (
 				BCDAC2CF1ED6051C00792963 /* Font */,
 				474E2B441ECB91E600A8D5B5 /* prmgeo.json */,
+				47B83CDC1EE9905F00D05011 /* directReports.json */,
 				471122F11EAFE2CE00AF071D /* CoreDataManager.swift */,
 				471122F31EAFE33300AF071D /* SwiftDebugLog.swift */,
 				474E2B421ECB8FA500A8D5B5 /* AppDelegate.swift */,
@@ -413,6 +416,7 @@
 				477145111EB92103001C32F5 /* randy.urban.jpg in Resources */,
 				4771451B1EBA4ED5001C32F5 /* bruce.mcdonald.jpg in Resources */,
 				BCDAC2E21ED605D000792963 /* Domus-Bold.otf in Resources */,
+				47B83CDD1EE9905F00D05011 /* directReports.json in Resources */,
 				BCDAC2E71ED605DE00792963 /* Domus-Ultralight.otf in Resources */,
 				477145171EBA4C44001C32F5 /* julie.ragland.jpg in Resources */,
 				474E2B451ECB91E600A8D5B5 /* prmgeo.json in Resources */,

@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 import SwipeCellKit
-import MapKit
 
 class PlacesViewController: UIViewController {
     
@@ -34,7 +33,6 @@ class PlacesViewController: UIViewController {
         // Configure Fetch Request
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(ResourceCategoryEntity.name), ascending: true)]
         fetchRequest.predicate = NSPredicate(format: "type == 'plant' || type == 'building'")
-//        fetchRequest.predicate = NSPredicate(format: "type == 'plant'")
         
         // Create Fetched Results Controller
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.persistentContainer.viewContext, sectionNameKeyPath: #keyPath(ResourceCategoryEntity.name), cacheName: nil)
@@ -93,6 +91,7 @@ class PlacesViewController: UIViewController {
     }
     
     // MARK: - Notification Handling
+    
     func applicationDidEnterBackground(_ notification: Notification) {
         do {
             try persistentContainer.viewContext.save()
@@ -149,7 +148,7 @@ extension PlacesViewController: UISearchBarDelegate {
         
         var predicate:NSPredicate? = nil
         if searchBar.text?.characters.count != 0 {
-            predicate = NSPredicate(format: "(name contains [cd] %@)", searchBar.text!)
+            predicate = NSPredicate(format: "(city contains [cd] %@) || (streetName1 contains[cd] %@)", searchBar.text!, searchBar.text!)
         }
         
         self.fetchedResultsController.fetchRequest.predicate = predicate
@@ -248,8 +247,7 @@ extension PlacesViewController: UITableViewDataSource {
         let place = fetchedResultsController.object(at: indexPath)
         
         // Configure Cell
-        cell.placeLbl.text = place.name!
-
+        cell.placeLbl.text = place.name! + " " + place.type!
         
         
     }
@@ -263,64 +261,24 @@ extension PlacesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //select action
         searchBar.resignFirstResponder()
-        let currentPlace = fetchedResultsController.object(at: indexPath)
-        
-        if (currentPlace.type == "plant") {
-            let lat = currentPlace.plant?.plantAddress?.gpsLatitude
-            let long = currentPlace.plant?.plantAddress?.gpsLongitude
-            let placeStr = (currentPlace.plant?.plantAddress?.city!)! + " " + (currentPlace.plant?.plantAddress?.streetName1)!
-            openMapForPlace(lat: lat!, long: long!, placeName: placeStr)
-        } else {
-            let alert = UIAlertController(title: "Alert", message: "No GPS information current", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
     }
-    
-    //open map function
-    func openMapForPlace(lat: CLLocationDegrees, long: CLLocationDegrees, placeName: String) {
-        
-        let myTargetCLLocation:CLLocation = CLLocation(latitude: lat, longitude: long) as CLLocation
-        let coordinate = CLLocationCoordinate2DMake(myTargetCLLocation.coordinate.latitude,myTargetCLLocation.coordinate.longitude)
-        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
-        mapItem.name = placeName
-
-        mapItem.openInMaps(launchOptions: [MKLaunchOptionsMapTypeKey : MKMapType.satellite.rawValue])
-//        mapItem.openInMaps(launchOptions: nil)
-        //TODU: change map item image
-    }
-
 }
 
 extension PlacesViewController: SwipeTableViewCellDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        let currentPlace = fetchedResultsController.object(at: indexPath)
+        let place = fetchedResultsController.object(at: indexPath)
         
         if orientation == .left {
             return[]
         } else {
             let floorPlan = SwipeAction(style: .destructive, title: nil) { action, indexPath in
                 print("floorPlan")
-                
             }
             floorPlan.hidesWhenSelected = true
             configure(action: floorPlan, with: .floorplane)
             
             let directions = SwipeAction(style: .destructive, title: nil) { action, indexPath in
                 print("directions")
-                
-                //go to direction
-                if (currentPlace.type == "plant") {
-                    let lat = currentPlace.plant?.plantAddress?.gpsLatitude
-                    let long = currentPlace.plant?.plantAddress?.gpsLongitude
-                    let placeStr = (currentPlace.plant?.plantAddress?.city!)! + " " + (currentPlace.plant?.plantAddress?.streetName1)!
-                    self.openMapForPlace(lat: lat!, long: long!, placeName: placeStr)
-                } else {
-                    let alert = UIAlertController(title: "Alert", message: "No GPS information current", preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                }
-            
             }
             directions.hidesWhenSelected = true
             configure(action: directions, with: .directions)

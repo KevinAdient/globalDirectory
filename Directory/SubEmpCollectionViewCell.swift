@@ -12,8 +12,6 @@ class SubEmpCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var subEmpImgView: UIImageView!
     @IBOutlet weak var subEmpNameLbl: UILabel!
-    @IBOutlet weak var subEmpSuperView: UIView!
-    
     
     
 }
