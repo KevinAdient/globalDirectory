@@ -43,7 +43,7 @@ class AvailableViewController: UIViewController {
 //        self.navigationController?.setNavigationBarHidden(true, animated: animated)
 //        super.viewWillAppear(animated)
         
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         
 
         
