@@ -1,18 +1,9 @@
 {
+  "commitish" : "1.8.0",
   "iOS" : [
     {
-      "hash" : "81b903e4189f1fe3c76ced77479b53db4de5c8fb78b5aea25f69df694ef73b87",
+      "hash" : "a86bb7f395682030e92d007dc60be14d0fa28c1b74b88c6baa632d9e138cfc94",
       "name" : "SwipeCellKit"
     }
-  ],
-  "commitish" : "1.8.0",
-  "watchOS" : [
-
-  ],
-  "tvOS" : [
-
-  ],
-  "Mac" : [
-
   ]
 }

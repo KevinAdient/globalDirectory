@@ -14,7 +14,7 @@ class PeopleDetailViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     
-    var toReportingToManager : PeopleEntity = PeopleEntity()
+    var toReprotingToManager : PeopleEntity = PeopleEntity()
     var currentPerson : PeopleEntity = PeopleEntity()
     var reportSubs : [PeopleEntity] = [PeopleEntity]()
     
@@ -94,19 +94,19 @@ class PeopleDetailViewController: UIViewController {
             let toReportManagers = try context.fetch(managerFetch)
             
             if (toReportManagers.count > 0) {
-                toReportingToManager = toReportManagers[0]
+                toReprotingToManager = toReportManagers[0]
                 
-                if (toReportingToManager.middlename != nil) {
-                    reprotingToManagerNameLbl.text = (toReportingToManager.firstname!) + " " + (toReportingToManager.middlename!) + " "  + (toReportingToManager.lastname!)
+                if (toReprotingToManager.middlename != nil) {
+                    reprotingToManagerNameLbl.text = (toReprotingToManager.firstname!) + " " + (toReprotingToManager.middlename!) + " "  + (toReprotingToManager.lastname!)
                 } else {
-                    reprotingToManagerNameLbl.text = (toReportingToManager.firstname!) + " " + (toReportingToManager.lastname!)
+                    reprotingToManagerNameLbl.text = (toReprotingToManager.firstname!) + " " + (toReprotingToManager.lastname!)
                 }
                 
-                reprotingToManagerPositionLbl.text = toReportingToManager.title!
-                if self.toReportingToManager.picture != nil {
+                reprotingToManagerPositionLbl.text = toReprotingToManager.title!
+                if self.toReprotingToManager.picture != nil {
 
                     self.reportingToManagerImgView?.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-                    self.reportingToManagerImgView.image = UIImage(data: self.toReportingToManager.picture! as Data)
+                    self.reportingToManagerImgView.image = UIImage(data: self.toReprotingToManager.picture! as Data)
                     
                     UIView.animate(withDuration: 2.0, animations: {() -> Void in
                         self.reportingToManagerImgView?.transform = CGAffineTransform(scaleX: 1, y: 1)
@@ -153,7 +153,7 @@ class PeopleDetailViewController: UIViewController {
     }
     
     @IBAction func reprotingToManagerImgBtn(_ sender: Any) {
-        let selectedPeople = toReportingToManager
+        let selectedPeople = toReprotingToManager
         let PDVC = self.storyboard?.instantiateViewController(withIdentifier: "PeopleDetailViewController") as! PeopleDetailViewController
         PDVC.currentPerson = selectedPeople
         self.navigationController?.pushViewController(PDVC, animated: true)

@@ -15,14 +15,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.25</string>
+	<string>0.24</string>
 	<key>CFBundleVersion</key>
-	<string>4</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>skype</string>
-		<string>ms-sfb</string>
-	</array>
+	<string>54</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -38,15 +33,6 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Domus-Bold.otf</string>
-		<string>Domus-Extralight.otf</string>
-		<string>Domus-Light.otf</string>
-		<string>Domus-Regular.otf</string>
-		<string>Domus-Semibold.otf</string>
-		<string>Domus-Ultralight.otf</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
