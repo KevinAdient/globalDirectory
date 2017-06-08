@@ -42,6 +42,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes=[NSForegroundColorAttributeName:UIColor.white]
+        
+        //Mark:  hide navigation bar button "back"
+        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60), for:UIBarMetrics.default)
         return true
     }
     

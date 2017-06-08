@@ -8,6 +8,9 @@
 
 import UIKit
 import CoreData
+import MessageUI
+import MapKit
+
 
 class PeopleDetailViewController: UIViewController {
     
@@ -19,6 +22,8 @@ class PeopleDetailViewController: UIViewController {
     var reportSubs : [PeopleEntity] = [PeopleEntity]()
     
     @IBOutlet weak var currentPersonImgView: UIImageView!
+    
+    @IBOutlet weak var currentPersonParentView: UIView!
     @IBOutlet weak var currentPersonNameLbl: UILabel!
     @IBOutlet weak var currentPersonPositioinLbl: UILabel!
     @IBOutlet weak var currentPersonEmailLbl: UILabel!
@@ -32,6 +37,7 @@ class PeopleDetailViewController: UIViewController {
     @IBOutlet weak var reprotingToManagerNameLbl: UILabel!
     @IBOutlet weak var reprotingToManagerPositionLbl: UILabel!
     @IBOutlet weak var reportingToManagerImgView: UIImageView!
+    @IBOutlet weak var reportingToManagerImgSuperView: UIView!
     @IBOutlet weak var reprotingToManagerImgButton: UIButton!
     
     @IBOutlet weak var peopleReportsToLbl: UILabel!
@@ -41,16 +47,28 @@ class PeopleDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
-        // Do any additional setup after loading the view.
-        reportingToManagerImgView.layer.borderWidth = 1
-        reportingToManagerImgView.layer.borderColor = UIColor(red: 244/255.0, green: 140/255.0, blue: 140/255.0, alpha: 1.0).cgColor
+  
+        
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.black
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(backToRootVC))
+        var gotorootprofileImage = UIImage(named: "gotorootprofile")
+        
+        gotorootprofileImage = gotorootprofileImage?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: gotorootprofileImage, style: .plain, target: self, action: #selector(backToRootVC))
+        
+        
+    }
+    
+    func backToRootVC() {
+        print("backtoroot")
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
-        
-        
+
         self.currentPersonImgView?.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         if self.currentPerson.picture != nil {
             self.currentPersonImgView.image = UIImage(data: self.currentPerson.picture! as Data)
@@ -68,12 +86,31 @@ class PeopleDetailViewController: UIViewController {
             currentPersonNameLbl.text = currentPerson.firstname! + " " + currentPerson.lastname!
         }
         currentPersonPositioinLbl.text = currentPerson.title!
-        currentPersonEmailLbl.text = currentPerson.email!
-        currentPersonPhoneLbl.text = currentPerson.deskphone!
-        currentPersonMobileLbl.text = currentPerson.mobilephone!
+        
+        let underlineAttributeEmail = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+        let underlineAttributedStringEmail = NSAttributedString(string: currentPerson.email!, attributes: underlineAttributeEmail)
+        currentPersonEmailLbl.font = UIFont(name: "Domus-Regular", size: 15)
+        currentPersonEmailLbl.attributedText = underlineAttributedStringEmail
+        
+        
+        let underlineAttributePhone = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+        let underlineAttributedStringPhone = NSAttributedString(string: currentPerson.deskphone!, attributes: underlineAttributePhone)
+        currentPersonPhoneLbl.font = UIFont(name: "Domus-Regular", size: 15)
+        currentPersonPhoneLbl.attributedText = underlineAttributedStringPhone
+        
+        let underlineAttributeMobile = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+        let underlineAttributedStringMobile = NSAttributedString(string: currentPerson.mobilephone!, attributes: underlineAttributeMobile)
+        currentPersonMobileLbl.font = UIFont(name: "Domus-Regular", size: 15)
+        currentPersonMobileLbl.attributedText = underlineAttributedStringMobile
+        
         currentPersionDeptLbl.text = currentPerson.theirDepartment?.departmentName
         currentPersonCompLbl.text = currentPerson.company?.name
-        currentPersonOfficeLbl.text = (currentPerson.theirAddress?.city!)! + " " + (currentPerson.theirAddress?.streetName1)!
+        
+        let underlineAttributeAddress = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+        let underlineAttributedStringAddress = NSAttributedString(string: (currentPerson.theirAddress?.city!)! + " " + (currentPerson.theirAddress?.streetName1)!, attributes: underlineAttributeAddress)
+        currentPersonOfficeLbl.font = UIFont(name: "Domus-Regular", size: 15)
+        currentPersonOfficeLbl.attributedText = underlineAttributedStringAddress
+        
         
         
         let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -116,6 +153,7 @@ class PeopleDetailViewController: UIViewController {
             } else {
                 reprotingToManagerImgButton.isEnabled = false
                 reportingToManagerImgView.isHidden = true
+                reportingToManagerImgSuperView.isHidden = true
             }
             
         } catch {
@@ -152,12 +190,79 @@ class PeopleDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    //change status bar color
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     @IBAction func reprotingToManagerImgBtn(_ sender: Any) {
         let selectedPeople = toReprotingToManager
         let PDVC = self.storyboard?.instantiateViewController(withIdentifier: "PeopleDetailViewController") as! PeopleDetailViewController
         PDVC.currentPerson = selectedPeople
         self.navigationController?.pushViewController(PDVC, animated: true)
     }
+    
+    @IBAction func callBusinessPhoneBtnClicked(_ sender: Any) {
+        let businessPhone : String = (currentPerson.deskphone)!
+        callNumber(phoneNumber: businessPhone)
+    }
+    @IBAction func callPersonalPhoneBtnClicked(_ sender: Any) {
+        let personalPhone : String = (currentPerson.mobilephone)!
+        callNumber(phoneNumber: personalPhone)
+    }
+    
+    @IBAction func sendEmailBtnClicked(_ sender: Any) {
+        self.sendEmail()
+    }
+    
+    @IBAction func goToAddressClicked(_ sender: Any) {
+        let lat = currentPerson.theirAddress?.gpsLatitude
+        let long = currentPerson.theirAddress?.gpsLongitude
+        let placeStr = (currentPerson.theirAddress?.city!)! + " " + (currentPerson.theirAddress?.streetName1)!
+        openMapForPlace(lat: lat!, long: long!, placeName: placeStr)
+    }
+    
+    //open map function
+    func openMapForPlace(lat: CLLocationDegrees, long: CLLocationDegrees, placeName: String) {
+        
+        let myTargetCLLocation:CLLocation = CLLocation(latitude: lat, longitude: long) as CLLocation
+        let coordinate = CLLocationCoordinate2DMake(myTargetCLLocation.coordinate.latitude,myTargetCLLocation.coordinate.longitude)
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
+        mapItem.name = placeName
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+    }
+    
+    //make a call method
+    private func callNumber(phoneNumber:String) {
+        
+        if let phoneCallURL = URL(string: "tel://\(phoneNumber)") {
+            
+            let application:UIApplication = UIApplication.shared
+            if (application.canOpenURL(phoneCallURL)) {
+                application.open(phoneCallURL, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
+    
+    @IBAction func openSkypeClicked(_ sender: Any) {
+//        let skype: NSURL = NSURL(string: String(format: "skype:"))! //add object skype like this
+    
+        let skype: NSURL = NSURL(string: String(format: "ms-sfb://chat?id=" + self.currentPerson.globalUserId! + "@adient.com"))!
+        //let skype: NSURL = NSURL(string: String(format: "ms-sfb://chat?id=" + "harsha.thulluri-ext" + "@adient.com"))!
+        //let skype: NSURL = NSURL(string: String(format: "ms-sfb://start"))!
+        if UIApplication.shared.canOpenURL(skype as URL) {
+            UIApplication.shared.open(skype as URL, options: [:], completionHandler: nil)
+        }
+        else {
+            // skype not Installed in your Device
+            let itunes: NSURL = NSURL(string: String(format: "https://itunes.apple.com/us/app/skype-for-business-formerly-lync-2013/id605841731?mt=8"))!
+            UIApplication.shared.open(itunes as URL, options: [:], completionHandler: nil)
+        }
+        
+    }
+    
     
     
 
@@ -210,6 +315,66 @@ extension PeopleDetailViewController : UICollectionViewDelegate {
         self.navigationController?.pushViewController(PDVC, animated: true)
     }
     
+}
+
+extension PeopleDetailViewController : MFMailComposeViewControllerDelegate {
+    func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            let emailStr = currentPerson.email!
+            mail.setToRecipients([emailStr])
+            mail.setSubject("Hello!")
+            mail.setMessageBody("<p>Hello from Adient!</p>", isHTML: true)
+            present(mail, animated: true)
+        } else {
+            // show failure alert
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+    
+}
+
+//Mark: add shadow on round corner imgeview
+extension UIView {
+    
+    @IBInspectable var shadow: Bool {
+        get {
+            return layer.shadowOpacity > 0.0
+        }
+        set {
+            if newValue == true {
+                self.addShadow()
+            }
+        }
+    }
+    
+    @IBInspectable var cornerRadius: CGFloat {
+        get {
+            return self.layer.cornerRadius
+        }
+        set {
+            self.layer.cornerRadius = newValue
+            
+            // Don't touch the masksToBound property if a shadow is needed in addition to the cornerRadius
+            if shadow == false {
+                self.layer.masksToBounds = true
+            }
+        }
+    }
+    
+    func addShadow(shadowColor: CGColor = UIColor.black.cgColor,
+                   shadowOffset: CGSize = CGSize(width: 1.0, height: 2.0),
+                   shadowOpacity: Float = 0.4,
+                   shadowRadius: CGFloat = 3.0) {
+        layer.shadowColor = shadowColor
+        layer.shadowOffset = shadowOffset
+        layer.shadowOpacity = shadowOpacity
+        layer.shadowRadius = shadowRadius
+    }
 }
 
 

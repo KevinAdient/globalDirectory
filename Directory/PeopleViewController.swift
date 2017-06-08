@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import SwipeCellKit
+import MapKit
 
 class PeopleViewController: UIViewController {
     
@@ -94,6 +95,18 @@ class PeopleViewController: UIViewController {
         tableView.isHidden = !hasPeople
     }
     
+    //open map function
+    func openMapForPlace(lat: CLLocationDegrees, long: CLLocationDegrees, placeName: String) {
+        
+        let myTargetCLLocation:CLLocation = CLLocation(latitude: lat, longitude: long) as CLLocation
+        let coordinate = CLLocationCoordinate2DMake(myTargetCLLocation.coordinate.latitude,myTargetCLLocation.coordinate.longitude)
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
+        mapItem.name = placeName
+//        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+        
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsMapTypeKey : MKMapType.satellite.rawValue])
+    }
+    
     // MARK: - Notification Handling
     
     func applicationDidEnterBackground(_ notification: Notification) {
@@ -110,6 +123,24 @@ class PeopleViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        
+        let mySingletonObj = statusObj.sharedInstance
+        let statusBoolArray = mySingletonObj.statusBoolArray
+        var myStatusArray = ["Available", "Busy", "Do not distrub", "Appear away"]
+        for i in 0...3 {
+            if (statusBoolArray[i]) {
+                if let items = self.tabBarController?.tabBar.items {
+                    
+                    let tabBarItem = items[4] as! RAMAnimatedTabBarItem
+                    let tabBarImage = UIImage(named: myStatusArray[i])!
+                    
+                    tabBarItem.image = tabBarImage.withRenderingMode(.alwaysOriginal)
+                    
+                    tabBarItem.selectedImage = tabBarImage
+                    
+                }
+            }
+        }
     }
     
 
@@ -266,7 +297,7 @@ extension PeopleViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60;
+        return 90;
     }
 }
 
@@ -285,13 +316,18 @@ extension PeopleViewController: UITableViewDelegate {
 
 extension PeopleViewController: SwipeTableViewCellDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        let people = fetchedResultsController.object(at: indexPath)
+        let currentPerson = fetchedResultsController.object(at: indexPath)
         
         if orientation == .left {
             return[]
         } else {
             let requestGPS = SwipeAction(style: .destructive, title: nil) { action, indexPath in
                 print("request gps")
+                let lat = currentPerson.theirAddress?.gpsLatitude
+                let long = currentPerson.theirAddress?.gpsLongitude
+                let placeStr = (currentPerson.theirAddress?.city!)! + " " + (currentPerson.theirAddress?.streetName1)!
+                self.openMapForPlace(lat: lat!, long: long!, placeName: placeStr)
+
             }
             requestGPS.hidesWhenSelected = true
             configure(action: requestGPS, with: .gps)
@@ -349,9 +385,9 @@ enum ActionDescriptor {
         
         let name: String
         switch self {
-        case .gps: name = "flag"
-        case .floorplane: name = "flag"
-        case .directions: name = "flag"
+        case .gps: name = "ShareGPS"
+        case .floorplane: name = "Floorplan"
+        case .directions: name = "Directions"
         }
         
         return UIImage(named: style == .backgroundColor ? name : name + "-circle")

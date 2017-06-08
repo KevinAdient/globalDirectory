@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import SwipeCellKit
+import MapKit
 
 class PlacesViewController: UIViewController {
     
@@ -148,7 +149,7 @@ extension PlacesViewController: UISearchBarDelegate {
         
         var predicate:NSPredicate? = nil
         if searchBar.text?.characters.count != 0 {
-            predicate = NSPredicate(format: "(city contains [cd] %@) || (streetName1 contains[cd] %@)", searchBar.text!, searchBar.text!)
+            predicate = NSPredicate(format: "(name contains [cd] %@)", searchBar.text!)
         }
         
         self.fetchedResultsController.fetchRequest.predicate = predicate
@@ -247,7 +248,8 @@ extension PlacesViewController: UITableViewDataSource {
         let place = fetchedResultsController.object(at: indexPath)
         
         // Configure Cell
-        cell.placeLbl.text = place.name! + " " + place.type!
+        cell.placeLbl.text = place.name!
+
         
         
     }
@@ -261,12 +263,38 @@ extension PlacesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //select action
         searchBar.resignFirstResponder()
+        let currentPlace = fetchedResultsController.object(at: indexPath)
+        
+        if (currentPlace.type == "plant") {
+            let lat = currentPlace.plants?.plantAddress?.gpsLatitude
+            let long = currentPlace.plants?.plantAddress?.gpsLongitude
+            let placeStr = (currentPlace.plants?.plantAddress?.city!)! + " " + (currentPlace.plants?.plantAddress?.streetName1)!
+            openMapForPlace(lat: lat!, long: long!, placeName: placeStr)
+        } else {
+            let alert = UIAlertController(title: "Alert", message: "No GPS information current", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
+    
+    //open map function
+    func openMapForPlace(lat: CLLocationDegrees, long: CLLocationDegrees, placeName: String) {
+        
+        let myTargetCLLocation:CLLocation = CLLocation(latitude: lat, longitude: long) as CLLocation
+        let coordinate = CLLocationCoordinate2DMake(myTargetCLLocation.coordinate.latitude,myTargetCLLocation.coordinate.longitude)
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
+        mapItem.name = placeName
+
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsMapTypeKey : MKMapType.satellite.rawValue])
+//        mapItem.openInMaps(launchOptions: nil)
+        //TODU: change map item image
+    }
+
 }
 
 extension PlacesViewController: SwipeTableViewCellDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        let place = fetchedResultsController.object(at: indexPath)
+        let currentPlace = fetchedResultsController.object(at: indexPath)
         
         if orientation == .left {
             return[]
@@ -279,6 +307,19 @@ extension PlacesViewController: SwipeTableViewCellDelegate {
             
             let directions = SwipeAction(style: .destructive, title: nil) { action, indexPath in
                 print("directions")
+                
+                //go to direction
+                if (currentPlace.type == "plant") {
+                    let lat = currentPlace.plants?.plantAddress?.gpsLatitude
+                    let long = currentPlace.plants?.plantAddress?.gpsLongitude
+                    let placeStr = (currentPlace.plants?.plantAddress?.city!)! + " " + (currentPlace.plants?.plantAddress?.streetName1)!
+                    self.openMapForPlace(lat: lat!, long: long!, placeName: placeStr)
+                } else {
+                    let alert = UIAlertController(title: "Alert", message: "No GPS information current", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            
             }
             directions.hidesWhenSelected = true
             configure(action: directions, with: .directions)
